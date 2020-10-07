@@ -1,0 +1,15 @@
+{% block body %}
+    <div class="well">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <br>
+        <br>
+        <h1>Voulez vous revenir au menu précédent ?</h1>
+        <p>Vous allez perdre tous les éléments non sauvegardés</p>
+        {% if lib == 'Intervention' %}
+            <a href="{{ path(lib~'.annuler',{id : id}) }}" class="btn btn-primary">Oui</a>
+        {% else %}
+            <a href="{{ path(lib~'.index') }}" class="btn btn-primary">Oui</a>
+        {% endif %}
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Non</button>
+    </div>
+{% endblock %}

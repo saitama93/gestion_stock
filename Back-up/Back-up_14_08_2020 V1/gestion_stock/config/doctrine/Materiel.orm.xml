@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Materiel" table="materiel">
+    <indexes>
+      <index name="idSpecificite" columns="idSpecificite"/>
+      <index name="idLieu" columns="idLieu"/>
+      <index name="idReferent" columns="idReferent"/>
+      <index name="idType" columns="idType"/>
+      <index name="idMarque" columns="idMarque"/>
+    </indexes>
+    <id name="idmateriel" type="integer" column="idMateriel">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="numeroserie" type="float" column="numeroSerie" precision="10" scale="0" nullable="true"/>
+    <field name="statut" type="integer" column="statut" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="nommateriel" type="string" column="nomMateriel" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="motscles" type="string" column="motsCles" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="date" type="string" column="date" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="supprimer" type="string" column="supprimer" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idmarque" target-entity="Marque" fetch="LAZY">
+      <join-columns>
+        <join-column name="idMarque" referenced-column-name="idMarque"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idlieu" target-entity="Lieu" fetch="LAZY">
+      <join-columns>
+        <join-column name="idLieu" referenced-column-name="idLieu"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idtype" target-entity="Type" fetch="LAZY">
+      <join-columns>
+        <join-column name="idType" referenced-column-name="idType"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idspecificite" target-entity="Specificite" fetch="LAZY">
+      <join-columns>
+        <join-column name="idSpecificite" referenced-column-name="idSpecificite"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idreferent" target-entity="Referent" fetch="LAZY">
+      <join-columns>
+        <join-column name="idReferent" referenced-column-name="idReferent"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

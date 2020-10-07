@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('Materiel.index') }}">Stock</a></li>
+                <li class="breadcrumb-item active" aria-current="page">cleanDB</li>
+            </ol>
+        </nav>
+        <a href="{{ path('Materiel.index') }}" class="btn btn-danger">Annuler</a>
+        <h1>Attention</h1>
+        <h2>Vous allez écraser la base !</h2>
+        <h2>Une sauvegarde sera créée préalablement dans /public/backup .</h2>
+        <p>Celà veut dire que vous pourrez ajouter de nouveau matériels
+            MAIS aussi modifier ceux qui existent déjà.</p>
+        <p>- Éviter les fautes d'orthographe sur toutes les données</p>
+        <p>- Ne pas avoir de ligne vide</p>
+        <small>Les modèles de CSV se trouvent dans /public/csv</small>
+        <br>
+        <small>Ce texte est modifiable dans /templates/stock/lirecsv.html.twig</small>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile">
+            <br>
+            <a href="{{ path('Materiel.downloadModel') }}" class="btn btn-primary">Télécharger le modèle de CSV</a>
+            <input type="submit" name="envoyer" value="Mettre à jour" class="btn btn-warning">
+        </form>
+    </div>
+
+{% endblock %}

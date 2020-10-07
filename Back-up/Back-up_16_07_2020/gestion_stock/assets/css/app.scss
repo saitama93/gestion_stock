@@ -1,0 +1,149 @@
+@import "~bootstrap/scss/bootstrap";
+
+
+#form_ajouter,#form_modifier{
+  padding-right: 7% ;
+  padding-left: 7%;
+  margin-top: 15px;
+}
+#matAjout{
+  padding: 0 !important;
+}
+#btn-csv{
+  right: 0 ;
+  position: absolute;
+  margin-right: 8%;
+  padding: 0 !important;
+}
+#lirecsv_btn{
+  position: absolute;
+  margin-left: 40%;
+  padding: 0 !important;
+}
+#cleanDB{
+  position: absolute;
+  display: block;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 0 !important;
+}
+#retour_intervention,#depart_intervention,#encours_inter,#autre_inter{
+  display: block;
+  text-align: center;
+  margin: 40px 25% 25px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+#validate_referent{
+  display: block;
+  text-align: center;
+  margin-right: 35%;
+  margin-left: 35%;
+}
+#affecter{
+  position: absolute;
+  margin-top: 10px;
+}
+#partir_inter{
+  right: 0;
+  position: absolute;
+}
+#terminer_affectation{
+  right: 0;
+  position: absolute;
+  margin-bottom: 5px;
+}
+#form_recherche{
+  border: 1px black solid;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  display: none;
+}
+#materielsearch{
+  margin-right: 10px;
+  margin-left: 5px;
+}
+#type_search,#lieu_search{
+  margin-right: 10px;
+  margin-left: 5px;
+}
+#marque_search{
+  margin-right: 15px;
+  margin-left: 5px;
+}
+#search_button{
+  margin-top: 5px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+#effacer_search{
+  margin-top: 5px;
+}
+#deploy_search{
+  margin-top: 7px;
+  padding: 0 !important;
+  font-size: 12px;
+  margin-bottom: 5px;
+  margin-left: 90%;
+}
+@media only screen and (min-width: 600px) {
+  #barcode{
+    position: absolute;
+    right: 25px;
+    top: 150px;
+    width: 400px;
+    height: 200px;
+  }
+}
+tr td{
+  padding: 0 !important;
+}
+tr th{
+  padding: 0 !important;
+}
+#modal1{
+  padding: 5px;
+  margin: 0 auto;
+}
+
+#addMat{
+  margin-top: 5px;
+}
+.ss-main{
+  width: 45% !important;
+}
+#affect_table{
+  border: 1px black solid;
+  border-radius: 9px;
+  margin: 5px auto auto;
+}
+#row_content_affect{
+  border-right: black 1px solid;
+}
+#affect_table th{
+  border: 1px black solid;
+  background-color: dodgerblue;
+}
+#updateMat,#deleteMat,#updateRef,#deleteRef{
+  padding: 2px 5px !important;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+#accueil_depart{
+  padding: 10% 20%;
+}
+#accueil_retour{
+  padding: 10% 21%;
+}
+#accueil_stock{
+  padding: 15% 35%;
+}
+#accueil_text{
+  color: white;
+}
+#helpmots{
+  width: 218px;
+}

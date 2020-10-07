@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1>Voulez vous supprimer ces matériels ?</h1>
+    <form method="post" action="{{ path('Materiel.validateDeleteMultiple') }}">
+    {% for materiel in materiels %}
+        <p>{{ materiel.numeroSerie }} - {{ materiel.nomMateriel }}</p>
+        <input type="hidden" value="{{ materiel.idMateriel }}" name="materiel{{ materiel.idMateriel }}">
+    {% endfor %}
+        <button type="submit" class="btn btn-danger">Oui</button>
+        <a href="{{ path('Materiel.index') }}" class="btn btn-secondary">Non</a>
+    </form>
+{% endblock %}

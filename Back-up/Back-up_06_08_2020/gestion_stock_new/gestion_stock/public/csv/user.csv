@@ -1,0 +1,5 @@
+﻿ID;Nom;Prenom;Mail;Roles
+1;ROOT;" ";;Admin
+2;User;" ";;User
+8;test;;;User
+10;Carré;Jean-Claude;;User

@@ -1,0 +1,12 @@
+﻿ID;"Numéro de série";Statut;"Nom du matériel";Marque;Lieu;Type;Specificite;"Dernier Referent";Supprimer
+1;123400;Disponible;"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";2-Faivre;
+2;111328;Disponible;"Ecran pour PC";Iiyama;"11 rue de la Gare d'eau";Ecran;"Ecran 17 pouces";2-Faivre;
+3;850026214;Disponible;"Ipad X";Apple;"11 rue de la Gare d'eau";Tablette;"Ecran 4 pouces";2-Faivre;
+4;877158;Disponible;"Switch ES14254";Cudy;"11 rue de la Gare d'eau";Switch;"4 ports";1-Boetsch;
+5;96042;Disponible;"Ecran pour PC";Iiyama;"11 rue de la Gare d'eau";Ecran;"Ecran 17 pouces";1-Boetsch;
+6;45883698;Disponible;"Switch ES14254";Cudy;"11 rue de la Gare d'eau";Switch;"3 ports";NULL;
+7;8030;Disponible;"UltraLink C8030";Iiyama;"11 rue de la Gare d'eau";Imprimante;"Sans fil";7-Gaillard;
+8;95858;Disponible;"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";NULL;13/07/2020
+9;15865;"En production";"Ipad XI";Apple;"CMS de Pontarlier";Tablette;"Ecran 4 pouces";5-Giroud;20/06/2020
+10;45102;Disponible;"UltraLink C8150";Iiyama;"Fort Griffon";Imprimante;"Sans fil";4-Mougin-Martelet;15/07/2020
+11;75487C;Disponible;"UltraLink C8150";Iiyama;"Fort Griffon";Imprimante;"Sans fil";NULL;

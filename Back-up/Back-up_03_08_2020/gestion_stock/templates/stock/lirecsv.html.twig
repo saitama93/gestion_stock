@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <a href="{{ path('Materiel.index') }}" class="btn btn-secondary">Retour</a>
+        <h1>Attention</h1>
+        <h2>Vous allez écraser la base !</h2>
+        <h2>Une sauvegarde sera créée au cas où dans /public/file .</h2>
+        <p>Celà veut dire que vous pourrez ajouter de nouveau matériels
+            MAIS aussi modifier ceux qui existent déjà.</p>
+        <p>- Évitez les fautes d'orthographe sur toutes les données</p>
+        <p>- Ne pas avoir de ligne vide</p>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile">
+            <br>
+            <input type="submit" name="envoyer" value="Mettre à jour" class="btn btn-warning">
+            <a href="{{ path('Materiel.downloadModel') }}" class="btn btn-primary">Télécharger le modèle de CSV</a>
+        </form>
+    </div>
+
+{% endblock %}

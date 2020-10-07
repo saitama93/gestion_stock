@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="well">
+    <h4>Départ en intervention</h4>
+    <form method="post">
+        <div class="form-group">
+            <label>Code barre référent</label>
+            <input id="referent_scanner" name="referent" type="text" class="form-control form-control" autocomplete="off">
+        </div>
+        <button id="chercher_referent" class="btn btn-primary" type="submit">Chercher</button>
+    </form>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        document.getElementById('referent_scanner').focus();
+    </script>
+{% endblock %}

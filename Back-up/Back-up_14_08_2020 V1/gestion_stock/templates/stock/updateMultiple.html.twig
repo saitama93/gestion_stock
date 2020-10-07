@@ -1,0 +1,118 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('Materiel.index') }}">Stock</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modifier_plusieurs</li>
+        </ol>
+    </nav>
+    <a data-target="{{ path('Home.goBack',{lib : 'Materiel', id : -1}) }}"
+       data-tooltip="retour" id="retourArriere"
+       class="tooltipped modal-trigger btn btn-danger"
+       href="#modal1">Annuler</a>
+    <h4>Modifier plusieurs matériels</h4>
+    <div class="well">
+        <form method="post">
+            <div class="form-group row">
+                <input type="checkbox" id="checkModifStatut" name="statutcheck" onclick="checkModif(this)" checked>
+                <label class="col-form-label col-sm-1">Statut</label>
+                <div class="col-sm-8">
+                    <select id="modifStatut" name="statut" class="form-control">
+                        {% for statut in statuts %}
+                            <option value="{{ statut.idStatut }}">
+                                {{ statut.libelleStatut }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="checkbox" id="checkModifMarque" name="marquecheck" onclick="checkModif(this)" checked>
+                <label class="col-form-label col-sm-1">Marque</label>
+                <div class="col-sm-8">
+                    <select id="modifMarque" name="marque" class="form-control">
+                        {% for marque in marques %}
+                            <option value="{{ marque.idMarque }}">
+                                {{ marque.libelleMarque }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="checkbox" id="checkModifLieu" name="lieucheck" onclick="checkModif(this)" checked>
+                <label class="col-form-label col-sm-1">Lieu</label>
+                <div class="col-sm-8">
+                    <select id="modifLieu" name="lieu" class="form-control">
+                        {% for lieu in lieux %}
+                            <option value="{{ lieu.idLieu }}">
+                                {{ lieu.libelleLieu }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="checkbox" id="checkModifType" name="typecheck" onclick="checkModif(this)" checked>
+                <label class="col-form-label col-sm-1">Type</label>
+                <div class="col-sm-8">
+                    <select id="modifType" name="type" class="form-control">
+                        {% for type in types %}
+                            <option value="{{ type.idType }}">
+                                {{ type.libelleType }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="checkbox" id="checkModifSpe" name="specheck" onclick="checkModif(this)" checked>
+                <label class="col-form-label col-sm-1">Spécificité</label>
+                <div class="col-sm-8">
+                    <select id="modifSpe" name="specificite" class="form-control">
+                        {% for spe in specificites %}
+                            <option value="{{ spe.idSpecificite }}">
+                                {{ spe.libelleSpe }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier tous les matériels</button>
+        </form>
+    </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+
+    function checkModif(source){
+        var id = 'modif'+source.id.split('checkModif')[1];
+        if (source.checked === true){
+            document.getElementById(id).disabled = false ;
+        } else {
+            document.getElementById(id).disabled = true ;
+        }
+
+    }
+
+    $(document).ready(function() {
+        $('.modal-trigger').click(function () {
+            $('.modal').modal();
+            url = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $('.modal-content').html(data);
+                $('#modal1').modal('open');
+            });
+        })
+    });
+</script>
+{% endblock %}

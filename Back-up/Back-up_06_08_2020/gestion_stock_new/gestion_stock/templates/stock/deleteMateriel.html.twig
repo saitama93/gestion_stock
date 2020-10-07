@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <h3>Voulez vous supprimez ce matériel</h3>
+        <form method="post" action="{{ path('Materiel.validateDelete') }}">
+            <input type="hidden" name="_method" value="delete"/>
+            <div class="form-group col-12 col-md-6">
+                <label>Numero de Serie : {{materiel.numeroSerie}}</label>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label>Nom du materiel : {{ materiel.nomMateriel }}</label>
+            </div>
+            <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
+            <input type="hidden" name="id" value="{{ materiel.idMateriel }}">
+        </form>
+        <a href="{{ path('Materiel.index') }}" class="btn btn-outline-primary">Annuler</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('Intervention.index') }}" class="btn btn-secondary">Retour</a>
+    <h4>Interventions en cours</h4>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Referent</th><th>Date d'intervention</th><th id="inter_menu"></th></tr>
+                </thead>
+                {% for intervention in interventions %}
+                {% if intervention.statutInter == 'En cours' %}
+                <tbody>
+                <tr>
+                    <td>{{ intervention.idIntervention }}</td>
+                    <td>
+                        {{ intervention.idUser.nom }} {{ intervention.idUser.prenom }}
+                    </td>
+                    <td><a href="{{ path('Intervention.edit',{id:intervention.idIntervention}) }}">
+                            {{ intervention.dateIntervention }}
+                        </a></td>
+                    <td>
+                        <a href="{{ path('Intervention.affectation',{id: intervention.idIntervention}) }}"
+                           class="btn btn-primary" id="cloturerButton">Clotûrer</a>
+                        <a data-target="{{ path('Intervention.details', {id: intervention.idIntervention}) }}" data-tooltip="voir"
+                           class="tooltipped modal-trigger btn btn-secondary" id="apercu_inter"
+                           href="#modal1">Aperçu</a>
+                    </td>
+                </tr>
+
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.modal-trigger').click(function () {
+                $('.modal').modal();
+                url = $(this).attr('data-target');
+                $.get(url, function (data) {
+                    $('.modal-content').html(data);
+                    $('#modal1').modal('open');
+                });
+            })
+        });
+    </script>
+{% endblock %}

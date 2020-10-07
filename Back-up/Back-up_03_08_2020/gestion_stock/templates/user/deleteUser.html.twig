@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <h3>Voulez vous supprimer cet utilisateur</h3>
+        <form method="post">
+            <p>Nom : {{user.nom}} </p>
+            <p>Prenom : {{ user.prenom }}</p>
+            <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        <a href="{{ path('User.index') }}" class="btn btn-outline-primary">Annuler</a>
+    </div>
+
+{% endblock %}

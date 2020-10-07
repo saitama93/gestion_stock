@@ -1,0 +1,129 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('Intervention.index') }}">Intervention</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('Intervention.retour') }}">Retour</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('Intervention.encours') }}">En cours</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Affectation</li>
+            </ol>
+        </nav>
+        <h4>Affectation à un site</h4>
+        <form method="post">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Tous/Aucun  <input type="checkbox" id="checkAllNoAffect" name="checkAll" onclick="checkAllOrNothing(this)">
+                        Non affecté</th><th>Tous/Aucun  <input type="checkbox" id="checkAllAffect" name="checkAll" onclick="checkAllOrNothing(this)">Affecté</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for materiel in materiels %}
+                    <tr>
+                        {% if materiel.idLieuArrive == null %}
+                            <td id="row_content_affect">
+                                <input type="checkbox" class="noAffect"
+                                       id="checkButton{{ materiel.idMateriel.idMateriel }}"
+                                       name="idMateriel{{ materiel.idMateriel.idMateriel }}"
+                                       onclick="verifAffecter()">
+                                <label for="checkButton{{ materiel.idMateriel.idMateriel }}">
+                                    {{ materiel.idMateriel.numeroSerie }} {{ materiel.idMateriel.nomMateriel }}
+                                </label>
+                            </td>
+                            <td></td>
+                        {% elseif materiel.idLieuArrive != null %}
+                            <td id="row_content_affect"></td>
+                            <td>
+                                <input type="checkbox" class="Affect"
+                                       id="checkButton{{ materiel.idMateriel.idMateriel }}"
+                                       name="idMateriel{{ materiel.idMateriel.idMateriel }}"
+                                       onclick="verifAffecter()">
+                                <label for="checkButton{{ materiel.idMateriel.idMateriel }}">
+                                    {{ materiel.idMateriel.numeroSerie }} {{ materiel.idMateriel.nomMateriel }} |
+                                    {{ materiel.idLieuArrive.libelleLieu }} | {{ materiel.idStatut.libelleStatut }}
+                                </label>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-1" for="searchLieu">Donnez site</label>
+                <div class="col-sm-8">
+                    <input type="text" id="searchLieu" class="form-control" name="lieu">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-1" for="statut">Statut</label>
+                <div class="col-sm-8">
+                    <select id="statut" class="form-control" name="statut">
+                        {% for statut in statuts %}
+                        <option value="{{ statut.idStatut }}">{{ statut.libelleStatut }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button id="affecter" class="btn btn-primary" type="submit">Affecter</button>
+            </div>
+        </form>
+        <a href="{{ path('Intervention.terminer',{id : intervention.idIntervention}) }}"
+           id="terminer_affectation" class="btn btn-primary">Enregistrer</a>
+        <br>
+        <br>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        verifAffecter();
+        function verifAffecter() {
+            var verif = true ;
+            var color = "btn btn-secondary";
+            {% for materiel in materiels %}
+            if (document.getElementById("checkButton{{ materiel.idMateriel.idMateriel }}").checked){
+                verif = false ;
+                color="btn btn-primary";
+            }
+            {% endfor %}
+            document.getElementById("affecter").disabled = verif;
+            document.getElementById("affecter").className = color;
+        }
+
+        function checkAllOrNothing(source){
+            console.log(source.id);
+            if (source.id === 'checkAllNoAffect'){
+                var checkboxes = document.getElementsByClassName('noAffect');
+                for (let i = 0; i < $(".noAffect").length;i++){
+                    checkboxes[i].checked = source.checked;
+                }
+            } else {
+                var checkboxes = document.getElementsByClassName('Affect');
+                for (let i = 0; i < $(".Affect").length;i++){
+                    checkboxes[i].checked = source.checked;
+                }
+            }
+            verifAffecter();
+        }
+
+        function decode(str){
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
+            });
+        }
+
+        $(function() {
+            var list = [];
+            var lieu ;
+            {% for lieu in lieux %}
+            lieu = "{{ lieu.libelleLieu }}";
+            list.push(decode(lieu));
+            {% endfor %}
+            $('#searchLieu').autocomplete({
+                source: list
+            });
+        });
+    </script>
+{% endblock %}

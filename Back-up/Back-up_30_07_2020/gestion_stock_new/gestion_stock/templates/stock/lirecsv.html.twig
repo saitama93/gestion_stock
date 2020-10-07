@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <a href="{{ path('Materiel.index') }}" class="btn btn-secondary">Retour</a>
+        <h1>Attention</h1>
+        <h2>Vous allez écrasez la base !</h2>
+        <h2>Une sauvegarde sera créer au cas où</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile">
+            <input type="submit" name="envoyer" value="Mettre à jour" class="btn btn-warning">
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('Intervention.encours') }}" class="btn-primary btn-lg" id="encours_inter">En cours</a>
+    <a href="{{ path('Intervention.nouveauRetour') }}" class="btn-primary btn-lg" id="autre_inter">Retour de matériel</a>
+{% endblock %}

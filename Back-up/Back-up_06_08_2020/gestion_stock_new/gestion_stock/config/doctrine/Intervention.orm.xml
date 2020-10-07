@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Intervention" table="intervention">
+    <indexes>
+      <index name="idLieu" columns="idLieu"/>
+      <index name="idReferent" columns="idReferent"/>
+    </indexes>
+    <id name="idintervention" type="integer" column="idIntervention">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dateintervention" type="string" column="dateIntervention" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statutinter" type="string" column="statutInter" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idreferent" target-entity="Referent" fetch="LAZY">
+      <join-columns>
+        <join-column name="idReferent" referenced-column-name="idReferent"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idlieu" target-entity="Lieu" fetch="LAZY">
+      <join-columns>
+        <join-column name="idLieu" referenced-column-name="idLieu"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

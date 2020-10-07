@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('Historique.downloadRecap',{id : id}) }}" class="btn-primary btn"><ion-icon name="download-outline"></ion-icon>
+        Télécharger le recap</a>
+    <p>Date d'intervention : {{ intervention.dateIntervention }}</p>
+    <p>Referent : {{ intervention.idUser.nom }} {{ intervention.idUser.prenom }}</p>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Ancien Lieu</th><th>Nouveau Lieu</th></tr>
+            </thead>
+            {% for materiel in materiels %}
+            <tbody>
+            <tr>
+                <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                <td>{{ materiel.idLieuDepart.libelleLieu }}</td>
+                <td>{{ materiel.idLieuArrive.libelleLieu }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

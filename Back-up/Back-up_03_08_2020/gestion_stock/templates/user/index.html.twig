@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h4>Liste des utilisateurs</h4>
+    <div class="container">
+        <div class="row">
+            <a href="{{ path('User.add') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+        <br>
+        <div class="table-responsive-sm">
+            <table class="table table-sm">
+                <thead class="thead-dark">
+                <tr><th>Nom</th><th>Prenom</th><th>Mail</th>
+                    <th>Roles <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" id="info_roles"
+                       title="USER : Accède uniquement aux interventions || ADMIN : Accès à tous le site"></ion-icon></th>
+                    <th id="editdelete"></th></tr>
+                </thead>
+                {% for user in users %}
+                <tbody>
+                <tr>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                        {{ role }}
+                        <br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('User.edit',{id : user.idUser }) }}"
+                           class="btn btn-primary" id="updateUser"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('User.delete',{id : user.idUser }) }}"
+                           class="btn btn-danger" id="deleteUser">
+                            <ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                placement : 'top'
+            });
+        });
+    </script>
+{% endblock %}

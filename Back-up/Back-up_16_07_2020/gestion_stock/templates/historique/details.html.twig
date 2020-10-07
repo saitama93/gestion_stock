@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <p>Date d'intervention : {{ intervention.dateIntervention }}</p>
+    <p>Referent : {{ intervention.idReferent.nom }} {{ intervention.idReferent.prenom }}</p>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Ancien Lieu</th><th>Nouveau Lieu</th></tr>
+            </thead>
+            {% for materiel in materiels %}
+            <tbody>
+            <tr>
+                <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                {% if materiel.idIntervention.statutInter == 'Terminé' %}
+                    <td>{{ materiel.idIntervention.idLieu.libelleLieu }}</td>
+                    <td>{{ materiel.idLieu.libelleLieu }}</td>
+                {% else %}
+                    <td>{{ materiel.idLieu.libelleLieu }}</td>
+                    <td>{{ materiel.idIntervention.idLieu.libelleLieu }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

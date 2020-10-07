@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+    <h3>Modifier Référent</h3>
+
+    <div class="well">
+        {{ form_start(form,{'attr': {'class': 'form-horizontale'}}) }}
+        {{ form_errors(form) }}
+        <div class="form-group">
+            {{ form_label(form.nom,"Nom",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-3">
+                {{ form_widget(form.nom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.prenom,"Prenom",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-3">
+                {{ form_widget(form.prenom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.equipe,"Equipe",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-3">
+                {{ form_widget(form.equipe,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.mailEquipe,"Mail equipe",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+            <div class="col-sm-4">
+                {{ form_widget(form.mailEquipe,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        {{ form_widget(form.modifier, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+
+    </div>
+    <input id="form_idReferent" type="hidden" value="{{ id }}">
+    <br>
+    <p><button onclick="generate()" class="btn-primary btn">Generer le code barre</button></p>
+    <img id="barcode"/>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        function sansAccent(mot) {
+            var accent = [
+                /[\300-\306]/g, /[\340-\346]/g, // A, a
+                /[\310-\313]/g, /[\350-\353]/g, // E, e
+                /[\314-\317]/g, /[\354-\357]/g, // I, i
+                /[\322-\330]/g, /[\362-\370]/g, // O, o
+                /[\331-\334]/g, /[\371-\374]/g, // U, u
+                /[\321]/g, /[\361]/g, // N, n
+                /[\307]/g, /[\347]/g, // C, c
+            ];
+            var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+            var str = mot ;
+            for (var i = 0 ; i < accent.length ; i++){
+                str = str.replace(accent[i],noaccent[i]);
+            }
+            return str ;
+        }
+        function generate(){
+            var id = document.getElementById('form_idReferent').value;
+            var nom = document.getElementById('form_nom').value;
+            nom = sansAccent(nom);
+            var prenom = document.getElementById('form_prenom').value;
+            prenom= sansAccent(prenom);
+            var code = id+'-'+nom+prenom;
+            JsBarcode('#barcode',code);
+        }
+    </script>
+{% endblock %}

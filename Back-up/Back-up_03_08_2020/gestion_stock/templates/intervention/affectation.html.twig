@@ -1,0 +1,107 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <h4>Affectation du matériel</h4>
+        <form method="post">
+            <div class="form-group">
+                <table id="affect_table">
+                    <tr>
+                        <th><input type="checkbox" id="checkAllNoAffect" name="checkAll" onclick="checkAllOrNothing(this)">
+                            Non affecté</th><th><input type="checkbox" id="checkAllAffect" name="checkAll" onclick="checkAllOrNothing(this)">Affecté</th>
+                    </tr>
+                    {% for materiel in materiels %}
+                    <tr>
+                        {% if materiel.idLieu == null %}
+                            <td id="row_content_affect">
+                                <input type="checkbox" class="noAffect"
+                                       id="checkButton{{ materiel.idMateriel.idMateriel }}"
+                                       name="idMateriel{{ materiel.idMateriel.idMateriel }}"
+                                       onclick="verifAffecter()">
+                                <label for="checkButton{{ materiel.idMateriel.idMateriel }}">
+                                    {{ materiel.idMateriel.numeroSerie }} {{ materiel.idMateriel.nomMateriel }}
+                                </label>
+                            </td>
+                            <td></td>
+                        {% elseif materiel.idLieu != null %}
+                            <td id="row_content_affect"></td>
+                            <td>
+                                <input type="checkbox" class="Affect"
+                                       id="checkButton{{ materiel.idMateriel.idMateriel }}"
+                                       name="idMateriel{{ materiel.idMateriel.idMateriel }}"
+                                       onclick="verifAffecter()">
+                                <label for="checkButton{{ materiel.idMateriel.idMateriel }}">
+                                    {{ materiel.idMateriel.numeroSerie }} {{ materiel.idMateriel.nomMateriel }}
+                                    {{ materiel.idLieu.libelleLieu }}
+                                </label>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>
+                <label for="searchLieu">Donnez l'adresse</label>
+                <input type="text" id="searchLieu" class="form-control" name="lieu">
+                <label for="statut">Statut</label>
+                <select id="statut" class="form-control" name="statut">
+                    <option value="1">Disponible</option>
+                    <option value="2">En production</option>
+                    <option value="3">SAV</option>
+                    <option value="4">Immobilisé</option>
+                </select>
+                <button id="affecter" class="btn btn-primary" type="submit">Affecter</button>
+        </form>
+        <a href="{{ path('Intervention.terminer',{id : intervention.idIntervention}) }}"
+           id="terminer_affectation" class="btn btn-primary">Terminer</a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        verifAffecter();
+        function verifAffecter() {
+            var verif = true ;
+            var color = "btn btn-secondary";
+            {% for materiel in materiels %}
+            if (document.getElementById("checkButton{{ materiel.idMateriel.idMateriel }}").checked){
+                verif = false ;
+                color="btn btn-primary";
+            }
+            {% endfor %}
+            document.getElementById("affecter").disabled = verif;
+            document.getElementById("affecter").className = color;
+        }
+
+        function checkAllOrNothing(source){
+            console.log(source.id);
+            if (source.id === 'checkAllNoAffect'){
+                var checkboxes = document.getElementsByClassName('noAffect');
+                for (let i = 0; i < $(".noAffect").length;i++){
+                    checkboxes[i].checked = source.checked;
+                }
+            } else {
+                var checkboxes = document.getElementsByClassName('Affect');
+                for (let i = 0; i < $(".Affect").length;i++){
+                    checkboxes[i].checked = source.checked;
+                }
+            }
+            verifAffecter();
+        }
+
+        function decode(str){
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
+            });
+        }
+
+        $(function() {
+            var list = [];
+            var lieu ;
+            {% for lieu in lieux %}
+            lieu = "{{ lieu.libelleLieu }}";
+            list.push(decode(lieu));
+            {% endfor %}
+            $('#searchLieu').autocomplete({
+                source: list
+            });
+        });
+    </script>
+{% endblock %}

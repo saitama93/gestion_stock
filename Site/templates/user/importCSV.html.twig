@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('User.index') }}">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">importCSV</li>
+            </ol>
+        </nav>
+        <a href="{{ path('User.index') }}" class="btn btn-danger">Annuler</a>
+        <h1>Attention</h1>
+        <h2>Si vous rajoutez de nouveau utilisateur via cette méthode veillez à :</h2>
+        <p>- Éviter les fautes d'orthographe sur toutes les données</p>
+        <p>- Ne pas avoir de ligne vide</p>
+        <small>TIPS : Vous pouvez uniquement ici rajouter de nouveau utilisateur sans modifier les autres existants</small>
+        <br>
+        <small>Cependant l'importation ne permet pas d'importer le login et mot de passe d'un utilisateur, veuiller les rentrer manuellement</small>
+        <br>
+        <small>Ce texte est modifiable dans /templates/user/importCSV.html.twig</small>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile">
+            <br>
+            <input type="submit" name="envoyer" value="Mettre à jour" class="btn btn-warning">
+            <a href="{{ path('User.downloadModel') }}" class="btn btn-primary">Télécharger le modèle de CSV</a>
+        </form>
+    </div>
+
+{% endblock %}

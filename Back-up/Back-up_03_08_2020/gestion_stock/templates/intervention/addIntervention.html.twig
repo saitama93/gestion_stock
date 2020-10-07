@@ -1,0 +1,79 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <style>
+        nav{
+            display: none !important;
+        }
+    </style>
+    <div class="well">
+        <h4>Ajouter du matériel</h4>
+        <a data-target="{{ path('Home.goBack',{lib : 'Intervention',id : id}) }}"
+           data-tooltip="retour" id="retourArriere"
+           class="tooltipped modal-trigger btn btn-danger"
+           href="#modal1">Annuler</a>
+        <br>
+        Vous êtes identifié sous {{ intervention.idUser.nom|default('/') }} {{ intervention.idUser.prenom|default('') }}
+
+        <a href="{{ path('Intervention.changeUser',{id : id, retour : retour}) }}"
+           class="btn btn-link">Ce n'est pas moi</a>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="materiel_scanner">Code barre materiel</label>
+                <input id="materiel_scanner" name="materiel" type="text" class="form-control form-control" autocomplete="off">
+            </div>
+            <button id="ajouter_mat" class="btn btn-primary" type="submit" hidden>Ajouter via code barre</button>
+            <a href="{{ path('Intervention.listMateriel',{id : id, retour: retour }) }}"
+               id="listMate" class="btn btn-primary">Ajouter manuellement</a>
+
+            <a href="{{ path('Intervention.addCsv',{id : id, edit : retour}) }}" id="addMatCSV"
+               class="btn-primary btn">Ajouter via un CSV</a>
+
+            {% if retour == 0 %}
+                <a href="{{ path('Intervention.partirInter',{id : id}) }}" id="partir_inter" class="btn-primary btn">Partir en intervention</a>
+            {% elseif retour == 1 %}
+                <a href="{{ path('Intervention.validateRetour',{id : id}) }}" id="partir_inter" class="btn-primary btn">Revenir avec ce matériel</a>
+            {% endif %}
+            <br>
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Marque</th><th>Ancien lieu</th><th>Nouveau lieu</th>
+                    <th>Ancien statut</th><th>Nouveau statut</th><th>Type</th><th></th></tr>
+                </thead>
+                {% for materiel in intervient %}
+                <tbody>
+                <tr>
+                    <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                    <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                    <td>{{ materiel.idMateriel.idMarque.libelleMarque|default('A définir') }}</td>
+                    <td>{{ materiel.idMateriel.idLieu.libelleLieu|default('A définir') }}</td>
+                    {% if retour == 0 %}
+                    <td>{{ materiel.idLieu.libelleLieu|default('A definir') }}</td>
+                    {% elseif retour == 1 %}
+                        <td>Fort Griffon</td>
+                    {% endif %}
+                    <td>
+                        {{ materiel.idMateriel.idStatut.libelleStatut }}
+                    </td>
+                    <td>
+                        {{ materiel.idStatut.libelleStatut|default('A definir') }}
+                    </td>
+                    <td>{{ materiel.idMateriel.idType.libelleType|default('A définir') }}</td>
+                    <td>
+                        <a href="{{ path('Intervention.delete',{idInt : id, idMat : materiel.idMateriel.idMateriel, retour : retour }) }}"
+                        class="btn btn-danger" id="deleteMatInter"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    </script>
+{% endblock %}

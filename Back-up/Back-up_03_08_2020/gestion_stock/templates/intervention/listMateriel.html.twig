@@ -1,0 +1,198 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <button type="button" id="deploy_search" onclick="deploy()" class="btn btn-link">Rechercher</button>
+            <form method="post" class="form-inline" id="form_recherche">
+                <div class="form-group">
+                    <label>Numero de serie</label>
+                    <input type="search" name="search_num" class="form-control" autocomplete="off"
+                           id="numeroSerie_Search" placeholder="Numero de serie">
+                    <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" id="infoNum"
+                              title="Verifie si la chaine de charactère est contenus dans sur ce champs"></ion-icon>
+                </div>
+
+                <div class="form-group">
+                    <label>Materiel</label>
+                    <input type="search" name="search_materiel" class="form-control" autocomplete="off"
+                           id="nomMateriel_search" placeholder="Nom de matériel">
+                    <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" id="infoNom"
+                              title="Verifie si la chaine de charactère est contenus dans sur ce champs"></ion-icon>
+                </div>
+
+                <div class="form-group">
+                    <label>Statut</label>
+                    <select id="statut_search" class="form-control" name="statut">
+                        <option value="-1" selected>Tous</option>
+                        {% for statut in statuts %}
+                            <option value="{{ statut.idStatut }}">{{ statut.libelleStatut }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Type de materiel</label>
+                    <select id="type_search" class="form-control" name="type">
+                        <option value="0" selected>Tous</option>
+                        {% for type in types %}
+                            <option value="{{ type.idType }}">{{ type.libelleType }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Marque</label>
+                    <select id="marque_search" class="form-control" name="marque">
+                        <option value="0" selected>Tous</option>
+                        {% for marque in marques %}
+                            <option value="{{ marque.idMarque }}">{{ marque.libelleMarque }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="lieu_search" id="labelLieu_search">Lieu</label>
+                    <select id="lieu_search" class="form-control" name="lieu">
+                        <option value="0" selected>Tous</option>
+                        {% for lieu in lieux %}
+                            <option value="{{ lieu.idLieu }}">{{ lieu.libelleLieu }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date de dernière modification</label>
+                    <input type="text" name="date" id="datepicker" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="motscles_search">Mots clés</label>
+                    <select id="motscles_search" name="motscles[]" multiple>
+                        {% for motcle in motscles %}
+                            <option value="{{ motcle }}">{{ motcle }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <button id="search_button" class="btn btn-primary" type="submit">
+                    <ion-icon name="search"></ion-icon></button>
+                <a href="{{ path('Materiel.index') }}" class="btn btn-secondary" id="effacer_search">Effacer</a>
+            </form>
+        </div>
+        <form method="post">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr><th>Numero de Serie</th><th>Statut</th><th>Nom du materiel</th><th>Marque</th><th>Lieu</th>
+                        <th>Type</th><th>Date de dernière modification</th><th></th>
+                        <th>
+                            <input type="checkbox" id="checkAll" name="checkAll" onclick="checkAllOrNothing(this)">
+                        </th>
+                    </tr>
+                    </thead>
+                    {% for materiel in materiels %}
+                    <tbody>
+                    {% if (materiel.idLieu == null or materiel.idMarque == null or materiel.idType == null) %}
+                    <tr class="table-danger">
+                    {% else %}
+                    <tr>
+                        {% endif %}
+                        <td>{{ materiel.numeroSerie }}</td>
+                        <td>{{ materiel.idStatut.libelleStatut }}</td>
+                        <td>{{ materiel.nomMateriel }}</td>
+                        <td>{{ materiel.idMarque.libelleMarque|default('A définir') }}</td>
+                        <td>{{ materiel.idLieu.libelleLieu|default('A définir') }}</td>
+                        <td>{{ materiel.idType.libelleType|default('A définir') }}</td>
+                        <td>{{ materiel.date }}</td>
+                        <td>
+                            <a href="{{ path('Materiel.edit',{id : materiel.idMateriel}) }}"
+                               class="btn btn-primary" id="updateMat" title="Modifier ce matériel"
+                            ><ion-icon name="create"></ion-icon></a>
+                            <a href="{{ path('Materiel.delete',{id : materiel.idMateriel}) }}"
+                               class="btn btn-danger" id="deleteMat" title="Supprimer ce matériel"
+                            ><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="materielCheck" id="checkbox1" name="materiel{{ materiel.idMateriel }}">
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary" type="submit">
+                <ion-icon name="add"></ion-icon>Ajouter</button>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        new SlimSelect({
+            select: '#motscles_search'
+        });
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                placement : 'top'
+            });
+        });
+        function decode(str){
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
+            });
+        }
+        $(function() {
+            var listMat = [];
+            var listNum = [];
+            var mat ;
+            var numero ;
+            {% for materiel in materiels %}
+            mat = "{{ materiel.nomMateriel }}";
+            numero = "{{ materiel.numeroSerie }}"
+            if (listMat.indexOf(decode(mat))===-1){
+                listMat.push(decode(mat));
+            }
+            if (listNum.indexOf(decode(numero))===-1){
+                listNum.push(decode(numero));
+            }
+            {% endfor %}
+            $('#nomMateriel_search').autocomplete({
+                source: listMat,
+            });
+            $('#numeroSerie_Search').autocomplete({
+                source: listNum,
+            });
+            $("#datepicker").datepicker({
+                language : "fr",
+                dateFormat: 'dd/mm/yy',
+            });
+
+        });
+
+        function checkAllOrNothing(source){
+            var checkboxes = document.getElementsByClassName('materielCheck');
+            for (let i = 0; i < $(".materielCheck").length;i++){
+                checkboxes[i].checked = source.checked;
+            }
+        }
+        function deploy() {
+            var form = document.getElementById('form_recherche');
+            var button = document.getElementById('deploy_search');
+            if (form.style.display === "none"){
+                form.style.display = "block";
+                button.textContent = "Refermer";
+            } else {
+                form.style.display = "none";
+                button.textContent = "Rechercher"
+            }
+        }
+        {% if search == 1 %}
+        var form = document.getElementById('form_recherche');
+        var button = document.getElementById('deploy_search');
+        form.style.display = "inline-flex";
+        button.textContent = "Refermer";
+        {% endif %}
+    </script>
+{% endblock %}

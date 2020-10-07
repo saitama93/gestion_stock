@@ -1,0 +1,147 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Stock</li>
+        </ol>
+    </nav>
+    <h5>Liste de materiel</h5>
+    <div id="addMat">
+        <a href="{{ path('Materiel.add') }}" class="btn btn-primary" id="matAjout">
+            <ion-icon name="add-outline"></ion-icon>Ajouter</a>
+        <a href="{{ path('Materiel.importCSV') }}" id="lirecsv_btn"
+           class="btn btn-primary">Importer du materiel</a>
+        <a href="{{ path('Materiel.cleanBase') }}" id="cleanDB"
+           class="btn btn-danger">Ecraser la base</a>
+        <a href="{{ path('Materiel.downloadCsv') }}" class="btn btn-primary"
+           id="btn-csv">Exporter l'inventaire</a>
+        <button type="button" class="btn btn-primary" id="print" onclick="window.print()">
+        <ion-icon name="print" id="print_icon"></ion-icon>
+        </button>
+    </div>
+    <div class="container">
+        <form method="post" action="{{ path('Materiel.multiButton') }}">
+            <div class="table-responsive" id="tabDonnee">
+                <table class="table" id="tablestock">
+                    <thead class="thead-dark">
+                    <tr><th>Numero de Serie</th><th>Statut</th><th>Nom du materiel</th><th>Marque</th><th>Lieu</th>
+                        <th>Type</th><th>Specificité</th><th>Dernière modification</th>
+                        <th id="editdeleteMateriel">
+                            Tous/Aucun
+                            <input type="checkbox" id="checkAll" name="checkAll" onclick="checkAllOrNothing(this)">
+                            <button id="updateMat" class="btn btn-primary matedit" type="submit" name="update">
+                                <ion-icon name="create"></ion-icon></button>
+                            <button id="deleteMat" class="btn btn-danger matdelete" type="submit" name="delete">
+                                <ion-icon name="trash"></ion-icon></button>
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for materiel in materiels %}
+                    {% if (materiel.idLieu == null or materiel.idMarque == null or materiel.idType == null) %}
+                    <tr class="table-danger">
+                    {% else %}
+                    <tr>
+                        {% endif %}
+                        <td>{{ materiel.numeroSerie }}</td>
+                        <td>{{ materiel.idStatut.libelleStatut }}</td>
+                        <td>{{ materiel.nomMateriel }}</td>
+                        <td>{{ materiel.idMarque.libelleMarque|default('A définir') }}</td>
+                        <td>{{ materiel.idLieu.libelleLieu|default('A définir') }}</td>
+                        <td>{{ materiel.idType.libelleType|default('A définir') }}</td>
+                        <td>{{ materiel.idSpecificite.libelleSpe|default('A définir') }}</td>
+                        <td>{{ materiel.date }}</td>
+                        <td>
+                            <input type="checkbox" class="materielCheck" id="checkbox{{ materiel.idMateriel }}" onclick="verifCheck()"
+                                   name="materiel{{ materiel.idMateriel }}">
+                            <a href="{{ path('Materiel.edit',{id : materiel.idMateriel}) }}"style="padding: 0 5px !important;
+                            margin-left: 3px;margin-right: 3px;margin-bottom: 4px;height: 15px;"
+                               class="btn btn-primary matedit" id="updateMat{{ materiel.idMateriel }}" title="Modifier ce matériel"
+                            ><ion-icon name="create"></ion-icon></a>
+                            <a href="{{ path('Materiel.delete',{id : materiel.idMateriel}) }}" style="padding: 0 5px !important;
+                            margin-left: 3px;margin-right: 3px;margin-bottom: 4px;height: 15px;"
+                               class="btn btn-danger matdelete" id="deleteMat{{ materiel.idMateriel }}" title="Supprimer ce matériel"
+                            ><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        verifCheck()
+
+        function checkAllOrNothing(source){
+            var checkboxes = document.getElementsByClassName('materielCheck');
+            for (let i = 0; i < $(".materielCheck").length;i++){
+                checkboxes[i].checked = source.checked;
+            }
+            verifCheck();
+        }
+        function verifCheck(){
+            var verif = false ;
+            {% for materiel in materiels %}
+            if (document.getElementById("checkbox{{ materiel.idMateriel }}").checked === true){
+                document.getElementById("updateMat").hidden = false;
+                document.getElementById("deleteMat").hidden = false;
+                document.getElementById("updateMat{{ materiel.idMateriel }}").hidden = false;
+                document.getElementById("deleteMat{{ materiel.idMateriel }}").hidden = false;
+                verif = true;
+            } else {
+                document.getElementById("updateMat{{ materiel.idMateriel }}").hidden = true;
+                document.getElementById("deleteMat{{ materiel.idMateriel }}").hidden = true;
+                if (verif === false){
+                    document.getElementById("updateMat").hidden = true;
+                    document.getElementById("deleteMat").hidden = true;
+                }
+            }
+            {% endfor %}
+        }
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                placement : 'top'
+            });
+            $('#tablestock').DataTable({
+                "dom": '<"#searchTab"f>rtpi<"bottom"l>',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                    "info": "Total des matériels en stock : _TOTAL_",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#searchTab').append('<small>La barre de recherche permet de chercher parmis toutes les colonnes si l\'élément est contenu</small>')
+        });
+
+        function decode(str){
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
+            });
+        }
+    </script>
+{% endblock %}

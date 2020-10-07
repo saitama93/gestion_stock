@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('Parametre.index') }}">Paramètres</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Supprimer</li>
+        </ol>
+    </nav>
+    {% if message != '' %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <h2>Voulez vous supprimez ce paramètre</h2>
+    <h3>Libelle : {{ libObj }}</h3>
+    <form method="post" action="{{ path('Parametre.validateDelete') }}">
+        <input type="hidden" name="_method" value="delete"/>
+        <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
+        <input type="hidden" name="id" value="{{ identifiant }}">
+        <input type="hidden" name="libelle" value="{{ libelle }}">
+    </form>
+    <a href="{{ path('Parametre.index') }}" class="btn btn-outline-primary">Annuler</a>
+</div>
+
+{% endblock %}

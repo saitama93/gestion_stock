@@ -1,0 +1,15 @@
+{% block body %}
+    <div class="well">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <br>
+        <br>
+        <h1>Attention</h1>
+        <h2>Vous allez écrasez la base !</h2>
+        <h2>Une back up sera créer au cas où</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="csvFile">
+            <input type="submit" name="envoyer" value="Mettre à jour" class="btn btn-warning">
+        </form>
+    </div>
+
+{% endblock %}

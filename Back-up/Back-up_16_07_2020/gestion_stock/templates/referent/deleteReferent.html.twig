@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <h3>Voulez vous supprimer ce référent</h3>
+        <p>Note : le référent sera juste "caché", afin que les interventions effectués par ce dernier soit toujours présentes</p>
+        <form method="post">
+            <div class="form-group col-12 col-md-6">
+                <label>Nom Prenom : {{referent.nom}} {{ referent.prenom }}</label>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label>Equipe : {{ referent.equipe }}</label>
+            </div>
+            <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+        <a href="{{ path('Referent.index') }}" class="btn btn-outline-primary">Annuler</a>
+    </div>
+
+{% endblock %}

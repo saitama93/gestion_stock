@@ -1,0 +1,7 @@
+﻿ID;Nom;Prenom;Mail;Roles
+1;ROOT;" ";;Admin
+2;User;" ";;User
+8;test;;;User
+10;Carré;Jean-Claude;jean.claude@doubs.fr;User
+11;public;" ";" ";User
+12;Lainé;Lucas;lucas.laine@doubs.fr;Admin

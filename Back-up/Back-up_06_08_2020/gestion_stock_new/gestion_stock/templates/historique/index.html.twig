@@ -1,0 +1,142 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <h4>Intervention terminé</h4>
+        <a href="{{ path('Historique.exportCsv') }}" class="btn btn-primary"
+           id="btn-csv">Exporter l'historique</a>
+    </div>
+        <div class="row">
+            <button type="button" id="deploy_search" onclick="deploy()" class="btn btn-link">Rechercher</button>
+            <form method="post" class="form-inline" id="form_recherche">
+                <div class="form-group">
+                    <label>Type de materiel</label>
+                    <select id="type_search" class="form-control" name="type">
+                        <option value="0" selected>Tous</option>
+                        {% for type in types %}
+                            <option value="{{ type.idType }}">{{ type.libelleType }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Referent</label>
+                    <select id="referent_search" class="form-control" name="referent">
+                        <option value="0" selected>Tous</option>
+                        {% for referent in referents %}
+                            <option value="{{ referent.idUser }}">{{ referent.nom }} {{ referent.prenom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="lieu_search" id="labelLieu_search">Lieu de départ</label>
+                    <select id="lieu_search" class="form-control" name="lieuDep">
+                        <option value="0" selected>Tous</option>
+                        {% for lieu in lieux %}
+                            <option value="{{ lieu.idLieu }}">{{ lieu.libelleLieu }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="lieu_search" id="labelLieu_search">Lieu d'arrivée</label>
+                    <select id="lieu_search" class="form-control" name="lieuArri">
+                        <option value="0" selected>Tous</option>
+                        {% for lieu in lieux %}
+                            <option value="{{ lieu.idLieu }}">{{ lieu.libelleLieu }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date d'intervention</label>
+                    <input type="text" name="date" id="datepicker" class="form-control">
+                </div>
+
+                <button id="search_button" class="btn btn-primary" type="submit">
+                    <ion-icon name="search"></ion-icon></button>
+                <a href="{{ path('Historique.index') }}" class="btn btn-secondary" id="effacer_search">Effacer</a>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table class="table" id="tableHisto">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Referent</th>
+                    <th>Date d'intervention</th>
+                    <th>Type d'intervention</th>
+                    <th id="editdelete"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for intervention in interventions %}
+                <tr>
+                    <td>{{ intervention.nom }} {{ intervention.prenom }}</td>
+                    <td>{{ intervention.dateintervention }}</td>
+                    {% if intervention.statutinter == 'Terminé' %}
+                        <td>Intervention classique</td>
+                    {% elseif intervention.statutinter == 'Finis' %}
+                        <td>Retour de matériel</td>
+                        {% else %}
+
+                        <td>En attente d'affectation</td>
+                    {% endif %}
+
+                    <td>
+                        {% if intervention.statutinter != 'En attente' %}
+                        <a href="{{ path('Historique.details',{id: intervention.idintervention}) }}"
+                           class="btn btn-secondary" id="historique_det">Détails</a>
+                        {% else %}
+                            <a href="{{ path('Intervention.affectation',{id: intervention.idintervention}) }}"
+                               class="btn btn-danger">Affecter</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('#tableHisto').DataTable({
+                'searching' : false,
+                "language": {
+                    "info": "Total d'élément : _TOTAL_",
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $("#datepicker").datepicker({
+                language : "fr",
+                dateFormat: 'dd/mm/yy',
+            });
+        });
+
+        function deploy() {
+            var form = document.getElementById('form_recherche');
+            var button = document.getElementById('deploy_search');
+            if (form.style.display === "none"){
+                form.style.display = "block";
+                button.textContent = "Refermer";
+            } else {
+                form.style.display = "none";
+                button.textContent = "Rechercher"
+            }
+        }
+        {% if search == 1 %}
+        var form = document.getElementById('form_recherche');
+        var button = document.getElementById('deploy_search');
+        form.style.display = "inline-flex";
+        button.textContent = "Refermer";
+        {% endif %}
+    </script>
+{% endblock %}

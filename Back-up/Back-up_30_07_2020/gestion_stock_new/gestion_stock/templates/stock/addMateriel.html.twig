@@ -1,0 +1,141 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a data-target="{{ path('Home.goBack',{lib : 'Materiel', id : -1}) }}"
+        data-tooltip="retour" id="retourArriere"
+        class="tooltipped modal-trigger btn btn-danger"
+        href="#modal1">Retour</a>
+<h3>Nouveau matériel</h3>
+
+<div class="well">
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <div class="form-group row">
+        {{ form_label(form.numeroSerie,"Numero de serie",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.numeroSerie,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.nomMateriel,"Nom du materiel",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+                {{ form_widget(form.nomMateriel,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.statut,"Statut",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+        {{ form_widget(form.statut,{'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.motsCles,"Mot-clés",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        {{ form_widget(form.motsCles,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+        <small id="helpmots" class="form-text text-muted">Pour activer l'autocompletion, mettez avant @</small>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.idMarque,"Marque",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+        {{ form_widget(form.idMarque,{'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.idLieu,"Lieu",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+        {{ form_widget(form.idLieu,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.idType,"Type",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+        {{ form_widget(form.idType,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.date,"Date",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+        <div class="col-sm-10">
+        {{ form_widget(form.date) }}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.idSpecificite,"Spécificité",{'label_attr' : {'class': 'col-sm-2 col-form-label'}}) }}
+       <div class="col-sm-10">
+       {{ form_widget(form.idSpecificite,{'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+    $(document).ready(function() {
+            $('.modal-trigger').click(function () {
+                $('.modal').modal();
+                url = $(this).attr('data-target');
+                $.get(url, function (data) {
+                    $('.modal-content').html(data);
+                    $('#modal1').modal('open');
+                });
+            })
+    });
+
+    function decode(str){
+        return str.replace(/&#(\d+);/g, function(match, dec) {
+            return String.fromCharCode(dec);
+        });
+    }
+    $(function() {
+        var list = [];
+        var listmots = [];
+        var mat ;
+        var mot ;
+        var mots;
+        {% for materiel in materiels %}
+        mat = "{{ materiel.nomMateriel }}";
+        mot = '{{ materiel.motsCles|replace({"\n":'', "\r":';'}) }}';
+        mots = mot.split(";");
+        for (var item in mots){
+            if (listmots.indexOf(decode(mots[item]))===-1){
+                listmots.push(decode(mots[item]));
+            }
+        }
+        if (list.indexOf(decode(mat))===-1){
+            list.push(decode(mat));
+        }
+        {% endfor %}
+        $('#form_nomMateriel').autocomplete({
+            source:list
+        });
+        $('#form_motsCles').textcomplete({
+            keyword: {
+                match:/\B@(\w*)$/,
+                search: function(term,callback) {
+                    callback($.map(listmots,function(element) {
+                      return element.indexOf(term) === 0 ? element : null;
+                    }));
+                },
+                index:1,
+                replace: function(value) {
+                  return value + "\n@";
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}

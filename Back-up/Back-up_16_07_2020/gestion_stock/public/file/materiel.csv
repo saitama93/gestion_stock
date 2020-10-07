@@ -1,0 +1,11 @@
+﻿ID;"Numéro de série";Statut;"Nom du matériel";Marque;Lieu;Type;Specificite;"Dernier Referent";Supprimer
+1;123400;"En production";"Ecran pour PC";Iiyama;"11 rue de la Gare d'eau";Ecran;"Ecran 17 pouces";NULL;
+2;111328;Disponible;"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";NULL;
+3;850026214;Disponible;"Ipad X";Apple;"Collège Malraux";Tablette;"Ecran 4 pouces";NULL;
+4;877158;SAV;"Switch ES14254";Cudy;"Fort Griffon";Switch;"4 ports";NULL;
+5;96042;Disponible;"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";NULL;
+6;45883698;SAV;"Switch ES14254";Cudy;"Fort Griffon";Switch;"3 ports";NULL;
+7;8030;"En production";"UltraLink C8030";Iiyama;"Fort Griffon";Imprimante;"Sans fil";NULL;
+8;95858;Disponible;"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";NULL;13/07/2020
+9;15865;Disponible;"Ipad XI";Apple;"Fort Griffon";Tablette;"Ecran 4 pouces";NULL;20/06/2020
+10;45102;Disponible;"UltraLink C8150";Iiyama;"Fort Griffon";Imprimante;"Sans fil";NULL;15/07/2020

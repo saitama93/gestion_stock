@@ -1,0 +1,115 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Historique</li>
+            </ol>
+        </nav>
+        <h5>Liste des interventions</h5>
+    <div class="row">
+        <a href="{{ path('Historique.exportCsv') }}" class="btn btn-primary"
+           id="btn-csv">Exporter l'historique</a>
+        <button type="button" class="btn btn-primary" id="print" onclick="window.print()">
+            <ion-icon name="print" id="print_icon"></ion-icon></button>
+    </div>
+        <div class="table-responsive" id="tabDonnee">
+            <table class="table" id="tableHisto">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Referent</th>
+                    <th>Date d'intervention</th>
+                    <th>Type d'intervention</th>
+                    <th id="inter_menu"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for intervention in interventions %}
+                    {% if intervention.statutinter == 'Terminé' or intervention.statutinter == 'Finis' %}
+                        <tr>
+                    {% else %}
+                        <tr class="table-danger">
+                    {% endif %}
+                    <td>{{ intervention.idUser.nom }} {{ intervention.idUser.prenom }}</td>
+                    <td>{{ intervention.dateintervention }}</td>
+                    {% if intervention.statutinter == 'Terminé' %}
+                        <td>Intervention classique</td>
+                    {% elseif intervention.statutinter == 'Finis' %}
+                        <td>Retour de matériel</td>
+                    {% elseif intervention.statutinter == 'En cours' %}
+                        <td> En cours d'intervention</td>
+                    {% else %}
+
+                        <td>En attente d'affectation</td>
+                    {% endif %}
+
+                    <td>
+                        {% if intervention.statutinter != 'En attente' and intervention.statutinter != 'En cours' %}
+                        <a href="{{ path('Historique.details',{id: intervention.idintervention}) }}"
+                           class="btn btn-secondary" id="historique_det">Détails</a>
+                        {% else %}
+                            <a data-target="{{ path('Intervention.details', {id: intervention.idIntervention}) }}" data-tooltip="voir"
+                               class="tooltipped modal-trigger btn btn-secondary" id="apercu_inter"
+                               href="#modal1">Aperçu</a>
+                            <a href="{{ path('Intervention.affectation',{id: intervention.idintervention}) }}"
+                               class="btn btn-danger" id="cloturerButton">Affecter</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('.modal-trigger').click(function () {
+                $('.modal').modal();
+                url = $(this).attr('data-target');
+                $.get(url, function (data) {
+                    $('.modal-content').html(data);
+                    $('#modal1').modal('open');
+                });
+            });
+            $('#tableHisto').DataTable({
+                "dom": 'frtpi<"bottom"l>',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                    "info": "Total d'interventions : _TOTAL_",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "order": [[1, "desc"]],
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $("#datepicker").datepicker({
+                language : "fr",
+                dateFormat: 'dd/mm/yy',
+            });
+        });
+    </script>
+{% endblock %}

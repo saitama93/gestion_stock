@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('Parametre.index') }}">Paramètres</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ajouter</li>
+            </ol>
+        </nav>
+        <a data-target="{{ path('Home.goBack',{lib : 'Parametre', id : -1}) }}"
+           data-tooltip="retour" id="retourArriere"
+           class="tooltipped modal-trigger btn btn-danger"
+           href="#modal1">Annuler</a>
+        {{ form(form) }}
+    </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.modal-trigger').click(function () {
+                $('.modal').modal();
+                url = $(this).attr('data-target');
+                $.get(url, function (data) {
+                    $('.modal-content').html(data);
+                    $('#modal1').modal('open');
+                });
+            })
+        });
+    </script>
+{% endblock %}

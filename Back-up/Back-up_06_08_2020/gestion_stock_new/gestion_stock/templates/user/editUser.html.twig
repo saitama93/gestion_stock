@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        {% if message != '' %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="form-group row">
+            {{ form_label(form.nom,"Nom",{'label_attr' : {'class': 'control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.nom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{ form_label(form.prenom,"Prenom",{'label_attr' : {'class': 'control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.prenom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{ form_label(form.username,"Username",{'label_attr' : {'class': 'control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.username,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{ form_label(form.password,"Password",{'label_attr' : {'class': 'control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.password,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{ form_label(form.mail,"Mail",{'label_attr' : {'class': 'control-label'}}) }}
+            <div class="col-sm-10">
+                {{ form_widget(form.mail,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <input name="admin" type="checkbox" id="admin" {{ check }}>
+            <label for="admin">Admin ?</label>
+        </div>
+        {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+        <input id="form_idUser" type="hidden" value="{{ id }}">
+        <img id="barcode"/>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        generate();
+        function sansAccent(mot) {
+            var accent = [
+                /[\300-\306]/g, /[\340-\346]/g, // A, a
+                /[\310-\313]/g, /[\350-\353]/g, // E, e
+                /[\314-\317]/g, /[\354-\357]/g, // I, i
+                /[\322-\330]/g, /[\362-\370]/g, // O, o
+                /[\331-\334]/g, /[\371-\374]/g, // U, u
+                /[\321]/g, /[\361]/g, // N, n
+                /[\307]/g, /[\347]/g, // C, c
+            ];
+            var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+            var str = mot ;
+            for (var i = 0 ; i < accent.length ; i++){
+                str = str.replace(accent[i],noaccent[i]);
+            }
+            return str ;
+        }
+        function generate(){
+            var id = document.getElementById('form_idUser').value;
+            var nom = document.getElementById('form_nom').value;
+            nom = sansAccent(nom);
+            var prenom = document.getElementById('form_prenom').value;
+            prenom= sansAccent(prenom);
+            var code = id+'-'+nom+prenom;
+            JsBarcode('#barcode',code);
+        }
+    </script>
+{% endblock %}

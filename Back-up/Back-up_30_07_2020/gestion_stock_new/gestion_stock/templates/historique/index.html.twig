@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <h4>Intervention terminé</h4>
+        <form method="post" class="form-inline" id="form_recherche">
+            <label>Numero de serie</label>
+            <input type="search" name="search_num" class="form-control" autocomplete="off"
+                   id="materiel_search" placeholder="Numero de serie">
+            <button id="historique_search" class="btn btn-primary" type="submit">Chercher</button>
+        </form>
+    </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Referent</th><th>Date d'intervention</th><th>Type d'intervention</th><th></th></tr>
+                </thead>
+                {% for intervention in interventions %}
+                <tbody>
+                <tr>
+                    {% if search == false %}
+                    {% if intervention.statutInter != 'En cours' %}
+                    <td>{{ intervention.idIntervention }}</td>
+                    <td>{{ intervention.idReferent.nom }} {{ intervention.idReferent.prenom }}</td>
+                    <td>{{ intervention.dateIntervention }}</td>
+                    {% if intervention.statutInter == 'Terminé' %}
+                        <td>Intervention classique</td>
+                    {% elseif intervention.statutInter == 'Finis' %}
+                        <td>Retour de matériel</td>
+                        {% else %}
+
+                        <td>En attente d'affectation</td>
+                    {% endif %}
+
+                    <td>
+                        {% if intervention.statutInter != 'En attente' %}
+                        <a href="{{ path('Historique.details',{id: intervention.idIntervention}) }}"
+                           class="btn btn-secondary" id="historique_det">Détails</a>
+                        {% else %}
+                            <a href="{{ path('Intervention.affectation',{id: intervention.idIntervention}) }}"
+                               class="btn btn-danger">Affecter</a>
+                        {% endif %}
+                    </td>
+                    {% endif %}
+                    {% else %}
+                    {% if intervention.idIntervention.statutInter != 'En cours' %}
+                        <td>{{ intervention.idIntervention.idIntervention }}</td>
+                        <td>{{ intervention.idIntervention.idReferent.nom }} {{ intervention.idIntervention.idReferent.prenom }}</td>
+                        <td>{{ intervention.idIntervention.dateIntervention }}</td>
+                        {% if intervention.idIntervention.statutInter == 'Terminé' %}
+                            <td>Intervention classique</td>
+                        {% elseif intervention.idIntervention.statutInter == 'Finis'%}
+                            <td>Retour de matériel</td>
+                            {% else %}
+                                <td>En attente d'affectation</td>
+                        {% endif %}
+                        <td>
+                            {% if intervention.idIntervention.statutInter != 'En attente' %}
+                                <a href="{{ path('Historique.details',{id: intervention.idIntervention}) }}"
+                                   class="btn btn-secondary">Détails</a>
+                            {% else %}
+                                <a href="{{ path('Intervention.affectation',{id: intervention.idIntervention}) }}"
+                                   class="btn btn-danger">Affecter</a>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

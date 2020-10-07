@@ -1,0 +1,30 @@
+{% block body %}
+    <div class="well" id="modal_apercu">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <br>
+        <br>
+        <h4>Aperçu</h4>
+        <p>Date d'intervention : {{ intervention.dateIntervention }}</p>
+        <p>Referent : {{ intervention.idUser.nom }} {{ intervention.idUser.prenom }}</p>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Marque</th><th>Site de départ</th>
+                    <th>Type</th></tr>
+                </thead>
+                <tbody>
+                {% for materiel in materiels %}
+                <tr>
+                    <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                    <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                    <td>{{ materiel.idMateriel.idMarque.libelleMarque|default('A définir') }}</td>
+                    <td>{{ materiel.idLieuDepart.libelleLieu|default('A définir') }}</td>
+                    <td>{{ materiel.idMateriel.idType.libelleType|default('A définir') }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

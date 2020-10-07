@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Gestion de Stock{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+        {% endblock %}
+        <script src="../../../library/jSBarcode.all.js"></script>
+        <script src="../../../library/jQuery.js"></script>
+        <script src="../../../library/jQueryUI.js"></script>
+        <script src="../../../library/jquery.textcomplete.js"></script>
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('Home.index') }}" id="image_site"><img src="../../../image/LOGO_CD25.png" width="148" height="40"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Home.index') }}">Accueil</a>
+                    </li>
+                    {% if app.user != null %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Intervention.index') }}">Interventions</a>
+                    </li>
+                    {% if app.user.roles|length == 2 %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('Materiel.index') }}">Liste des stocks</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Autre</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ path('Referent.index') }}">Liste des référents</a>
+                                <a class="dropdown-item" href="{{ path('Parametre.index') }}">Paramètres</a>
+                                <a class="dropdown-item" href="{{ path('Historique.index') }}">Historique</a>
+                                <a class="dropdown-item" href="{{ path('User.index') }}">Gestion des utilisateurs</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('Historique.index') }}">Historique</a>
+                        </li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if app.user != null %}
+                        <span class="navbar-text">
+                            Bienvenue {{ app.user.username }}
+                        </span>
+                    {% endif %}
+                    <li>
+                        {% if app.user == null %}
+                        <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                        {% else %}
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            <script>
+                $('.collapse').collapse();
+                $('.dropdown-toggle').dropdown();
+            </script>
+        {% endblock %}
+    </body>
+</html>

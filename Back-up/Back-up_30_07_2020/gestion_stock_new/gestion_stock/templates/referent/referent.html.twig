@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h4>Liste des référents</h4>
+    <div class="container">
+        <div class="row">
+            <a href="{{ path('Referent.add') }}" class="btn btn-primary" id="ref_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter</a>
+        </div>
+        <br>
+        <div class="table-responsive-sm">
+            <table class="table table-sm">
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Nom</th><th>Prenom</th><th>Equipe</th><th></th></tr>
+                </thead>
+                {% for referent in referents %}
+                <tbody>
+                <tr>
+                    <td>{{ referent.idReferent }}</td>
+                    <td>{{ referent.nom }}</td>
+                    <td>{{ referent.prenom }}</td>
+                    <td>{{ referent.equipe }}</td>
+                    <td>
+                        <a href="{{ path('Referent.edit',{id : referent.idReferent}) }}"
+                           class="btn btn-primary" id="updateRef" title="Modifier ce référent">
+                            <ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Referent.delete',{id : referent.idReferent}) }}"
+                           class="btn btn-danger" id="deleteRef" title="Supprimer ce référent">
+                            <ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

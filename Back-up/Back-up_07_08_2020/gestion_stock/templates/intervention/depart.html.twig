@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="well">
+    <h4>Départ en intervention</h4>
+    <form method="post">
+        <div class="form-group row" id="codeRefe">
+            <label>Code barre référent</label>
+            <div class="col-sm-5">
+                <input id="referent_scanner" name="referent" type="text" class="form-control form-control"
+                       value="{{ app.user.idUser }}-{{ app.user.nom }}{{ app.user.prenom }}" autocomplete="off">
+            </div>
+            <div class="col" id="orRef">
+                OU
+            </div>
+            <div class="col" id="nomChange">
+                <select id="single" onchange="changerNom()">
+                    <option value="0" selected>Choisissez l'intervenant</option>
+                    {% for referent in users %}
+                        <option value="{{ referent.idUser }}-{{ referent.nom }}{{ referent.prenom }}">
+                            {{ referent.nom }} {{ referent.prenom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <button id="chercher_referent" class="btn btn-primary" type="submit">Valider</button>
+
+    </form>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        new SlimSelect({
+            select: '#single'
+        });
+        document.getElementById('referent_scanner').focus();
+
+        function changerNom() {
+            var text = document.getElementById('single').value;
+            document.getElementById('referent_scanner').value = text ;
+        }
+    </script>
+{% endblock %}

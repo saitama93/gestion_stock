@@ -1,0 +1,187 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Marque'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Marque</a>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table" id="tableMarque">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for marque in marques %}
+                <tr>
+                    <td>{{ marque.libelleMarque }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : marque.idMarque,lib : 'Marque' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : marque.idMarque,lib : 'Marque' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Type'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Type</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table" id="tableType">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for type in types %}
+                <tr>
+                    <td>{{ type.libelleType }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : type.idType,lib : 'Type' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : type.idType,lib : 'Type' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Specificite'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Specificite</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table" id="tableSpe">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for spec in specificites %}
+                <tr>
+                    <td>{{ spec.libelleSpe }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : spec.idSpecificite,lib : 'Specificite' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : spec.idSpecificite,lib : 'Specificite' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Lieu'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Lieu</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table" id="tableLieu">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for lieu in lieux %}
+                <tr>
+                    <td>{{ lieu.libelleLieu }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : lieu.idLieu,lib : 'Lieu' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : lieu.idLieu,lib : 'Lieu' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Statut'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Statut</a>
+        </div><br>
+
+            <table class="table" id="tableStatut">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for statut in statuts %}
+                <tr>
+                    <td>{{ statut.libelleStatut }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : statut.idStatut,lib : 'Statut' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : statut.idStatut,lib : 'Statut' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('#tableMarque').DataTable({
+                "searching" : false,
+                "info": false,
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableType').DataTable({
+                "searching" : false,
+                "info": false,
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableSpe').DataTable({
+                "searching" : false,
+                "info": false,
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableLieu').DataTable({
+                "searching": false,
+                "info": false,
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableStatut').DataTable({
+                "searching" : false,
+                "info": false,
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

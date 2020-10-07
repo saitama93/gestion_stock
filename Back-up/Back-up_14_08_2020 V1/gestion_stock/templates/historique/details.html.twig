@@ -1,0 +1,60 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('Historique.index') }}">Historique</a></li>
+            <li class="breadcrumb-item">Détails</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ id }}</li>
+        </ol>
+    </nav>
+    <a data-target="{{ path('Home.goBack',{lib : 'Historique', id : -1}) }}"
+       data-tooltip="retour" id="retourArriere"
+       class="tooltipped modal-trigger btn btn-danger"
+       href="#modal1">Annuler</a>
+    <a href="{{ path('Historique.downloadRecap',{id : id}) }}" class="btn-primary btn"><ion-icon name="download-outline"></ion-icon>
+        Télécharger le recap</a>
+    <p>Date d'intervention : {{ intervention.dateIntervention }}</p>
+    <p>Referent : {{ intervention.idUser.nom }} {{ intervention.idUser.prenom }}</p>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Site de départ</th><th>Site d'arrivée</th></tr>
+            </thead>
+            {% for materiel in materiels %}
+            <tbody>
+            <tr>
+                <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                <td>{{ materiel.idLieuDepart.libelleLieu }}</td>
+                <td>{{ materiel.idLieuArrive.libelleLieu }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script>
+
+    $(document).ready(function() {
+        $('.modal-trigger').click(function () {
+            $('.modal').modal();
+            url = $(this).attr('data-target');
+            $.get(url, function (data) {
+                $('.modal-content').html(data);
+                $('#modal1').modal('open');
+            });
+        })
+    });
+</script>
+{% endblock %}

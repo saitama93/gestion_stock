@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="container">
+    <h3>Voulez vous supprimez ce {{ libelle }}</h3>
+    <form method="post" action="{{ path('Parametre.validateDelete') }}">
+        <input type="hidden" name="_method" value="delete"/>
+        <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
+        <input type="hidden" name="id" value="{{ identifiant }}">
+        <input type="hidden" name="libelle" value="{{ libelle }}">
+    </form>
+    <a href="{{ path('Parametre.index') }}" class="btn btn-outline-primary">Annuler</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+
+{% block body %}
+    <div class="well">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <br>
+        <br>
+        <form method="post" >
+            <div class="form-group">
+                <input type="search" id="search_matos_inter" class="form-control" oninput="updateResult(this.value)" autocomplete="off">
+                <br>
+                {% for materiel in materiels %}
+                    <div class="custom-control custom-checkbox" id="result{{ materiel.numeroSerie }}">
+                        <input type="checkbox" class="custom-control-input"
+                               id="checkButton{{ materiel.numeroSerie }}"
+                               name="materiel{{ materiel.idMateriel }}">
+                        <label class="custom-control-label" id="label{{ materiel.numeroSerie }}"
+                               for="checkButton{{ materiel.numeroSerie }}">{{ materiel.numeroSerie }} {{ materiel.nomMateriel }}</label>
+                    </div>
+                {% endfor %}
+                <button id="ajout_matos" class="btn btn-primary" type="submit">Ajouter à l'intervention</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        document.getElementById('search_matos_inter').focus();
+
+        {% for materiel in materiels %}
+        {% for inter in intervient %}
+        {% if materiel.idMateriel == inter.idMateriel.idMateriel %}
+        document.getElementById("checkButton{{ materiel.numeroSerie }}").disabled=true;
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        function updateResult(query) {
+            var result = document.getElementsByClassName('custom-control-input');
+            var result2 = document.getElementsByClassName('custom-control-label');
+            for (let i = 0; i < $(".custom-control-input").length; i++) {
+                var numero = result2[i].textContent.split(" ")[0];
+                var element = document.getElementById('result'+numero);
+                if (result2[i].textContent.includes(query)){
+                    element.style.display="";
+                } else {
+                    element.style.display="none";
+                }
+            }
+        }
+    </script>
+{% endblock %}

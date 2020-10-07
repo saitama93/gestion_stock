@@ -1,0 +1,121 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h3>Modifier matériel</h3>
+
+<div class="well">
+    {{ form_start(form,{'attr': {'class': 'form-inline'}}) }}
+    {{ form_errors(form) }}
+    <div class="form-group">
+        {{ form_label(form.numeroSerie,"Numero de serie",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.numeroSerie) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.numeroSerie,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.nomMateriel,"Nom du materiel",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.nomMateriel) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.nomMateriel,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.statut,"Statut",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.statut) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.statut,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.motsCles,"Mot-clés",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.motsCles) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.motsCles,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+            <small id="helpmots" class="form-text text-muted">Pour activer l'autocompletion, mettez avant @</small>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.idMarque,"Marque",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.idMarque) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.idMarque,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.idLieu,"Lieu",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.idLieu) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.idLieu,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.idType,"Type",{'label_attr' : {'class': 'col-sm-3 control-label'}}) }}
+        {{ form_errors(form.idType) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.idType,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.date,"Date",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.date) }}
+        {{ form_widget(form.date) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.idSpecificite,"Spécificité",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.idSpecificite) }}
+        <div class="col-sm-3">
+            {{ form_widget(form.idSpecificite,{'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    {{ form_widget(form.modifier, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        function decode(str){
+            return str.replace(/&#(\d+);/g, function(match, dec) {
+                return String.fromCharCode(dec);
+            });
+        }
+        $(function() {
+            var list = [];
+            var listmots = [];
+            var mat ;
+            var mot ;
+            var mots;
+            {% for materiel in materiels %}
+            mat = "{{ materiel.nomMateriel }}";
+            mot = '{{ materiel.motsCles|replace({"\n":'', "\r":';'}) }}';
+            mots = mot.split(";");
+            for (var item in mots){
+                if (listmots.indexOf(decode(mots[item]))===-1){
+                    listmots.push(decode(mots[item]));
+                }
+            }
+            if (list.indexOf(decode(mat))===-1){
+                list.push(decode(mat));
+            }
+            {% endfor %}
+            $('#form_nomMateriel').autocomplete({
+                source:list
+            });
+            $('#form_motsCles').textcomplete({
+                keyword: {
+                    match:/\B@(\w*)$/,
+                    search: function(term,callback) {
+                        callback($.map(listmots,function(element) {
+                            return element.indexOf(term) === 0 ? element : null;
+                        }));
+                    },
+                    index:1,
+                    replace: function(value) {
+                        return value + "\n@";
+                    }
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

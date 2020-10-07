@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de Stock</title>
+    <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+    <script src="{{ asset('build/js/app.js') }}"></script>
+    <script src="../../../library/jQuery.js"></script>
+    <script src="../../../library/jQueryUI.js"></script>
+    <script src="../../../library/jquery.textcomplete.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-image: url('../../image/image{{ nombre }}.JPG')">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ path('Home.index') }}" id="image_site"><img src="../../image/LOGO_CD25.png" width="148" height="40"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('Home.index') }}"><ion-icon name="home-outline" id="accueil_button"></ion-icon></a>
+            </li>
+            {% if app.user != null %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('Intervention.index') }}">Interventions</a>
+            </li>
+                {% if app.user.roles|length == 2 %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Materiel.index') }}">Stock</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Historique.index') }}">Historique</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if app.user != null %}
+                <span class="navbar-text">
+                    <ion-icon name="person-circle-outline"></ion-icon> {{ app.user.nom }} {{ app.user.prenom }}
+                </span>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><ion-icon name="menu-outline" id="menuOpen"></ion-icon></a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('Historique.index') }}">Liste des interventions</a>
+                        {% if app.user != null %}
+                        {% if app.user.roles|length == 2 %}
+                        <a class="dropdown-item" href="{{ path('Parametre.index') }}">Paramètres avancés</a>
+                        <a class="dropdown-item" href="{{ path('User.index') }}">Gestion des utilisateurs</a>
+                            <a class="dropdown-item" href="{{ path('Home.exportAll') }}">Exporter tout</a>
+                        {% endif %}
+                        {% endif %}
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                </li>
+        </ul>
+        {% endif %}
+    </div>
+</nav>
+    <h3 id="accueil_text">Accueil</h3>
+    <br>
+    {% if app.user != null %}
+    <div class="container">
+        <div class="row">
+            {% if app.user.roles|length == 2 %}
+            <div class="col">
+                <a href="{{ path('Materiel.index') }}" class="btn btn-primary" id="accueil_stock">Gestion du stock</a>
+            </div>
+            {% endif %}
+            <div class="col">
+                <a href="{{ path('Intervention.depart') }}" class="btn btn-primary" id="accueil_depart">Départ en intervention</a>
+            </div>
+        </div>
+        <div class="row">
+                {% if app.user.roles|length == 2 %}
+            <div class="col"></div>
+            {% endif %}
+            <div class="col">
+                <a href="{{ path('Intervention.retour') }}" class="btn btn-primary" id="accueil_retour">Retour d'intervention</a>
+            </div>
+        </div>
+    </div>
+        {% else %}
+        <div class="container" id="form_login">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes authentifié sous {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="h3 mb-3 font-weight-normal">Merci de vous identifier afin d'accéder au site</h1>
+                <div class="form-group row">
+                    <label for="inputUsername">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="off" required autofocus>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button class="btn btn-lg btn-primary" type="submit" id="sign_in">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+    {% endif %}
+</body>
+
+
+</html>

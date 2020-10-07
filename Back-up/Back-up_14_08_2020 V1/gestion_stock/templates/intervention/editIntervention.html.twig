@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <style>
+        nav{
+            display: none !important;
+        }
+    </style>
+    <div class="well" id="interventionpage">
+        <h4>Ajouter du matériel</h4>
+        <a href="{{ path('Intervention.encours') }}" class="btn btn-danger">Annuler</a>
+        <form method="post">
+            <div class="form-group">
+                <label>Code barre materiel</label>
+                <input id="materiel_scanner" name="materiel" type="text" class="form-control form-control" autocomplete="off">
+            </div>
+            <button id="ajouter_mat" class="btn btn-primary" type="submit" hidden>Ajouter via code barre</button>
+            <a href="{{ path('Intervention.listMateriel',{id : id, retour: 2 }) }}"
+               id="listMate" class="btn btn-primary">Ajouter à partir du stock</a>
+            <a href="{{ path('Intervention.addCsv',{id : id, edit : 2}) }}" id="addMatCSV"
+               class="btn-primary btn">Ajouter via un CSV</a>
+            <a href="{{ path('Intervention.downloadRecap',{id : id}) }}" id="download_recap"
+               class="btn btn-primary">Télécharger le récapitulatif</a>
+            <button type="button" class="btn btn-primary" id="printInter" onclick="window.print()">
+                <ion-icon name="print" id="print_icon"></ion-icon>
+            </button>
+            <a href="{{ path('Intervention.encours') }}" id="partir_inter" class="btn-primary btn">Modifier</a>
+            <br>
+        </form>
+        <br>
+        <div class="table-responsive" id="tabInter">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Marque</th><th>Site de départ</th>
+                    <th>Ancien statut</th><th>Type</th><th></th></tr>
+                </thead>
+                <tbody>
+                {% for materiel in intervient %}
+                <tr>
+                    <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                    <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                    <td>{{ materiel.idMateriel.idMarque.libelleMarque|default('A définir') }}</td>
+                    <td>{{ materiel.idMateriel.idLieu.libelleLieu|default('A définir') }}</td>
+                    <td>
+                        {{ materiel.idMateriel.idStatut.libelleStatut }}
+                    </td>
+                    <td>{{ materiel.idMateriel.idType.libelleType|default('A définir') }}</td>
+                    <td>
+                        <a href="{{ path('Intervention.delete',{idInt : id, idMat : materiel.idMateriel.idMateriel, retour : 3 }) }}"
+                           class="btn btn-danger" id="deleteMatInter"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+
+    </script>
+{% endblock %}

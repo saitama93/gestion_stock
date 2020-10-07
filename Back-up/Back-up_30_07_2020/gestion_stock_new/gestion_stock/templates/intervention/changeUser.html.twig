@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="well">
+        <a href="{{ path('Intervention.annuler',{id : id }) }}" class="btn btn-warning">Annuler</a>
+        <form method="post">
+            <div class="form-group">
+                <label>Code barre référent</label>
+                <input id="referent_scanner" name="referent" type="text" class="form-control form-control" autocomplete="off">
+            </div>
+            <button id="chercher_referent" class="btn btn-primary" type="submit">Chercher</button>
+            <br>
+            <br>
+            <select id="single" onchange="changerNom()">
+                <option value="0" selected></option>
+                {% for referent in referents %}
+                    <option value="{{ referent.idReferent }}-{{ referent.nom }}{{ referent.prenom }}">
+                        {{ referent.nom }} {{ referent.prenom }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        new SlimSelect({
+            select: '#single'
+        });
+
+        document.getElementById('referent_scanner').focus();
+
+        function changerNom() {
+            var text = document.getElementById('single').value;
+            document.getElementById('referent_scanner').value = text ;
+        }
+    </script>
+{% endblock %}

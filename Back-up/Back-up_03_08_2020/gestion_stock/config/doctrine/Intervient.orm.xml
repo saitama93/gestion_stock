@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Intervient" table="intervient">
+    <indexes>
+      <index name="idMateriel" columns="idMateriel"/>
+      <index name="idLieu" columns="idLieu"/>
+      <index name="IDX_3F111A398F86B05A" columns="idIntervention"/>
+    </indexes>
+    <id name="idintervention" association-key="true"/>
+    <id name="idmateriel" association-key="true"/>
+    <field name="dateaffectation" type="string" column="dateAffectation" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <one-to-one field="idintervention" target-entity="Intervention" fetch="LAZY">
+      <join-columns>
+        <join-column name="idIntervention" referenced-column-name="idIntervention"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idmateriel" target-entity="Materiel" fetch="LAZY">
+      <join-columns>
+        <join-column name="idMateriel" referenced-column-name="idMateriel"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="idlieu" target-entity="Lieu" fetch="LAZY">
+      <join-columns>
+        <join-column name="idLieu" referenced-column-name="idLieu"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

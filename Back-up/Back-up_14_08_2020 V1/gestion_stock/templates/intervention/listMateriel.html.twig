@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <style>
+        nav{
+            display: none !important;
+        }
+    </style>
+    <div class="container">
+        {% if retour == 2 %}
+            <a href="{{ path('Intervention.edit',{id:id}) }}" class="btn btn-danger">Annuler</a>
+        {% else %}
+            <a href="{{ path('Intervention.add',{id:id,retour: retour}) }}" class="btn btn-danger">Annuler</a>
+        {% endif %}
+        <form method="post">
+            <div class="table-responsive">
+                <table class="table" id="tablestock">
+                    <thead class="thead-dark">
+                    <tr><th>Numero de Serie</th><th>Statut</th><th>Nom du materiel</th><th>Marque</th><th>Lieu</th>
+                        <th>Type</th><th>Spécificité</th><th>Dernière modification</th>
+                        <th>
+                            Tous/Aucun
+                            <input type="checkbox" id="checkAll" name="checkAll" onclick="checkAllOrNothing(this)">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for materiel in materiels %}
+                    {% if (materiel.idLieu == null or materiel.idMarque == null or materiel.idType == null) %}
+                    <tr class="table-danger">
+                    {% else %}
+                    <tr>
+                        {% endif %}
+                        <td>{{ materiel.numeroSerie }}</td>
+                        <td>{{ materiel.idStatut.libelleStatut }}</td>
+                        <td>{{ materiel.nomMateriel }}</td>
+                        <td>{{ materiel.idMarque.libelleMarque|default('A définir') }}</td>
+                        <td>{{ materiel.idLieu.libelleLieu|default('A définir') }}</td>
+                        <td>{{ materiel.idType.libelleType|default('A définir') }}</td>
+                        <td>{{ materiel.idSpecificite.libelleSpe|default('A définir') }}</td>
+                        <td>{{ materiel.date }}</td>
+                        <td>
+                            <input type="checkbox" class="materielCheck" id="checkbox1" name="materiel{{ materiel.idMateriel }}">
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-primary" type="submit">
+                <ion-icon name="add"></ion-icon>Ajouter</button>
+        </form>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                placement : 'top'
+            });
+            $('#tablestock').DataTable({
+                "dom": 'frtp<"bottom"l>',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "info": "Total des matériels en stock : _TOTAL_",
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page"
+                },
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    { "orderable": false }
+                ]
+            });
+        });
+        function checkAllOrNothing(source){
+            var checkboxes = document.getElementsByClassName('materielCheck');
+            for (let i = 0; i < $(".materielCheck").length;i++){
+                checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Marque'}) }}" class="btn btn-primary">Ajouter Marque</a>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Liste des Marques</caption>
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Libellé</th><th></th></tr>
+                </thead>
+                {% for marque in marques %}
+                <tbody>
+                <tr>
+                    <td>{{ marque.idMarque }}</td>
+                    <td>{{ marque.libelleMarque }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : marque.idMarque,lib : 'Marque' }) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('Parametre.delete',{id : marque.idMarque,lib : 'Marque' }) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Type'}) }}" class="btn btn-primary">Ajouter Type</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Liste des Types</caption>
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Libellé</th><th></th></tr>
+                </thead>
+                {% for type in types %}
+                <tbody>
+                <tr>
+                    <td>{{ type.idType }}</td>
+                    <td>{{ type.libelleType }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : type.idType,lib : 'Type' }) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('Parametre.delete',{id : type.idType,lib : 'Type' }) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Specificite'}) }}" class="btn btn-primary">Ajouter Specificite</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Liste des Specificités</caption>
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Libellé</th><th></th></tr>
+                </thead>
+                {% for spec in specificites %}
+                <tbody>
+                <tr>
+                    <td>{{ spec.idSpecificite }}</td>
+                    <td>{{ spec.libelleSpe }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : spec.idSpecificite,lib : 'Specificite' }) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('Parametre.delete',{id : spec.idSpecificite,lib : 'Specificite' }) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Lieu'}) }}" class="btn btn-primary">Ajouter Lieu</a>
+        </div><br>
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Liste des Lieux</caption>
+                <thead class="thead-dark">
+                <tr><th>ID</th><th>Libellé</th><th></th></tr>
+                </thead>
+                {% for lieu in lieux %}
+                <tbody>
+                <tr>
+                    <td>{{ lieu.idLieu }}</td>
+                    <td>{{ lieu.libelleLieu }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : lieu.idLieu,lib : 'Lieu' }) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path('Parametre.delete',{id : lieu.idLieu,lib : 'Lieu' }) }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+﻿ID;"Numéro de série";Statut;"Nom du matériel";Marque;Lieu;Type;Specificite;"Dernier Referent";"Date de suppression"
+2;123400;"En stock";"Ecran pour PC";Iiyama;besançon.fort-griffon;Ecran;"Ecran 17 pouces";10-Carré;
+3;96042;"En stock";"Ecran pour PC";Iiyama;besançon.fort-griffon;Ecran;"Ecran 17 pouces";12-Lainé;
+4;95858;"En stock";"Ecran pour PC";Iiyama;besançon.fort-griffon;Ecran;"Ecran 17 pouces";12-Lainé;
+5;111328;"Déployer sur site";"Ecran pour PC";Iiyama;mouthe.ce-perm;Ecran;"Ecran 17 pouces";1-ROOT;
+6;850026214;"Déployer sur site";"Ipad X";Apple;mouthe.ce-perm;Tablette;"Ecran 4 pouces";1-ROOT;
+7;877158;"Déployer sur site";"Switch ES14254";Cudy;mouthe.ce-perm;Switch;"4 ports";1-ROOT;
+8;45883698;"Déployer sur site";"Switch ES14254";Cudy;audincourt.annexe-champs;Switch;"3 ports";1-ROOT;
+9;8030;"En stock";"UltraLink C8030";Iiyama;besançon.fort-griffon;Imprimante;"Sans fil";10-Carré;
+10;15865;"En stock";"Ipad XI";Apple;besançon.fort-griffon;Tablette;"Ecran 4 pouces";12-Lainé;
+11;45102;"Déployer sur site";"UltraLink C8150";Iiyama;audincourt.annexe-champs;Imprimante;"Sans fil";1-ROOT;
+12;75487C;"Déployer sur site";"UltraLink C8150";Iiyama;audincourt.annexe-champs;Imprimante;"Sans fil";1-ROOT;
+13;655597;"Déployer sur site";"UltraLink C8880";Iiyama;amancey.ce;Imprimante;"Sans fil";NULL;31/07/2020
+14;4844;SAV;"Ecran pour PC";Iiyama;audincourt.annexe-champs;Ecran;"Ecran 17 pouces";1-ROOT;31/07/2020
+15;75824728;"En stock";"Ipad X";Apple;audincourt.annexe-champs;Tablette;"Ecran 17 pouces";2-User;31/07/2020
+16;54879797572JK;"En stock";"Ecran pour tablette";Apple;besançon.cms-past-pec-planoise;Ecran;"Ecran 17 pouces";NULL;
+17;4945545245;SAV;"Switch 469821C";Cudy;besançon.datacenter;Switch;"4 ports";NULL;

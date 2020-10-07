@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\MAMP\htdocs\gestion_stock\gestion_stock_new\gestion_stock\src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href=".css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href=".css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href=".css/style.css" rel="stylesheet" type="text/css">
+  <link href=".css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">C:\MAMP\htdocs\gestion_stock\gestion_stock_new\gestion_stock\src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#13">App\Entity\DoctrineMigrationVersions</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#10">App\Controller\SecurityController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/HistoriqueController.php.html#12">App\Controller\HistoriqueController</a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#24">App\Security\LoginFormAuthenticator</a></td><td class="text-right">29%</td></tr>
+       <tr><td><a href="Kernel.php.html#10">App\Kernel</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#17">App\Controller\UserController</a></td><td class="text-right">43%</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#13">App\Entity\Intervient</a></td><td class="text-right">46%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#28">App\Controller\MaterielController</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Lieu.php.html#13">App\Entity\Lieu</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Marque.php.html#13">App\Entity\Marque</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Specificite.php.html#13">App\Entity\Specificite</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Statut.php.html#13">App\Entity\Statut</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Type.php.html#13">App\Entity\Type</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#13">App\Entity\Intervention</a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#23">App\Controller\InterventionController</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Entity/User.php.html#15">App\Entity\User</a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#18">App\Controller\ParametresController</a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/HomeController.php.html#9">App\Controller\HomeController</a></td><td class="text-right">84%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/InterventionController.php.html#23">App\Controller\InterventionController</a></td><td class="text-right">949</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#28">App\Controller\MaterielController</a></td><td class="text-right">576</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#17">App\Controller\UserController</a></td><td class="text-right">166</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#13">App\Entity\DoctrineMigrationVersions</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#13">App\Entity\Intervient</a></td><td class="text-right">80</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#24">App\Security\LoginFormAuthenticator</a></td><td class="text-right">71</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#18">App\Controller\ParametresController</a></td><td class="text-right">63</td></tr>
+       <tr><td><a href="Entity/User.php.html#15">App\Entity\User</a></td><td class="text-right">60</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#13">App\Entity\Intervention</a></td><td class="text-right">49</td></tr>
+       <tr><td><a href="Kernel.php.html#10">App\Kernel</a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="Controller/HistoriqueController.php.html#12">App\Controller\HistoriqueController</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="Entity/Lieu.php.html#13">App\Entity\Lieu</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Entity/Marque.php.html#13">App\Entity\Marque</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Entity/Specificite.php.html#13">App\Entity\Specificite</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Entity/Statut.php.html#13">App\Entity\Statut</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Entity/Type.php.html#13">App\Entity\Type</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Controller/HomeController.php.html#9">App\Controller\HomeController</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/HistoriqueController.php.html#59"><abbr title="App\Controller\HistoriqueController::downloadRecap">downloadRecap</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Specificite.php.html#41"><abbr title="App\Entity\Specificite::setLibellespe">setLibellespe</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#60"><abbr title="App\Entity\DoctrineMigrationVersions::setExecutionTime">setExecutionTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#68"><abbr title="App\Entity\Intervention::setDateintervention">setDateintervention</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#92"><abbr title="App\Entity\Intervention::setIduser">setIduser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#104"><abbr title="App\Entity\Intervention::setIdlieu">setIdlieu</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#71"><abbr title="App\Entity\Intervient::setDateaffectation">setDateaffectation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#83"><abbr title="App\Entity\Intervient::setIdintervention">setIdintervention</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#95"><abbr title="App\Entity\Intervient::setIdmateriel">setIdmateriel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#119"><abbr title="App\Entity\Intervient::setIdstatut">setIdstatut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Lieu.php.html#41"><abbr title="App\Entity\Lieu::setLibellelieu">setLibellelieu</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Marque.php.html#41"><abbr title="App\Entity\Marque::setLibellemarque">setLibellemarque</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Materiel.php.html#232"><abbr title="App\Entity\Materiel::getIduser">getIduser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Statut.php.html#41"><abbr title="App\Entity\Statut::setLibellestatut">setLibellestatut</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#48"><abbr title="App\Entity\DoctrineMigrationVersions::setExecutedAt">setExecutedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/Type.php.html#41"><abbr title="App\Entity\Type::setLibelletype">setLibelletype</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#137"><abbr title="App\Entity\User::setNom">setNom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#149"><abbr title="App\Entity\User::setPrenom">setPrenom</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#161"><abbr title="App\Entity\User::setMail">setMail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#168"><abbr title="App\Entity\User::getPresent">getPresent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#173"><abbr title="App\Entity\User::setPresent">setPresent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/User.php.html#199"><abbr title="App\Entity\User::eraseCredentials">eraseCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Kernel.php.html#14"><abbr title="App\Kernel::configureContainer">configureContainer</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#49"><abbr title="App\Security\LoginFormAuthenticator::getCredentials">getCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#64"><abbr title="App\Security\LoginFormAuthenticator::getUser">getUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#80"><abbr title="App\Security\LoginFormAuthenticator::checkCredentials">checkCredentials</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#88"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#55"><abbr title="App\Entity\DoctrineMigrationVersions::getExecutionTime">getExecutionTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#43"><abbr title="App\Entity\DoctrineMigrationVersions::getExecutedAt">getExecutedAt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#38"><abbr title="App\Entity\DoctrineMigrationVersions::getVersion">getVersion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#182"><abbr title="App\Controller\ParametresController::validateDelete">validateDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#423"><abbr title="App\Controller\InterventionController::delete">delete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#501"><abbr title="App\Controller\InterventionController::partirInter">partirInter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#511"><abbr title="App\Controller\InterventionController::downloadRecap">downloadRecap</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#561"><abbr title="App\Controller\MaterielController::validateDeleteMultiple">validateDeleteMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#289"><abbr title="App\Controller\MaterielController::validateDelete">validateDelete</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#17"><abbr title="App\Controller\SecurityController::logout">logout</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#104"><abbr title="App\Security\LoginFormAuthenticator::getPassword">getPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#303"><abbr title="App\Controller\MaterielController::downloadCsv">downloadCsv</abbr></a></td><td class="text-right">10%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#359"><abbr title="App\Controller\MaterielController::downloadModel">downloadModel</abbr></a></td><td class="text-right">12%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#159"><abbr title="App\Controller\UserController::exportCsv">exportCsv</abbr></a></td><td class="text-right">14%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#201"><abbr title="App\Controller\UserController::downloadModel">downloadModel</abbr></a></td><td class="text-right">23%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#395"><abbr title="App\Controller\InterventionController::changeUser">changeUser</abbr></a></td><td class="text-right">41%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#173"><abbr title="App\Controller\InterventionController::listMateriel">listMateriel</abbr></a></td><td class="text-right">43%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#35"><abbr title="App\Controller\UserController::add">add</abbr></a></td><td class="text-right">46%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#671"><abbr title="App\Controller\InterventionController::terminerIntervention">terminerIntervention</abbr></a></td><td class="text-right">52%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#34"><abbr title="App\Controller\MaterielController::index">index</abbr></a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#141"><abbr title="App\Controller\UserController::delete">delete</abbr></a></td><td class="text-right">55%</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#81"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#38"><abbr title="App\Controller\InterventionController::depart">depart</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#557"><abbr title="App\Controller\InterventionController::nouveauRetour">nouveauRetour</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#544"><abbr title="App\Controller\MaterielController::deleteMultiple">deleteMultiple</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Kernel.php.html#27"><abbr title="App\Kernel::configureRoutes">configureRoutes</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#762"><abbr title="App\Controller\InterventionController::sendMailRecap">sendMailRecap</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#54"><abbr title="App\Controller\ParametresController::add">add</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#200"><abbr title="App\Controller\MaterielController::edit">edit</abbr></a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#101"><abbr title="App\Controller\ParametresController::edit">edit</abbr></a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#130"><abbr title="App\Controller\MaterielController::add">add</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="Controller/HomeController.php.html#15"><abbr title="App\Controller\HomeController::index">index</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#578"><abbr title="App\Controller\InterventionController::validateRetour">validateRetour</abbr></a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/InterventionController.php.html#173"><abbr title="App\Controller\InterventionController::listMateriel">listMateriel</abbr></a></td><td class="text-right">177</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#182"><abbr title="App\Controller\ParametresController::validateDelete">validateDelete</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#303"><abbr title="App\Controller\MaterielController::downloadCsv">downloadCsv</abbr></a></td><td class="text-right">53</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#34"><abbr title="App\Controller\MaterielController::index">index</abbr></a></td><td class="text-right">50</td></tr>
+       <tr><td><a href="Kernel.php.html#14"><abbr title="App\Kernel::configureContainer">configureContainer</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/HistoriqueController.php.html#59"><abbr title="App\Controller\HistoriqueController::downloadRecap">downloadRecap</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#511"><abbr title="App\Controller\InterventionController::downloadRecap">downloadRecap</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#64"><abbr title="App\Security\LoginFormAuthenticator::getUser">getUser</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#423"><abbr title="App\Controller\InterventionController::delete">delete</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#81"><abbr title="App\Controller\UserController::edit">edit</abbr></a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#671"><abbr title="App\Controller\InterventionController::terminerIntervention">terminerIntervention</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#54"><abbr title="App\Controller\ParametresController::add">add</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Controller/ParametresController.php.html#101"><abbr title="App\Controller\ParametresController::edit">edit</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#35"><abbr title="App\Controller\UserController::add">add</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#159"><abbr title="App\Controller\UserController::exportCsv">exportCsv</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Entity/Lieu.php.html#41"><abbr title="App\Entity\Lieu::setLibellelieu">setLibellelieu</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#71"><abbr title="App\Entity\Intervient::setDateaffectation">setDateaffectation</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#83"><abbr title="App\Entity\Intervient::setIdintervention">setIdintervention</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#95"><abbr title="App\Entity\Intervient::setIdmateriel">setIdmateriel</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervient.php.html#119"><abbr title="App\Entity\Intervient::setIdstatut">setIdstatut</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Statut.php.html#41"><abbr title="App\Entity\Statut::setLibellestatut">setLibellestatut</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/User.php.html#168"><abbr title="App\Entity\User::getPresent">getPresent</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Specificite.php.html#41"><abbr title="App\Entity\Specificite::setLibellespe">setLibellespe</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#88"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Type.php.html#41"><abbr title="App\Entity\Type::setLibelletype">setLibelletype</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Marque.php.html#41"><abbr title="App\Entity\Marque::setLibellemarque">setLibellemarque</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Materiel.php.html#232"><abbr title="App\Entity\Materiel::getIduser">getIduser</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#92"><abbr title="App\Entity\Intervention::setIduser">setIduser</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#104"><abbr title="App\Entity\Intervention::setIdlieu">setIdlieu</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#38"><abbr title="App\Entity\DoctrineMigrationVersions::getVersion">getVersion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/Intervention.php.html#68"><abbr title="App\Entity\Intervention::setDateintervention">setDateintervention</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#561"><abbr title="App\Controller\MaterielController::validateDeleteMultiple">validateDeleteMultiple</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#60"><abbr title="App\Entity\DoctrineMigrationVersions::setExecutionTime">setExecutionTime</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Security/LoginFormAuthenticator.php.html#104"><abbr title="App\Security\LoginFormAuthenticator::getPassword">getPassword</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#43"><abbr title="App\Entity\DoctrineMigrationVersions::getExecutedAt">getExecutedAt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#48"><abbr title="App\Entity\DoctrineMigrationVersions::setExecutedAt">setExecutedAt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Entity/DoctrineMigrationVersions.php.html#55"><abbr title="App\Entity\DoctrineMigrationVersions::getExecutionTime">getExecutionTime</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#762"><abbr title="App\Controller\InterventionController::sendMailRecap">sendMailRecap</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#200"><abbr title="App\Controller\MaterielController::edit">edit</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#578"><abbr title="App\Controller\InterventionController::validateRetour">validateRetour</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#395"><abbr title="App\Controller\InterventionController::changeUser">changeUser</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Kernel.php.html#27"><abbr title="App\Kernel::configureRoutes">configureRoutes</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#130"><abbr title="App\Controller\MaterielController::add">add</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/UserController.php.html#141"><abbr title="App\Controller\UserController::delete">delete</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#557"><abbr title="App\Controller\InterventionController::nouveauRetour">nouveauRetour</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/InterventionController.php.html#38"><abbr title="App\Controller\InterventionController::depart">depart</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/MaterielController.php.html#544"><abbr title="App\Controller\MaterielController::deleteMultiple">deleteMultiple</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/HomeController.php.html#15"><abbr title="App\Controller\HomeController::index">index</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 6.1.4</a> using <a href="https://secure.php.net/" target="_top">PHP 7.3.7</a> with <a href="https://xdebug.org/">Xdebug 2.7.0beta2-dev</a> and <a href="https://phpunit.de/">PHPUnit 7.5.20</a> at Tue Aug 4 11:21:01 UTC 2020.</small>
+    </p>
+   </footer>
+  </div>
+  <script src=".js/jquery.min.js" type="text/javascript"></script>
+  <script src=".js/d3.min.js" type="text/javascript"></script>
+  <script src=".js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([2,0,0,2,1,2,8,2,0,1,1,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([38,0,3,1,0,3,4,3,6,2,1,81], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[27.500000000000004,5,"<a href=\"Controller\/HistoriqueController.php.html#12\">App\\Controller\\HistoriqueController<\/a>"],[84.61538461538461,3,"<a href=\"Controller\/HomeController.php.html#9\">App\\Controller\\HomeController<\/a>"],[57.80821917808219,106,"<a href=\"Controller\/InterventionController.php.html#23\">App\\Controller\\InterventionController<\/a>"],[50,64,"<a href=\"Controller\/MaterielController.php.html#28\">App\\Controller\\MaterielController<\/a>"],[66.66666666666666,30,"<a href=\"Controller\/ParametresController.php.html#18\">App\\Controller\\ParametresController<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#10\">App\\Controller\\SecurityController<\/a>"],[43.84615384615385,28,"<a href=\"Controller\/UserController.php.html#17\">App\\Controller\\UserController<\/a>"],[0,10,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#13\">App\\Entity\\DoctrineMigrationVersions<\/a>"],[53.84615384615385,18,"<a href=\"Entity\/Intervention.php.html#13\">App\\Entity\\Intervention<\/a>"],[46.666666666666664,20,"<a href=\"Entity\/Intervient.php.html#13\">App\\Entity\\Intervient<\/a>"],[50,6,"<a href=\"Entity\/Lieu.php.html#13\">App\\Entity\\Lieu<\/a>"],[50,6,"<a href=\"Entity\/Marque.php.html#13\">App\\Entity\\Marque<\/a>"],[97.05882352941177,46,"<a href=\"Entity\/Materiel.php.html#13\">App\\Entity\\Materiel<\/a>"],[50,6,"<a href=\"Entity\/Specificite.php.html#13\">App\\Entity\\Specificite<\/a>"],[50,6,"<a href=\"Entity\/Statut.php.html#13\">App\\Entity\\Statut<\/a>"],[50,6,"<a href=\"Entity\/Type.php.html#13\">App\\Entity\\Type<\/a>"],[65.51724137931035,28,"<a href=\"Entity\/User.php.html#15\">App\\Entity\\User<\/a>"],[33.33333333333333,6,"<a href=\"Kernel.php.html#10\">App\\Kernel<\/a>"],[100,2,"<a href=\"Repository\/UserRepository.php.html#8\">App\\Repository\\UserRepository<\/a>"],[29.629629629629626,13,"<a href=\"Security\/LoginFormAuthenticator.php.html#24\">App\\Security\\LoginFormAuthenticator<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Controller\/HistoriqueController.php.html#18\">App\\Controller\\HistoriqueController::index<\/a>"],[100,1,"<a href=\"Controller\/HistoriqueController.php.html#42\">App\\Controller\\HistoriqueController::details<\/a>"],[0,3,"<a href=\"Controller\/HistoriqueController.php.html#59\">App\\Controller\\HistoriqueController::downloadRecap<\/a>"],[80,2,"<a href=\"Controller\/HomeController.php.html#15\">App\\Controller\\HomeController::index<\/a>"],[100,1,"<a href=\"Controller\/HomeController.php.html#39\">App\\Controller\\HomeController::goBack<\/a>"],[100,1,"<a href=\"Controller\/InterventionController.php.html#30\">App\\Controller\\InterventionController::index<\/a>"],[60,2,"<a href=\"Controller\/InterventionController.php.html#38\">App\\Controller\\InterventionController::depart<\/a>"],[100,3,"<a href=\"Controller\/InterventionController.php.html#60\">App\\Controller\\InterventionController::validateReferent<\/a>"],[100,2,"<a href=\"Controller\/InterventionController.php.html#89\">App\\Controller\\InterventionController::annuler<\/a>"],[100,11,"<a href=\"Controller\/InterventionController.php.html#109\">App\\Controller\\InterventionController::add<\/a>"],[43.859649122807014,29,"<a href=\"Controller\/InterventionController.php.html#173\">App\\Controller\\InterventionController::listMateriel<\/a>"],[100,12,"<a href=\"Controller\/InterventionController.php.html#330\">App\\Controller\\InterventionController::addCsv<\/a>"],[41.17647058823529,3,"<a href=\"Controller\/InterventionController.php.html#395\">App\\Controller\\InterventionController::changeUser<\/a>"],[0,3,"<a href=\"Controller\/InterventionController.php.html#423\">App\\Controller\\InterventionController::delete<\/a>"],[100,9,"<a href=\"Controller\/InterventionController.php.html#445\">App\\Controller\\InterventionController::edit<\/a>"],[0,1,"<a href=\"Controller\/InterventionController.php.html#501\">App\\Controller\\InterventionController::partirInter<\/a>"],[0,3,"<a href=\"Controller\/InterventionController.php.html#511\">App\\Controller\\InterventionController::downloadRecap<\/a>"],[100,1,"<a href=\"Controller\/InterventionController.php.html#549\">App\\Controller\\InterventionController::retour<\/a>"],[60,2,"<a href=\"Controller\/InterventionController.php.html#557\">App\\Controller\\InterventionController::nouveauRetour<\/a>"],[89.79591836734694,5,"<a href=\"Controller\/InterventionController.php.html#578\">App\\Controller\\InterventionController::validateRetour<\/a>"],[100,1,"<a href=\"Controller\/InterventionController.php.html#641\">App\\Controller\\InterventionController::encours<\/a>"],[100,1,"<a href=\"Controller\/InterventionController.php.html#654\">App\\Controller\\InterventionController::details<\/a>"],[52,6,"<a href=\"Controller\/InterventionController.php.html#671\">App\\Controller\\InterventionController::terminerIntervention<\/a>"],[100,6,"<a href=\"Controller\/InterventionController.php.html#711\">App\\Controller\\InterventionController::affectation<\/a>"],[71.73913043478261,5,"<a href=\"Controller\/InterventionController.php.html#762\">App\\Controller\\InterventionController::sendMailRecap<\/a>"],[53.62318840579711,18,"<a href=\"Controller\/MaterielController.php.html#34\">App\\Controller\\MaterielController::index<\/a>"],[75.67567567567568,3,"<a href=\"Controller\/MaterielController.php.html#130\">App\\Controller\\MaterielController::add<\/a>"],[73.17073170731707,5,"<a href=\"Controller\/MaterielController.php.html#200\">App\\Controller\\MaterielController::edit<\/a>"],[100,1,"<a href=\"Controller\/MaterielController.php.html#276\">App\\Controller\\MaterielController::delete<\/a>"],[0,1,"<a href=\"Controller\/MaterielController.php.html#289\">App\\Controller\\MaterielController::validateDelete<\/a>"],[10.81081081081081,8,"<a href=\"Controller\/MaterielController.php.html#303\">App\\Controller\\MaterielController::downloadCsv<\/a>"],[12.5,1,"<a href=\"Controller\/MaterielController.php.html#359\">App\\Controller\\MaterielController::downloadModel<\/a>"],[100,15,"<a href=\"Controller\/MaterielController.php.html#393\">App\\Controller\\MaterielController::cleanBase<\/a>"],[100,8,"<a href=\"Controller\/MaterielController.php.html#492\">App\\Controller\\MaterielController::importCSV<\/a>"],[66.66666666666666,2,"<a href=\"Controller\/MaterielController.php.html#544\">App\\Controller\\MaterielController::deleteMultiple<\/a>"],[0,2,"<a href=\"Controller\/MaterielController.php.html#561\">App\\Controller\\MaterielController::validateDeleteMultiple<\/a>"],[100,1,"<a href=\"Controller\/ParametresController.php.html#29\">App\\Controller\\ParametresController::index<\/a>"],[72.41379310344827,8,"<a href=\"Controller\/ParametresController.php.html#54\">App\\Controller\\ParametresController::add<\/a>"],[73.33333333333333,8,"<a href=\"Controller\/ParametresController.php.html#101\">App\\Controller\\ParametresController::edit<\/a>"],[95,6,"<a href=\"Controller\/ParametresController.php.html#151\">App\\Controller\\ParametresController::delete<\/a>"],[0,7,"<a href=\"Controller\/ParametresController.php.html#182\">App\\Controller\\ParametresController::validateDelete<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#17\">App\\Controller\\SecurityController::logout<\/a>"],[100,1,"<a href=\"Controller\/UserController.php.html#23\">App\\Controller\\UserController::index<\/a>"],[46.666666666666664,5,"<a href=\"Controller\/UserController.php.html#35\">App\\Controller\\UserController::add<\/a>"],[57.49999999999999,7,"<a href=\"Controller\/UserController.php.html#81\">App\\Controller\\UserController::edit<\/a>"],[55.55555555555556,2,"<a href=\"Controller\/UserController.php.html#141\">App\\Controller\\UserController::delete<\/a>"],[14.814814814814813,3,"<a href=\"Controller\/UserController.php.html#159\">App\\Controller\\UserController::exportCsv<\/a>"],[23.52941176470588,1,"<a href=\"Controller\/UserController.php.html#201\">App\\Controller\\UserController::downloadModel<\/a>"],[100,9,"<a href=\"Controller\/UserController.php.html#230\">App\\Controller\\UserController::importCsv<\/a>"],[0,2,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#38\">App\\Entity\\DoctrineMigrationVersions::getVersion<\/a>"],[0,2,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#43\">App\\Entity\\DoctrineMigrationVersions::getExecutedAt<\/a>"],[0,2,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#48\">App\\Entity\\DoctrineMigrationVersions::setExecutedAt<\/a>"],[0,2,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#55\">App\\Entity\\DoctrineMigrationVersions::getExecutionTime<\/a>"],[0,2,"<a href=\"Entity\/DoctrineMigrationVersions.php.html#60\">App\\Entity\\DoctrineMigrationVersions::setExecutionTime<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#58\">App\\Entity\\Intervention::getIdintervention<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#63\">App\\Entity\\Intervention::getDateintervention<\/a>"],[0,2,"<a href=\"Entity\/Intervention.php.html#68\">App\\Entity\\Intervention::setDateintervention<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#75\">App\\Entity\\Intervention::getStatutinter<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#80\">App\\Entity\\Intervention::setStatutinter<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#87\">App\\Entity\\Intervention::getIduser<\/a>"],[0,2,"<a href=\"Entity\/Intervention.php.html#92\">App\\Entity\\Intervention::setIduser<\/a>"],[100,2,"<a href=\"Entity\/Intervention.php.html#99\">App\\Entity\\Intervention::getIdlieu<\/a>"],[0,2,"<a href=\"Entity\/Intervention.php.html#104\">App\\Entity\\Intervention::setIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#66\">App\\Entity\\Intervient::getDateaffectation<\/a>"],[0,2,"<a href=\"Entity\/Intervient.php.html#71\">App\\Entity\\Intervient::setDateaffectation<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#78\">App\\Entity\\Intervient::getIdintervention<\/a>"],[0,2,"<a href=\"Entity\/Intervient.php.html#83\">App\\Entity\\Intervient::setIdintervention<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#90\">App\\Entity\\Intervient::getIdmateriel<\/a>"],[0,2,"<a href=\"Entity\/Intervient.php.html#95\">App\\Entity\\Intervient::setIdmateriel<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#102\">App\\Entity\\Intervient::getIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#107\">App\\Entity\\Intervient::setIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Intervient.php.html#114\">App\\Entity\\Intervient::getIdstatut<\/a>"],[0,2,"<a href=\"Entity\/Intervient.php.html#119\">App\\Entity\\Intervient::setIdstatut<\/a>"],[100,2,"<a href=\"Entity\/Lieu.php.html#31\">App\\Entity\\Lieu::getIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Lieu.php.html#36\">App\\Entity\\Lieu::getLibellelieu<\/a>"],[0,2,"<a href=\"Entity\/Lieu.php.html#41\">App\\Entity\\Lieu::setLibellelieu<\/a>"],[100,2,"<a href=\"Entity\/Marque.php.html#31\">App\\Entity\\Marque::getIdmarque<\/a>"],[100,2,"<a href=\"Entity\/Marque.php.html#36\">App\\Entity\\Marque::getLibellemarque<\/a>"],[0,2,"<a href=\"Entity\/Marque.php.html#41\">App\\Entity\\Marque::setLibellemarque<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#119\">App\\Entity\\Materiel::getIdmateriel<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#124\">App\\Entity\\Materiel::getNumeroserie<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#129\">App\\Entity\\Materiel::setNumeroserie<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#136\">App\\Entity\\Materiel::getNommateriel<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#141\">App\\Entity\\Materiel::setNommateriel<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#148\">App\\Entity\\Materiel::getMotscles<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#153\">App\\Entity\\Materiel::setMotscles<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#160\">App\\Entity\\Materiel::getDate<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#165\">App\\Entity\\Materiel::setDate<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#172\">App\\Entity\\Materiel::getSupprimer<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#177\">App\\Entity\\Materiel::setSupprimer<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#184\">App\\Entity\\Materiel::getIdmarque<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#189\">App\\Entity\\Materiel::setIdmarque<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#196\">App\\Entity\\Materiel::getIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#201\">App\\Entity\\Materiel::setIdlieu<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#208\">App\\Entity\\Materiel::getIdtype<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#213\">App\\Entity\\Materiel::setIdtype<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#220\">App\\Entity\\Materiel::getIdspecificite<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#225\">App\\Entity\\Materiel::setIdspecificite<\/a>"],[0,2,"<a href=\"Entity\/Materiel.php.html#232\">App\\Entity\\Materiel::getIduser<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#237\">App\\Entity\\Materiel::setIduser<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#244\">App\\Entity\\Materiel::getIdstatut<\/a>"],[100,2,"<a href=\"Entity\/Materiel.php.html#249\">App\\Entity\\Materiel::setIdstatut<\/a>"],[100,2,"<a href=\"Entity\/Specificite.php.html#31\">App\\Entity\\Specificite::getIdspecificite<\/a>"],[100,2,"<a href=\"Entity\/Specificite.php.html#36\">App\\Entity\\Specificite::getLibellespe<\/a>"],[0,2,"<a href=\"Entity\/Specificite.php.html#41\">App\\Entity\\Specificite::setLibellespe<\/a>"],[100,2,"<a href=\"Entity\/Statut.php.html#31\">App\\Entity\\Statut::getIdstatut<\/a>"],[100,2,"<a href=\"Entity\/Statut.php.html#36\">App\\Entity\\Statut::getLibellestatut<\/a>"],[0,2,"<a href=\"Entity\/Statut.php.html#41\">App\\Entity\\Statut::setLibellestatut<\/a>"],[100,2,"<a href=\"Entity\/Type.php.html#31\">App\\Entity\\Type::getIdtype<\/a>"],[100,2,"<a href=\"Entity\/Type.php.html#36\">App\\Entity\\Type::getLibelletype<\/a>"],[0,2,"<a href=\"Entity\/Type.php.html#41\">App\\Entity\\Type::setLibelletype<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#86\">App\\Entity\\User::getIduser<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#91\">App\\Entity\\User::getUsername<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#96\">App\\Entity\\User::setUsername<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#103\">App\\Entity\\User::getPassword<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#108\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#118\">App\\Entity\\User::getPlainPassword<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#126\">App\\Entity\\User::setPlainPassword<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#132\">App\\Entity\\User::getNom<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#137\">App\\Entity\\User::setNom<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#144\">App\\Entity\\User::getPrenom<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#149\">App\\Entity\\User::setPrenom<\/a>"],[100,2,"<a href=\"Entity\/User.php.html#156\">App\\Entity\\User::getMail<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#161\">App\\Entity\\User::setMail<\/a>"],[0,2,"<a href=\"Entity\/User.php.html#168\">App\\Entity\\User::getPresent<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#173\">App\\Entity\\User::setPresent<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#180\">App\\Entity\\User::getRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#187\">App\\Entity\\User::setRoles<\/a>"],[100,1,"<a href=\"Entity\/User.php.html#194\">App\\Entity\\User::getSalt<\/a>"],[0,1,"<a href=\"Entity\/User.php.html#199\">App\\Entity\\User::eraseCredentials<\/a>"],[0,3,"<a href=\"Kernel.php.html#14\">App\\Kernel::configureContainer<\/a>"],[71.42857142857143,3,"<a href=\"Kernel.php.html#27\">App\\Kernel::configureRoutes<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#10\">App\\Repository\\UserRepository::__construct<\/a>"],[100,1,"<a href=\"Repository\/UserRepository.php.html#15\">App\\Repository\\UserRepository::findLogin<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#35\">App\\Security\\LoginFormAuthenticator::__construct<\/a>"],[100,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#43\">App\\Security\\LoginFormAuthenticator::supports<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#49\">App\\Security\\LoginFormAuthenticator::getCredentials<\/a>"],[0,3,"<a href=\"Security\/LoginFormAuthenticator.php.html#64\">App\\Security\\LoginFormAuthenticator::getUser<\/a>"],[0,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#80\">App\\Security\\LoginFormAuthenticator::checkCredentials<\/a>"],[0,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#88\">App\\Security\\LoginFormAuthenticator::onAuthenticationSuccess<\/a>"],[100,1,"<a href=\"Security\/LoginFormAuthenticator.php.html#99\">App\\Security\\LoginFormAuthenticator::getLoginUrl<\/a>"],[0,2,"<a href=\"Security\/LoginFormAuthenticator.php.html#104\">App\\Security\\LoginFormAuthenticator::getPassword<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

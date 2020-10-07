@@ -1,0 +1,12 @@
+﻿ID;"Numéro de série";Statut;"Nom du matériel";Marque;Lieu;Type;Specificite;"Dernier Referent";Supprimer
+1;123400;"En production";"Ecran pour PC";Iiyama;"Fort Griffon";Ecran;"Ecran 17 pouces";6-Marconnet;
+2;111328;"En production";"Ecran pour PC";Iiyama;"CMS de Pontarlier";Ecran;"Ecran 17 pouces";2-Faivre;
+3;850026214;Disponible;"Ipad X";Apple;"11 rue de la Gare d'eau";Tablette;"Ecran 4 pouces";2-Faivre;
+4;877158;Disponible;"Switch ES14254";Cudy;"11 rue de la Gare d'eau";Switch;"4 ports";1-Boetsch;
+5;96042;"En production";"Ecran pour PC";Iiyama;"CMS de Pontarlier";Ecran;"Ecran 17 pouces";5-Giroud;
+6;45883698;Disponible;"Switch ES14254";Cudy;"Fort Griffon";Switch;"3 ports";5-Giroud;
+7;8030;"En production";"UltraLink C8030";Iiyama;"Collège Malraux";Imprimante;"Sans fil";10-Gigant;
+8;95858;Immobilisé;"Ecran pour PC";Iiyama;"Collège de la source";Ecran;"Ecran 17 pouces";5-Giroud;13/07/2020
+9;15865;Disponible;"Ipad XI";Apple;"Fort Griffon";Tablette;"Ecran 4 pouces";5-Giroud;20/06/2020
+10;45102;Disponible;"UltraLink C8150";Iiyama;"Fort Griffon";Imprimante;"Sans fil";5-Giroud;15/07/2020
+11;75487C;"En production";"UltraLink C8150";Iiyama;"Collège Malraux";Imprimante;"Sans fil";NULL;

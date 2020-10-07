@@ -1,0 +1,7 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <meta http-equiv="refresh" content="3; url={{ path('Intervention.index') }}">
+    <h1>Intervention créé</h1>
+    <p>Vous allez être redirigé sous peu vers la page d'accueil</p>
+    <iframe title="Recapitulatif" src="{{ path('Intervention.downloadRecap',{id : id}) }}" hidden></iframe>
+{% endblock %}

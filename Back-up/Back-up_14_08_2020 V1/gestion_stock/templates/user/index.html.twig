@@ -1,0 +1,118 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">User</li>
+        </ol>
+    </nav>
+    <h4>Liste des utilisateurs</h4>
+    <div class="row">
+        <a href="{{ path('User.add') }}" class="btn btn-primary" id="addUser"><ion-icon name="add-outline"></ion-icon>Ajouter</a>
+        <a href="{{ path('User.importCSV') }}" id="lirecsv_btn"
+           class="btn btn-primary">Importer des utilisateurs</a>
+        <a href="{{ path('User.exportCsv') }}" class="btn btn-primary"
+           id="btn-csv">Exporter les utilisateurs</a>
+        <button type="button" class="btn btn-primary" id="print" onclick="window.print()">
+            <ion-icon name="print" id="print_icon"></ion-icon></button>
+    </div>
+    <div class="container">
+        <div class="table-responsive-sm" id="tabDonnee">
+            <table class="table table-sm">
+                <thead class="thead-dark">
+                <tr><th>Nom</th><th>Prenom</th><th>Mail</th>
+                    <th>
+                        User
+                        <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top"
+                                  title="Permet d'accéder aux interventions uniquement"></ion-icon>
+                    </th>
+                    <th>
+                        Admin
+                        <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top"
+                                  title="Accès à tous le site"></ion-icon>
+                    </th>
+                    <th>
+                        Public
+                        <ion-icon name="information-circle" data-toggle="tooltip" data-placement="top"
+                                  title="Permet d'accéder aux interventions uniquement mais ne permet pas de créer d'intervention en son nom"></ion-icon>
+                    </th>
+                    <th>Code barre</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.mail }}</td>
+                    <td>
+                        {% if 'ROLE_USER' in user.roles %}
+                            <ion-icon name="checkmark-outline" id="correct"></ion-icon>
+                        {% else %}
+                            <ion-icon name="close-outline" id="incorrect"></ion-icon>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                            <ion-icon name="checkmark-outline" id="correct"></ion-icon>
+                        {% else %}
+                            <ion-icon name="close-outline" id="incorrect"></ion-icon>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if 'ROLE_PUBLIC' in user.roles %}
+                            <ion-icon name="checkmark-outline" id="correct"></ion-icon>
+                        {% else %}
+                            <ion-icon name="close-outline" id="incorrect"></ion-icon>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <img id="barcode{{ user.idUser }}" height="60px"/>
+                    </td>
+                    <td>
+                        <a href="{{ path('User.edit',{id : user.idUser }) }}"
+                           class="btn btn-primary" id="updateUser" title="Modifier un utilisateur"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('User.delete',{id : user.idUser }) }}"
+                           class="btn btn-danger" id="deleteUser" title="Suprimer un utilisateur">
+                            <ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({
+                placement : 'top'
+            });
+        });
+        generate();
+        function sansAccent(mot) {
+            var accent = [
+                /[\300-\306]/g, /[\340-\346]/g, // A, a
+                /[\310-\313]/g, /[\350-\353]/g, // E, e
+                /[\314-\317]/g, /[\354-\357]/g, // I, i
+                /[\322-\330]/g, /[\362-\370]/g, // O, o
+                /[\331-\334]/g, /[\371-\374]/g, // U, u
+                /[\321]/g, /[\361]/g, // N, n
+                /[\307]/g, /[\347]/g, // C, c
+            ];
+            var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
+            var str = mot ;
+            for (var i = 0 ; i < accent.length ; i++){
+                str = str.replace(accent[i],noaccent[i]);
+            }
+            return str ;
+        }
+        function generate(){
+            var code ;
+            {% for user in users %}
+            code = '{{ user.idUser }}-{{ user.nom }}{{ user.prenom }}'
+            code = sansAccent(code);
+            JsBarcode('#barcode{{ user.idUser }}',code);
+            {% endfor %}
+        }
+    </script>
+{% endblock %}

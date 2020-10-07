@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <style>
+        nav{
+            display: none;
+        }
+    </style>
+    <div class="well">
+        <a href="{{ path('Intervention.encours') }}" class="btn btn-warning">Retour</a>
+        <form method="post">
+            <div class="form-group">
+                <label>Code barre materiel</label>
+                <input id="materiel_scanner" name="materiel" type="text" class="form-control form-control" autocomplete="off">
+            </div>
+            <button id="ajouter_mat" class="btn btn-primary" type="submit">Ajouter</button>
+            <a href="{{ path('Intervention.finisRendre',{id : id }) }}" id="partir_inter" class="btn-primary btn">Finir intervention</a>
+            <br>
+        </form>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>Numero de Serie</th><th>Nom du materiel</th><th>Marque</th>
+                    <th>Type</th><th></th></tr>
+                </thead>
+                {% for materiel in materiels %}
+                {% if materiel.idLieu != null%}
+                {% if materiel.idLieu.libelleLieu == "Fort Griffon" %}
+                <tbody>
+                <tr>
+                    <td>{{ materiel.idMateriel.numeroSerie }}</td>
+                    <td>{{ materiel.idMateriel.nomMateriel }}</td>
+                    <td>{{ materiel.idMateriel.idMarque.libelleMarque|default('A définir') }}</td>
+                    <td>{{ materiel.idMateriel.idType.libelleType|default('A définir') }}</td>
+                    <td>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        document.getElementById('materiel_scanner').focus();
+    </script>
+{% endblock %}

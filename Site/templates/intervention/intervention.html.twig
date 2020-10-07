@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Intervention</li>
+        </ol>
+    </nav>
+    <a href="{{ path('Intervention.depart') }}" class="btn-primary btn-lg" id="depart_intervention">Depart en intervention</a>
+    <a href="{{ path('Intervention.retour') }}" class="btn-primary btn-lg" id="retour_intervention">Retour d'intervention</a>
+{% endblock %}

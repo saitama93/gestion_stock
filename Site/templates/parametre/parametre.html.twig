@@ -1,0 +1,262 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Paramètres</li>
+            </ol>
+        </nav>
+        <div class="row" id="sommaire">
+            <ul style="list-style: none;margin-left: 0;padding-left: 0;">
+                <li>Sommaire</li>
+                <li><a href="#Marque">Marque</a></li>
+                <li><a href="#Type">Type</a></li>
+                <li><a href="#Specificite">Specificite</a></li>
+                <li><a href="#Lieu">Lieu</a></li>
+                <li><a href="#Statut">Statut</a></li>
+            </ul>
+        </div>
+        <br>
+        <h5 id="Marque">Liste des marques</h5>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Marque'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Marque</a>
+        </div>
+        <div class="table-responsive" id="tabParam">
+            <table class="table" id="tableMarque">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for marque in marques %}
+                <tr>
+                    <td>{{ marque.libelleMarque }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : marque.idMarque,lib : 'Marque' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : marque.idMarque,lib : 'Marque' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h5 id="Type">Liste des types</h5>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Type'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Type</a>
+        </div>
+        <div class="table-responsive" id="tabParam">
+            <table class="table" id="tableType">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for type in types %}
+                <tr>
+                    <td>{{ type.libelleType }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : type.idType,lib : 'Type' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : type.idType,lib : 'Type' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h5 id="Specificite">Liste des specificités</h5>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Specificite'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Specificite</a>
+        </div>
+        <div class="table-responsive" id="tabParam">
+            <table class="table" id="tableSpe">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for spec in specificites %}
+                <tr>
+                    <td>{{ spec.libelleSpe }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : spec.idSpecificite,lib : 'Specificite' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : spec.idSpecificite,lib : 'Specificite' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h5 id="Lieu">Liste des lieux</h5>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Lieu'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Lieu</a>
+        </div>
+        <div class="table-responsive" id="tabParam">
+            <table class="table" id="tableLieu">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for lieu in lieux %}
+                <tr>
+                    <td>{{ lieu.libelleLieu }}</td>
+                    <td>
+                        <a href="{{ path('Parametre.edit',{id : lieu.idLieu,lib : 'Lieu' }) }}" id="param_button"
+                           class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                        <a href="{{ path('Parametre.delete',{id : lieu.idLieu,lib : 'Lieu' }) }}" id="param_button"
+                           class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h5 id="Statut">Liste des statuts</h5>
+        <div class="row">
+            <a href="{{ path('Parametre.add',{lib:'Statut'}) }}" class="btn btn-primary" id="param_add">
+                <ion-icon name="add-outline"></ion-icon>Ajouter Statut</a>
+        </div>
+        <div class="table-responsive" id="tabParam">
+            <table class="table" id="tableStatut">
+                <thead class="thead-dark">
+                <tr><th>Libellé</th><th id="editdelete"></th></tr>
+                </thead>
+                <tbody>
+                {% for statut in statuts %}
+                    <tr>
+                        <td>{{ statut.libelleStatut }}</td>
+                        <td>
+                            <a href="{{ path('Parametre.edit',{id : statut.idStatut,lib : 'Statut' }) }}" id="param_button"
+                               class="btn btn-primary" title="Modifier"><ion-icon name="create"></ion-icon></a>
+                            <a href="{{ path('Parametre.delete',{id : statut.idStatut,lib : 'Statut' }) }}" id="param_button"
+                               class="btn btn-danger" title="Supprimer"><ion-icon name="trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="scrollUp">
+            <a href="#top"><ion-icon id="top_arrow" name="arrow-up-circle"></ion-icon></a>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        jQuery(function () {
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 200){
+                        $('#scrollUp').css('left','10px');
+                    } else {
+                        $('#scrollUp').removeAttr('style');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $('#tableMarque').DataTable({
+                "dom": 'frtp',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableType').DataTable({
+                "dom": 'frtp',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableSpe').DataTable({
+                "dom": 'frtp',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableLieu').DataTable({
+                "dom": 'frtp',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+            $('#tableStatut').DataTable({
+                "dom": 'frtp',
+                "lengthMenu": [ [100, 200, 500, -1], [100, 200, 500, "All"] ],
+                "language": {
+                    "search" : "Recherche",
+                    "searchPlaceholder": "Taper ici pour rechercher",
+                    "infoEmpty": "Aucun résultat",
+                    "infoFiltered": "",
+                    "zeroRecords": "Aucun résultat",
+                    "paginate" : {
+                        "next": "Suivant",
+                        "previous": "Précédent"
+                    },
+                },
+                "columns": [
+                    null,
+                    { "orderable": false }
+                ]
+            });
+        });
+    </script>
+{% endblock %}
