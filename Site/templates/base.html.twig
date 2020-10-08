@@ -9,22 +9,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet"/>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
         {% endblock %}
-        <script src="../../../library/jSBarcode.all.js"></script>
-        <script src="../../../library/jQuery.js"></script>
-        <script src="../../../library/jQueryUI.js"></script>
-        <script src="../../../library/jquery.textcomplete.js"></script>
-        <script src="{{ asset('build/js/app.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
-
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
-
-
-
+       
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
@@ -75,6 +60,17 @@
             </div>
 
         </nav>
+      {% for label, messages in app.flashes %}
+
+	        <div class="container">
+		        <div class="alert alert-{{ label }}">
+			    {% for message in messages %}
+				    <p>{{ message | raw }}</p>
+			    {% endfor %}
+		        </div>
+	        </div>
+        {% endfor %}
+
         {% block body %}
         {% endblock %}
         {% block javascripts %}
@@ -83,5 +79,18 @@
                 $('.dropdown-toggle').dropdown();
             </script>
         {% endblock %}
+         <script src="../../../library/jSBarcode.all.js"></script>
+        <script src="../../../library/jQuery.js"></script>
+        <script src="../../../library/jQueryUI.js"></script>
+        <script src="../../../library/jquery.textcomplete.js"></script>
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
     </body>
 </html>

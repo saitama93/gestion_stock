@@ -96,9 +96,10 @@ class UserController extends AbstractController
                     $message = 'Cet utilisateur existe déjà !';
                 }
             }
-
             if($form->isSubmitted()){
+               
                 $this->addFlash('success', 'Utilisateur créé.');
+
             }
 
         }
@@ -115,11 +116,10 @@ class UserController extends AbstractController
     public function edit(Request $request, $id,UserPasswordEncoderInterface $passwordEncoder){
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository(User::class)->find($id);
-
         $check = '';
         $message = '';
         $form =  $this->createForm(UserType::class, $user);
-
+        $plainPasswd = $user->getPassword();
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()){
