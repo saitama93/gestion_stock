@@ -2,19 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Mpdf\Mpdf;
+use App\Entity\User;
+use App\Form\UserType;
 use PHPMailer\PHPMailer\PHPMailer;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
@@ -38,21 +39,9 @@ class UserController extends AbstractController
     public function add(Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $message = '';
         $user = new User();
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class,$user);
-        $formBuilder
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
-            ->add('mail',TextType::class)
-            ->add('username',TextType::class)
-            ->add('password',RepeatedType::class,[
-                'type'=> PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe doivent correspondrent',
-                'required' => true,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
-            ])
-            ->add('ajouter',SubmitType::class);
-        $form = $formBuilder->getForm();
+       
+       $form =  $this->createForm(UserType::class, $user);
+
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()){
@@ -80,7 +69,7 @@ class UserController extends AbstractController
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($user);
                     $em->flush();
-                    $request->getSession()->getFlashBag()->add('notice', 'User creer');
+                    $this->addFlash('success', 'Compte créé.');
                     $message = 'Voici vos informations utilisateurs afin d\'accéder à l\'application';
                     $mpdf = new Mpdf();
                     $contenus = '<h1>Informations de l\'utilisateur</h1>'
@@ -95,7 +84,7 @@ class UserController extends AbstractController
                     $email->Subject=utf8_decode('User créé');
                     $email->Body=utf8_decode($message);
                     if ($_ENV['APP_ENV'] == 'dev' || $_ENV['APP_ENV'] == 'test'){
-                        $email->addAddress('lucas.laine@doubs.fr');
+                        $email->addAddress('igalilmi32-148be1@inbox.mailtrap.io');
                     } else {
                         $email->addAddress($user->getMail());
                     }
@@ -106,6 +95,10 @@ class UserController extends AbstractController
                 } catch (UniqueConstraintViolationException $exception){
                     $message = 'Cet utilisateur existe déjà !';
                 }
+            }
+
+            if($form->isSubmitted()){
+                $this->addFlash('success', 'Utilisateur créé.');
             }
 
         }
@@ -125,21 +118,8 @@ class UserController extends AbstractController
 
         $check = '';
         $message = '';
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class,$user);
-        $formBuilder
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
-            ->add('mail',TextType::class)
-            ->add('username',TextType::class)
-            ->add('password',RepeatedType::class,[
-                'type'=> PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe doivent correspondrent',
-                'required' => true,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
-            ])
-            ->add('modifier',SubmitType::class);
-        $form = $formBuilder->getForm();
+        $form =  $this->createForm(UserType::class, $user);
+
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isValid()){
@@ -169,7 +149,7 @@ class UserController extends AbstractController
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($user);
                     $em->flush();
-                    $request->getSession()->getFlashBag()->add('notice', 'User creer');
+                    $this->addFlash('success', 'Informations modifiées.');
 
                     $message = 'Voici vos informations utilisateurs afin d\'accéder à l\'application';
                     $mpdf = new Mpdf();
@@ -185,7 +165,7 @@ class UserController extends AbstractController
                     $email->Subject=utf8_decode('User modifié');
                     $email->Body=utf8_decode($message);
                     if ($_ENV['APP_ENV'] == 'dev' || $_ENV['APP_ENV'] == 'test'){
-                        $email->addAddress('lucas.laine@doubs.fr');
+                        $email->addAddress('igalilmi32-148be1@inbox.mailtrap.io');
                     } else {
                         $email->addAddress($user->getMail());
                     }
@@ -197,7 +177,6 @@ class UserController extends AbstractController
                     $message = 'Cet utilisateur existe déjà !';
                 }
             }
-
         }
         return $this->render('user/editUser.html.twig',[
             'id' => $id,

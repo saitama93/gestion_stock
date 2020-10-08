@@ -69,7 +69,10 @@
                 </select>
             </div>
         </div>
-        {{ form_widget(form.modifier, {'attr': {'class': 'btn btn-primary'}}) }}
+        <button type="submit" class="btn btn-primary">
+			<i class="fas fa-check hvr-icon"></i>
+			Enregistrer les modifications
+		</button>
         {{ form_rest(form) }}
         {{ form_end(form) }}
         <input id="form_idUser" type="hidden" value="{{ id }}">
