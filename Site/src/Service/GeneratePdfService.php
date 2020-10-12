@@ -45,9 +45,6 @@ class GeneratePdfService extends AbstractController{
 
     /**
      * Permet de spécifier l'entité sur laquelle on souhaite travailler
-     * Par exemple :
-     * - App\Entity\Ad::class
-     * - App\Entity\Comment::class
      *
      * @param string $entityClass
      * @return self

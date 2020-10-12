@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\CsvService;
 use App\Service\GeneratePdfService;
 use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -221,83 +222,32 @@ class UserController extends AbstractController
      * @Route("user/exportCsv",name="User.exportCsv",methods={"GET","POST"})
      * Permet d'exporter tous les utilisateurs sous format CSV
      */
-    public function exportCsv()
+    public function exportCsv(CsvService $csvService)
     {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $users = $repository->findAll();
-        $chemin = './csv/user.csv';
-        $fp = fopen($chemin, 'w');
-        fputs($fp, $bom = (chr(0xEF) . chr(0xBB) . chr(0xBF)));
-        fputcsv($fp, array(
+        $csvService->exportUsers('./csv/user.csv', [
             'ID',
             'Nom',
             'Prenom',
             'Mail',
             'Roles'
-        ), ';', '"');
-        foreach ($users as $user) {
-            if (sizeof($user->getRoles()) == 2) $roles = 'Admin';
-            else $roles = 'User';
-            $data = array(
-                $user->getIduser(),
-                $user->getNom(),
-                $user->getPrenom(),
-                $user->getMail(),
-                $roles,
-            );
-            fputcsv($fp, $data, ';', '"');
-        }
-        fclose($fp);
-
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($chemin) . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($chemin));
-        readfile($chemin);
-        exit;
+        ]);
     }
 
     /**
      * @Route("/user/downloadModel",name="User.downloadModel",methods={"GET"})
      * Permet de télécharger le modèle du CSV
      */
-    public function downloadModel()
+    public function downloadModel(CsvService $csvService)
     {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $users = $repository->findAll();
-        $chemin = './csv/user.csv';
-
-        $fp = fopen($chemin, 'w');
-        fputs($fp, $bom = (chr(0xEF) . chr(0xBB) . chr(0xBF)));
-        fputcsv($fp, array(
-            'ID',
-            'Nom',
-            'Prenom',
-            'Mail',
-            'Roles'
-        ), ';', '"');
-
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($chemin) . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($chemin));
-        readfile($chemin);
-        exit;
+        $csvService->importModel();
     }
 
     /**
      * @Route("user/importCSV",name="User.importCSV",methods={"GET","POST"})
      * Permet de rajouter de nouveau User via un import d'un CSV
      */
-    public function importCsv(Request $request)
+    public function importCsv(Request $request, EntityManagerInterface $em)
     {
-        $em = $this->getDoctrine()->getManager();
         if ($request->isMethod('POST')) {
             // @codeCoverageIgnoreStart
             if (isset($_FILES['csvFile'])) {
