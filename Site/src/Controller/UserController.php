@@ -11,8 +11,7 @@ use App\Service\GeneratePdfService;
 use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Symfony\Component\Routing\Annotation\Route; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -71,13 +70,6 @@ class UserController extends AbstractController
                     $this->addFlash('success', 'Compte créé et un mail vous a été envoyé avec vos identifiants');
                     
                     //Création et envoie de mail    
-
-                    // sendMail prend en parametres:
-                    // Le message du mail
-                    // L'expéditeur du mail
-                    // Le destinataire du mail
-                    // L'objet du mail
-                    // Le nom de l'expéditeur
                     $mailerService->sendMail(
                         'Voici vos informations utilisateurs afin d\'accéder à l\'application',
                         'rononoa.zoro@mugiwara.fr',
@@ -91,10 +83,6 @@ class UserController extends AbstractController
                     // On renseigne l'entité relié au PDF
                     $pdfService->setEntityClass(User::class);
 
-                    //download prend en parametre :
-                    // le nom du fichier à télécharger
-                    // le chemin du template twig
-                    // et les paramettre de ce template
                     $pdfService->download('infos_' . $user->getNom(), 'pdf/userInfo.html.twig', [
             
                         'nom' => $user->getNom(),

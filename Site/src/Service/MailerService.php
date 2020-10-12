@@ -10,10 +10,10 @@ class MailerService  {
     /**
      * Permet d'envoyer un mail
      * 
-     * @param string $message
-     * @param string $sender
-     * @param string $recipient
-     * @param string $object
+     * @param string $message => Message du mail
+     * @param string $sender => L'expéditeur du mail
+     * @param string $recipient => Le destinataire du mail
+     * @param string $object =>  Le nom de l'expéditeur
      */
     public function sendMail(string $message, string $sender, string $recipient, string $object, string $senderName){
 

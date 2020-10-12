@@ -12,9 +12,9 @@ class GeneratePdfService extends AbstractController{
      * Permet de télécharger une page HTML en PDF
      *
      * @param integer $id
-     * @param string $fileName
-     * @param string $templatePath
-     * @param string $templateParams
+     * @param string $fileName => Nom du fichier à télécharger
+     * @param string $templatePath => Le chemin du template twig
+     * @param string $templateParams => Les parametre de ce template si il y en a 
      * 
      * @return void
      */
