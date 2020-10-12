@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use Mpdf\Mpdf;
-use Dompdf\Dompdf;
+
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use PHPMailer\PHPMailer\PHPMailer;
+use App\Service\GeneratePdfService;
+use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,10 +21,10 @@ class UserController extends AbstractController
      * @Route("/user", name="User.index",methods={"GET"})
      * Permet d'afficher tous les utilisateurs
      */
-    public function index(Request $request)
+    public function index(EntityManagerInterface $em, UserRepository $userRepo)
     {
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository(User::class)->findBy(array('present' => 1));
+        $users = $userRepo->findBy(array('present' => 1));
+
         return $this->render('user/index.html.twig', [
             'users' => $users,
         ]);
@@ -34,7 +34,7 @@ class UserController extends AbstractController
      * @Route("/user/add",name="User.add",methods={"GET","POST"})
      * Permet de créer un utilisateur
      */
-    public function add(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, EntityManagerInterface $em)
+    public function add(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, EntityManagerInterface $em, GeneratePdfService $pdfService, MailerService $mailerService)
     {
         $message = '';
         $user = new User();
@@ -43,10 +43,10 @@ class UserController extends AbstractController
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
+
             if ($form->isValid()) {
-                ini_set("SMTP", "relais-exchange.doubs.fr");
-                try {
-                    $plainPasswd = $user->getPassword();
+
+                $plainPasswd = $user->getPassword();
                     $user->setPlainPassword($plainPasswd);
                     $password = $passwordEncoder->encodePassword($user, $plainPasswd);
                     $user->setPassword($password);
@@ -68,47 +68,42 @@ class UserController extends AbstractController
                     $em->persist($user);
                     $em->flush();
                     $this->addFlash('success', 'Compte créé et un mail vous a été envoyé avec vos identifiants');
-                    $message = 'Voici vos informations utilisateurs afin d\'accéder à l\'application';
+                    
+                    //Création et envoie de mail    
 
+                    // sendMail prend en parametres:
+                    // Le message du mail
+                    // L'expéditeur du mail
+                    // Le destinataire du mail
+                    // L'objet du mail
+                    // Le nom de l'expéditeur
+                    $mailerService->sendMail(
+                        'Voici vos informations utilisateurs afin d\'accéder à l\'application',
+                        'rononoa.zoro@mugiwara.fr',
+                        'igal.ilmiamir@doubs.fr',
+                        'Création de compte',
+                        'Zoro'
+                    );
 
-                    // Instanciation de la class Dompdf et création du fichier pdf
-                    // $dompdf = new Dompdf();
-                    // $html = $this->render('pdf/userInfo.html.twig', [
-                    //     'nom' => $user->getNom(),
-                    //     'prenom' => $user->getPrenom(),
-                    //     'pseudo' =>  $user->getUsername(),
-                    //     'plainPassword' => $user->getPlainPassword(),
-                    //     'mail' => $user->getMail()
-                    // ]);
+                    // GénérationPdfService
 
-                    // $dompdf->loadHtml($html->getContent());
-                    // $dompdf->setPaper('A4', 'landscape');
-                    // $dompdf->output();
-                    // $dompdf->render();
-                    // $dompdf->stream('infos_' . $user->getNom());
+                    // On renseigne l'entité relié au PDF
+                    $pdfService->setEntityClass(User::class);
 
-                    // try {
-                    //     $transport = (new \Swift_SmtpTransport('relais-exchange.doubs.fr', 25));
-
-                    //     // Création du mail
-                    //     $mailer = new \Swift_Mailer($transport);
-
-                    //     $mail = (new \Swift_Message('Wonderful Subject'))
-                    //         ->setFrom(['rononoa.zoro@mugiwara.fr' => 'RONONOA Zoro'])
-                    //         ->setTo(['igal.ilmiamir@doubs.fr'])
-                    //         ->setBody('Voici vos informations utilisateurs afin d\'accéder à l\'application');
-
-                    //     // Envoie du mail
-                    //     $mailer->send($mail);
-
-                    // } catch (\Exception $e) {
-                    //     echo 'Exception reçue : ',  $e->getMessage(), "\n";
-                    // }
+                    //download prend en parametre :
+                    // le nom du fichier à télécharger
+                    // le chemin du template twig
+                    // et les paramettre de ce template
+                    $pdfService->download('infos_' . $user->getNom(), 'pdf/userInfo.html.twig', [
+            
+                        'nom' => $user->getNom(),
+                        'prenom' => $user->getPrenom(),
+                        'pseudo' =>  $user->getUsername(),
+                       'plainPassword' => $user->getPlainPassword(),
+                        'mail' => $user->getMail()
+                    ]);
 
                     return $this->redirectToRoute('User.index');
-                } catch (UniqueConstraintViolationException $exception) {
-                    $message = 'Cet utilisateur existe déjà !';
-                }
             }
             if ($form->isValid() && $form->isSubmitted()) {
 
@@ -125,23 +120,23 @@ class UserController extends AbstractController
      * @Route("user/edit/{id}",name="User.edit",methods={"GET","POST"})
      * Permet de modifier les utilisateurs
      */
-    public function edit(Request $request, $id, UserPasswordEncoderInterface $passwordEncoder)
+    public function edit(Request $request, $id, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, UserRepository $userRepo, GeneratePdfService $pdfService, MailerService $mailerService)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($id);
+        $user = $userRepo->find($id);
         $check = '';
-        $message = '';
+        $message = 'Test MSG';
         $form =  $this->createForm(UserType::class, $user);
         $plainPasswd = $user->getPassword();
+        
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
+            
             if ($form->isValid()) {
-                ini_set("SMTP", "relais-exchange.doubs.fr");
-                try {
                     $plainPasswd = $user->getPassword();
                     $user->setPlainPassword($plainPasswd);
                     $password = $passwordEncoder->encodePassword($user, $plainPasswd);
                     $user->setPassword($password);
+
                     if ($user->getIduser() != 1 && $user->getIduser() != 2) {
                         switch ($_POST['roles']) {
                             case 0:
@@ -158,41 +153,29 @@ class UserController extends AbstractController
                                 break;
                         }
                     }
+
                     $user->setPresent(1);
-                    $em = $this->getDoctrine()->getManager();
                     $em->persist($user);
                     $em->flush();
                     $this->addFlash('success', 'Informations modifiées.');
 
-                    $message = 'Voici vos informations utilisateurs afin d\'accéder à l\'application';
-                    $mpdf = new Mpdf();
-                    $contenus = '<h1>Informations de l\'utilisateur</h1>'
-                        . '<p>Nom : ' . $user->getNom() . '</p>'
-                        . '<p>Prenom : ' . $user->getPrenom() . '</p>'
-                        . '<p>Login : ' . $user->getUsername() . '</p>'
-                        . '<p>Mot de passe : ' . $user->getPlainPassword() . '</p>';
-                    $mpdf->WriteHTML(utf8_encode($contenus));
-                    $pdf = $mpdf->Output('User_info.pdf', 'S');
-                    $email = new PHPMailer(true);
-                    $email->setFrom('stockA2SR@doubs.fr'); //@todo modifier mail départ
-                    $email->Subject = utf8_decode('User modifié');
-                    $email->Body = utf8_decode($message);
-                    if ($_ENV['APP_ENV'] == 'dev' || $_ENV['APP_ENV'] == 'test') {
-                        $email->addAddress('igal.ilmiamir@doubs.fr');
-                    } else {
-                        $email->addAddress($user->getMail());
-                    }
-                    $email->addStringAttachment($pdf, 'User_info.pdf');
-                    // dd($email);
-                    try {
-                        $email->send();
-                    } catch (\Exception $e) {
-                        echo 'Exception reçue : ',  $e->getMessage(), "\n";
-                    }
+                     //Création et envoie de mail    
+
+                    // sendMail prend en parametres:
+                    // Le message du mail
+                    // L'expéditeur du mail
+                    // Le destinataire du mail
+                    // L'objet du mail
+                    // Le nom de l'expéditeur
+                    $mailerService->sendMail(
+                        'Voici vos informations utilisateurs afin d\'accéder à l\'application',
+                        'rononoa.zoro@mugiwara.fr',
+                        'igal.ilmiamir@doubs.fr',
+                        'Création de compte',
+                        'Zoro'
+                    );
+                    
                     return $this->redirectToRoute('User.index');
-                } catch (UniqueConstraintViolationException $exception) {
-                    $message = 'Cet utilisateur existe déjà !';
-                }
             }
         }
         return $this->render('user/editUser.html.twig', [
