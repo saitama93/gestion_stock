@@ -1,5 +1,1 @@
 ﻿ID;Nom;Prenom;Mail;Roles
-1;ROOT;Root;root@root.com;Admin
-2;PUBLIC;Public;"public@public.com ";User
-3;"ILMI AMIR";Igal;igalilmi32@gmail.com;Admin
-4;RONONOA;Zoro;zoro@zoro.com;User
