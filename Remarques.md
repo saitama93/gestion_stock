@@ -20,3 +20,4 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les information d'un compt
 * Dans User.php, @UniqueConstraint devient @UniqueEntity
 
 * L'mport de user ne marche pas 
+* Fonction goBack ne marche pas
