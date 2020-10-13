@@ -1,6 +1,6 @@
 # Propositions / Améliorations
 
-* Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
+* ❌ Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
 
 ## Edition profil d'un utilisateur
 
@@ -29,10 +29,10 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 * ✔️ Suppresion d'un User ne marche pas, revoir la fonction delete du UserController .php
 
-* Problème avec le menu déroulant de la navBar
-* NavBar pas centraliser, maintenabilité de celle-ci difficile car répétition de balise nav dans         différents fichier
-* Dans le UserController -> fonction edit: variable check déclarer vide mais pas utiliser
-* Dans User.php, @UniqueConstraint devient @UniqueEntity
+* ✔️ Problème avec le menu déroulant de la navBar
+* ✔️ NavBar pas centraliser, maintenabilité de celle-ci difficile car répétition de balise nav dans         différents fichier
+* ❌ Dans le UserController -> fonction edit: variable check déclarer vide mais pas utiliser
+* ✔️ Dans User.php, @UniqueConstraint devient @UniqueEntity
 
 * L'mport de user ne marche pas 
 * Fonction goBack ne marche pas
@@ -53,7 +53,9 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 ## Mardi 13 Octobre 2020
 
 * ✔️ Centralisation de la NavBar de l'application
-* Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de pagination
+* ❌ Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de       pagination
+* ✔️ Administration des utilisateurs
+* ✔️ Controller AdminUserController.php créé
 
 
 ## Crédits
