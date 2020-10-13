@@ -114,7 +114,7 @@ class UserController extends AbstractController
     {
         $user = $userRepo->find($id);
         $check = '';
-        $message = 'Test MSG';
+        $message = '';
         $form =  $this->createForm(UserType::class, $user);
         $plainPasswd = $user->getPassword();
         
@@ -196,7 +196,7 @@ class UserController extends AbstractController
                 "L'utilisateur {$username} a bien été supprimé."
             );
 
-            return $this->redirectToRoute('User.index');
+            return $this->redirectToRoute('AdminUser.index');
           
         }
         return $this->render(

@@ -1,19 +1,24 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ path('User.index') }}">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Supprimer</li>
-            </ol>
-        </nav>
-        <h3>Voulez vous supprimer cet utilisateur</h3>
-        <form method="post">
-            <p>Nom : {{user.nom}} </p>
-            <p>Prenom : {{ user.prenom }}</p>
-            <button name="delete" type="submit" class="btn btn-danger">Supprimer</button>
-        </form>
-        <a href="{{ path('User.index') }}" class="btn btn-outline-primary">Annuler</a>
-    </div>
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{{ path('AdminUser.index') }}">User</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Supprimer</li>
+			</ol>
+		</nav>
+		<h3>Voulez vous supprimer cet utilisateur</h3>
+		<form method="post">
+			<p>Nom complet :
+				{{user.fullname}}
+			</p>
+			<p>Mail :
+				{{ user.mail }}</p>
+			<a href="{{ path('User.delete', { 'id' : user.idUser}) }}" class="btn btn-danger">Supprimer</a>
+		</form>
+		<a href="{{ path('AdminUser.index') }}" class="btn btn-outline-primary">Annuler</a>
+	</div>
 
 {% endblock %}
