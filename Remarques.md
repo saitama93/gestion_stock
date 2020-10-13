@@ -57,7 +57,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ❌ Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de       pagination
 * ✔️ Administration des utilisateurs
 * ✔️ Controller AdminUserController.php créé
-
+* ✔️ Mise en place administration des lieu
 
 ## Crédits
 
