@@ -1,6 +1,7 @@
 # Propositions / Améliorations
 
 * ❌ Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
+* ❌ Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
 
 ## Edition profil d'un utilisateur
 
