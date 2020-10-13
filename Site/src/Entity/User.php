@@ -142,6 +142,16 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Affiche le nom complet
+     *
+     * @return void
+     */
+    public function getFullName()
+    {
+        return "{$this->prenom} " . strtoupper("{$this->nom}");
+    }
+
     public function getMail(): ?string
     {
         return $this->mail;
