@@ -114,5 +114,7 @@
             JsBarcode('#barcode{{ user.idUser }}',code);
             {% endfor %}
         }
+
+        {{parent() }}
     </script>
 {% endblock %}

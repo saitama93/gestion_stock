@@ -8,9 +8,10 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 # Remarques après lecture du code
 
-## Mercredi 7 Octobre 2020 
+* Champs "present" dans la table User. Pourquoi ?
 
-* Champs "present" dans la table User. Pourquoi ? 
+
+# Avancement projet
 
 ## Jeudi 8 Octobre 2020
 
