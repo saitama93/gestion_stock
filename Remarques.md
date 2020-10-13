@@ -39,7 +39,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * Factorisier le ParamatreController de façon à avoir un Controller par Entité
 * Disparition du générateur de code barre lors de la création d'un compte utilisateur
 
-## Lundi 12 Ocotbre 2020
+## Lundi 12 Octobre 2020
 
 * ✔️ Création des FormType
 * ✔️ Création des Repository
