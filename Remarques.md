@@ -9,6 +9,13 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 # Remarques après lecture du code
 
 * Champs "present" dans la table User. Pourquoi ?
+* Pour les interventions, plusieurs cas possible:
+
+    * Départ en intervention avec du matériel (intervention classique)
+    * Départ en intervention sans du matériel
+    * Retour d'intervention avec le matériel prit lors du départ
+    * Retour d'intervention sans le matériel prit lors du départ
+    * Retour d'intervention avec matériel inconnu lors du départ
 
 
 # Avancement projet
@@ -45,4 +52,11 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 ## Mardi 13 Octobre 2020
 
-* Centralisation de la NavBar de l'application
+* ✔️ Centralisation de la NavBar de l'application
+* Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de pagination
+
+
+## Crédits
+
+Première version de l'application développé par Laine Lucas.
+Projet repris par ILMI AMIR Igal
