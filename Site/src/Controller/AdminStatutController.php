@@ -96,13 +96,14 @@ class AdminStatutController extends AbstractController
      */
     public function delete(EntityManagerInterface $em, Statut $statut){
 
-
+        $libelleStatut = $statut->getLibellestatut();
+        
         $em->remove($statut);
         $em->flush();
 
         $this->addFlash(
             'success',
-            "{$statut->getLibellestatut()} vient d'être supprimé de la liste des statuts."
+            "{$libelleStatut} vient d'être supprimé de la liste des statuts."
         );
 
         return $this->redirectToRoute('AdminStatut.index');
