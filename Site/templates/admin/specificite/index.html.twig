@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des specificités
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid">
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page">Specificités</li>
+			</ol>
+		</nav>
+
+		<h1 class="h1 my-3">Gestions des specificités</h1>
+		<a href="{{ path('AdminSpecificite.add') }}" class="btn btn-success my-5">
+			<i class="fas fa-plus-circle"></i>
+		</a>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Libellé</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for specificite in specificites %}
+
+					<tr>
+						<td>{{ specificite.idSpecificite }}</td>
+						<td>{{ specificite.libelleSpe }}</td>
+						<td class="text-center">
+							<a href="{{ path('AdminSpecificite.edit', {'id' : specificite.idSpecificite}) }}" class="btn btn-primary my-2 mr-2">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a href="{{ path('AdminSpecificite.delete', {'id' : specificite.idSpecificite}) }}" class="btn btn-danger my-2 ml-2">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
+
+{% endblock %}

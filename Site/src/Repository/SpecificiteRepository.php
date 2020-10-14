@@ -19,6 +19,11 @@ class SpecificiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Specificite::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('libellespe' => 'ASC'));
+    }
+
     // /**
     //  * @return Specificite[] Returns an array of Specificite objects
     //  */
