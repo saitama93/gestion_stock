@@ -19,6 +19,11 @@ class MarqueRepository extends ServiceEntityRepository
         parent::__construct($registry, Marque::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('libellemarque' => 'ASC'));
+    }
+
     // /**
     //  * @return Marque[] Returns an array of Marque objects
     //  */

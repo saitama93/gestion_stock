@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des marques
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid">
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page">Marques</li>
+			</ol>
+		</nav>
+
+		<h1 class="h1 my-3">Gestions des marque</h1>
+		<a href="{{ path('AdminMarque.add') }}" class="btn btn-success my-5">
+			<i class="fas fa-plus-circle"></i>
+		</a>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Libellé</th>
+					<th class="text-center">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for marque in marques %}
+
+					<tr>
+						<td>{{ marque.idMarque }}</td>
+						<td>{{ marque.libelleMarque }}</td>
+						<td class="text-center">
+							<a href="{{ path('AdminMarque.edit', {'id' : marque.idMarque }) }}" class="btn btn-primary mr-2">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a href="{{ path('AdminMarque.delete', {'id' : marque.idMarque }) }}" class="btn btn-danger ml-2">
+								<i class="fas fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
+
+{% endblock %}

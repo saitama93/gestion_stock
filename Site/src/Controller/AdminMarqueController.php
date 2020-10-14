@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Marque;
+use App\Form\MarqueType;
+use App\Repository\MarqueRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class AdminMarqueController extends AbstractController
+{
+    /**
+     * Permet d'afficher la liste des marques
+     * 
+     * @Route("/admin/marque/list", name="AdminMarque.index")
+     */
+    public function index(MarqueRepository $marqueRepo)
+    {
+
+        $marques = $marqueRepo->findAll();
+
+        return $this->render('admin/marque/index.html.twig', [
+            'marques' => $marques
+        ]);
+    }
+
+    /**
+     * Permet d'ajouter une marque
+     * 
+     * @Route("/admin/marque/add", name="AdminMarque.add")
+     */
+    public function add(Request $request, EntityManagerInterface $em)
+    {
+
+        $marque = new Marque();
+
+        $form = $this->createForm(MarqueType::class, $marque);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($marque);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                "La marque  {$marque->getLibelleMarque()} a bien été créé. "
+            );
+
+            return $this->redirectToRoute('AdminMarque.index');
+        }
+
+        return $this->render('admin/marque/add.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Permet de modifier une marque 
+     * 
+     * @Route("/admin/marque/edit/{id}", name="AdminMarque.edit")
+     */
+    public function edit(Marque $marque, Request $request, EntityManagerInterface $em)
+    {
+
+
+        $form = $this->createForm(MarqueType::class, $marque);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($marque);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                "La marque {$marque->getLibelleMarque()} à bien été modifié."
+            );
+
+            return $this->redirectToRoute('AdminMarque.index');
+        }
+
+        return $this->render('admin/marque/edit.html.twig', [
+            'form' => $form->createView(),
+            'marque' => $marque
+        ]);
+    }
+
+    /**
+     * Permet de supprimer une marque 
+     * 
+     * @Route("/admin/marque/delete/{id}", name="AdminMarque.delete")
+     */
+    public function delete(EntityManagerInterface $em, Marque $marque)
+    {
+
+        $libelleMarque = $marque->getLibellemarque();
+
+        $em->remove($marque);
+        $em->flush();
+
+        $this->addFlash(
+            'danger',
+            "La marque {$libelleMarque} a bien été supprimé"
+        );
+
+        return $this->redirectToRoute('AdminMarque.index');
+    }
+}

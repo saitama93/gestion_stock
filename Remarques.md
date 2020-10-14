@@ -5,6 +5,10 @@
 * ❌ Doublon de Statut/Lieu possible pour le moment 
 * ❌ Message/fenêtre de confirmation lors de la suppression 
 * ❌ Mise en place d'une pagination pour l'administration
+* ❌ Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
+* ❌ Petit menu en haut de chaque liste bug 
+* ❌ Rajouter favicon
+* ❌ Changer statut des messages flsah lors des suppression
 
 ## Edition profil d'un utilisateur
 
