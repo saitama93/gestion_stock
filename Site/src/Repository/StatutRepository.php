@@ -21,6 +21,12 @@ class StatutRepository extends ServiceEntityRepository
     }
 
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('libellestatut' => 'ASC'));
+    }
+
+
     // /**
     //  * @return Role[] Returns an array of Role objects
     //  */
