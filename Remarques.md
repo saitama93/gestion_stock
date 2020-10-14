@@ -77,6 +77,8 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ✔️ Mise en place du model ApplicationType
 * ✔️ Sécurisation des routes commençant par '/admin'
 * ✔️ Ajout/edition/suppression d'un specificité
+* ❌ Ajout/edition/suppression d'un type
+* ❌ Ajout/edition/suppression d'un materiel
 
 ## Crédits
 
