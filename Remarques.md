@@ -64,6 +64,9 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 * ✔️ Ajout/edition/suppression d'un lieu
 * ✔️ AdminLieuController
+* ❌ Ajout/edition/suppression d'un statut
+* ✔️ AdminStatutController
+* ✔️ Mise en place du model ApplicationType
 
 ## Crédits
 

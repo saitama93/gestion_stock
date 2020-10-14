@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MarqueType extends AbstractType
+class MarqueType extends ApplicationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
