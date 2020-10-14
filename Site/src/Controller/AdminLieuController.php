@@ -93,7 +93,7 @@ class AdminLieuController extends AbstractController
             $em->flush();
 
             $this->addFlash(
-                'success',
+                'danger',
                 "{$lieu->getLibellelieu()} à bien été modifié."
             );
 

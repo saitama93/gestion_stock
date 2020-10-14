@@ -102,7 +102,7 @@ class AdminStatutController extends AbstractController
         $em->flush();
 
         $this->addFlash(
-            'success',
+            'danger',
             "{$libelleStatut} vient d'être supprimé de la liste des statuts."
         );
 

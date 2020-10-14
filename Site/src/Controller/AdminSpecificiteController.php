@@ -103,7 +103,7 @@ class AdminSpecificiteController extends AbstractController
         $em->flush();
 
         $this->addFlash(
-            'success',
+            'danger',
             "{$libelleSpecificite} a bien été supprimé."
         );
 
