@@ -14,7 +14,7 @@
 		</nav>
 
 		<h1 class="h1 my-3">Gestions des statuts</h1>
-		<a href="{{ path('AdminLieu.add') }}" class="btn btn-success my-5">
+		<a href="{{ path('AdminStatut.add') }}" class="btn btn-success my-5">
 			<i class="fas fa-plus-circle"></i>
 		</a>
 
@@ -33,7 +33,7 @@
 						<td>{{ statut.idStatut }}</td>
 						<td>{{ statut.libelleStatut }}</td>
 						<td class="text-center">
-							<a href="#" class="btn btn-primary mr-2">
+							<a href="{{ path('AdminStatut.edit', {'id' : statut.idStatut}) }}" class="btn btn-primary mr-2">
 								<i class="fas fa-edit"></i>
 							</a>
 							<a href="{{ path('AdminStatut.delete', {'id' : statut.idStatut}) }}" class="btn btn-danger ml-2">

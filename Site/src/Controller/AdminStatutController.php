@@ -59,6 +59,37 @@ class AdminStatutController extends AbstractController
 
 
     /**
+     * Permet de modifier un statut
+     * 
+     * @Route("/admin/statut/edit/{id}", name="AdminStatut.edit")
+     */
+    public function edit(Statut $statut, Request $request, EntityManagerInterface $em){
+
+        $form = $this->createForm(StatutType::class, $statut);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $em->persist($statut);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                "Le statut {$statut->getLibelleStatut()} à bien été modifié."
+            );
+
+            return $this->redirectToRoute('AdminStatut.index');
+        }
+
+        return $this->render('admin/statut/edit.html.twig', [
+            'form' => $form->createView(),
+            'statut' => $statut
+        ]);
+    }
+
+
+    /**
      * Permet de supprimer un statut
      * 
      * @Route("/admin/statut/delete/{id}", name="AdminStatut.delete")

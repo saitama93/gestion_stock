@@ -2,6 +2,7 @@
 
 * ❌ Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
 * ❌ Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
+* ❌ Doublon de Statut/Lieu possible pour le moment 
 
 ## Edition profil d'un utilisateur
 
@@ -64,11 +65,12 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 * ✔️ Ajout/edition/suppression d'un lieu
 * ✔️ AdminLieuController
-* ❌ Ajout/edition/suppression d'un statut
+* ✔️ Ajout/edition/suppression d'un lieu
 * ✔️ AdminStatutController
 * ✔️ Mise en place du model ApplicationType
+* ✔️ Sécurisation des routes commençant par '/admin'
 
 ## Crédits
 
 Première version de l'application développé par Laine Lucas.
-Projet repris par ILMI AMIR Igal
+Projet reprit par ILMI AMIR Igal
