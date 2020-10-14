@@ -19,6 +19,11 @@ class TypeRepository extends ServiceEntityRepository
         parent::__construct($registry, Type::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('libelletype' => 'ASC'));
+    }
+
     // /**
     //  * @return Type[] Returns an array of Type objects
     //  */
