@@ -78,6 +78,11 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ✔️ Sécurisation des routes commençant par '/admin'
 * ✔️ Ajout/edition/suppression d'un specificité
 * ✔️ Ajout/edition/suppression d'un type
+
+
+## Jeudi 15 Octobre 2020
+
+* ❌ Pagination
 * ❌ Ajout/edition/suppression d'un materiel
 
 ## Crédits
