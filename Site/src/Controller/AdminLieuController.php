@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminLieuController extends AbstractController
 {
     /**
-     * @Route("/admin/lieu", name="AdminLieu.index")
+     * @Route("/admin/lieu/list", name="AdminLieu.index")
      */
     public function index(LieuRepository $lieuRepo)
     {
@@ -32,14 +32,11 @@ class AdminLieuController extends AbstractController
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
-
         $lieu = new Lieu();
 
         $form = $this->createForm(LieuType::class, $lieu);
 
         $form->handleRequest($request);
-
-        $lieuLibelle = $lieu->getLibellelieu();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -48,7 +45,7 @@ class AdminLieuController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "{$lieuLibelle} a bien été ajouté à la liste"
+                "{$lieu->getLibellelieu()} a bien été ajouté à la liste"
             );
 
             return $this->redirectToRoute("AdminLieu.index");
@@ -67,15 +64,12 @@ class AdminLieuController extends AbstractController
      */
     public function delete(Lieu $lieu, EntityManagerInterface $em)
     {
-
-        $libelleLieu = $lieu->getLibellelieu();
-
         $em->remove($lieu);
         $em->flush();
 
         $this->addFlash(
             'success',
-            "{$libelleLieu} vient d'être supprimé de la liste des lieux."
+            "{$lieu->getLibellelieu()} vient d'être supprimé de la liste des lieux."
         );
 
         return $this->redirectToRoute('AdminLieu.index');
