@@ -65,6 +65,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ✔️ Administration des utilisateurs
 * ✔️ Controller AdminUserController.php créé
 * ✔️ Mise en place administration des lieu
+* ✔️ Ajout/edition/suppression d'une marque
 
 
 ## Mercredi 14 Octobre 2020
