@@ -17,6 +17,7 @@ class AdminLieuController extends AbstractController
      */
     public function index(LieuRepository $lieuRepo)
     {
+        // $lieux = $lieuRepo->findBy([], ['libellelieu' => 'ASC'] );
         $lieux = $lieuRepo->findAll();
 
         return $this->render('admin/lieu/index.html.twig', [
@@ -29,7 +30,8 @@ class AdminLieuController extends AbstractController
      * 
      * @Route("/admin/lieu/add", name="AdminLieu.add")
      */
-    public function add(Request $request, EntityManagerInterface $em){
+    public function add(Request $request, EntityManagerInterface $em)
+    {
 
         $lieu = new Lieu();
 
@@ -40,7 +42,7 @@ class AdminLieuController extends AbstractController
         $lieuLibelle = $lieu->getLibellelieu();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $em->persist($lieu);
             $em->flush();
 
@@ -54,6 +56,59 @@ class AdminLieuController extends AbstractController
 
         return $this->render('admin/lieu/add.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * Permet de supprimer un lieu
+     * 
+     * @Route("/admin/lieu/delete/{id}", name="AdminLieu.delete")
+     */
+    public function delete(Lieu $lieu, EntityManagerInterface $em)
+    {
+
+        $libelleLieu = $lieu->getLibellelieu();
+
+        $em->remove($lieu);
+        $em->flush();
+
+        $this->addFlash(
+            'success',
+            "{$libelleLieu} vient d'être supprimé de la liste des lieux."
+        );
+
+        return $this->redirectToRoute('AdminLieu.index');
+    }
+
+    /**
+     * Permet de modifier un lieu
+     * 
+     * @Route("/admin/lieu/edit/{id}", name="AdminLieu.edit")
+     */
+    public function edit(Lieu $lieu, Request $request, EntityManagerInterface $em)
+    {
+
+        $form = $this->createForm(LieuType::class, $lieu);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($lieu);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                "{$lieu->getLibellelieu()} à bien été modifié."
+            );
+
+            return $this->redirectToRoute('AdminLieu.index');
+        }
+
+        return $this->render('admin/lieu/edit.html.twig', [
+            'form' => $form->createView(),
+            'lieu' => $lieu
         ]);
     }
 }

@@ -59,6 +59,12 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ✔️ Controller AdminUserController.php créé
 * ✔️ Mise en place administration des lieu
 
+
+## Mercredi 14 Octobre 2020
+
+* ✔️ Ajout/edition/suppression d'un lieu
+* ✔️ AdminLieuController
+
 ## Crédits
 
 Première version de l'application développé par Laine Lucas.

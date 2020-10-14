@@ -19,6 +19,11 @@ class LieuRepository extends ServiceEntityRepository
         parent::__construct($registry, Lieu::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('libellelieu' => 'ASC'));
+    }
+
     // /**
     //  * @return Lieu[] Returns an array of Lieu objects
     //  */

@@ -14,7 +14,7 @@
 		</nav>
 
 		<h1 class="h1 my-3">Gestions des sites</h1>
-		<a href="#" class="btn btn-success my-5">
+		<a href="{{ path('AdminLieu.add') }}" class="btn btn-success my-5">
 			<i class="fas fa-plus-circle"></i>
 		</a>
 
@@ -33,10 +33,10 @@
 						<td>{{ lieu.idLieu }}</td>
 						<td>{{ lieu.libelleLieu }}</td>
 						<td class="text-center">
-							<a href="#" class="btn btn-primary mr-2">
+							<a href="{{ path('AdminLieu.edit', {'id' : lieu.idLieu}) }}" class="btn btn-primary mr-2">
 								<i class="fas fa-edit"></i>
 							</a>
-							<a href="#" class="btn btn-danger ml-2">
+							<a href="{{ path('AdminLieu.delete', {'id' : lieu.idLieu}) }}" class="btn btn-danger ml-2">
 								<i class="fas fa-trash"></i>
 							</a>
 						</td>
