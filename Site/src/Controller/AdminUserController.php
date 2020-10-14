@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminUserController extends AbstractController
 {
     /**
-     * @Route("/admin/user", name="AdminUser.index")
+     * @Route("/admin/user/list", name="AdminUser.index")
      * @IsGranted("ROLE_ADMIN")
      */
     public function index(UserRepository $userRepo)
