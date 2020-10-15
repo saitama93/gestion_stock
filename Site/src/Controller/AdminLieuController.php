@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Lieu;
 use App\Form\LieuType;
-use App\Repository\LieuRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,28 +17,15 @@ class AdminLieuController extends AbstractController
      * 
      * @Route("/admin/lieu/list/{page<\d+>?1}", name="AdminLieu.index")
      */
-    public function index(LieuRepository $lieuRepo, $page)
+    public function index($page, PaginationService $paginator)
     {
-        // Représente le nombre d'éléments par page
-        $limit = 10;
+        $paginator->setEntityClass(Lieu::class)
+            ->setCurrentPage($page)
+            ->setLimit(10);
 
-        // 1 * 10 = 10 - 10 = 0
-        // 2 * 10 = 20 - 10 = 10
-        $start = $page * $limit - $limit;
-
-        // Nombre total d'éléments en BDD
-        $total = count($lieuRepo->findAll());
-
-        // Nombre de pages
-        // ceil pour arrondir
-        $pages = ceil($total / $limit);
-
-        $lieux = $lieuRepo->findBy([], [], $limit, $start);
 
         return $this->render('admin/lieu/index.html.twig', [
-            'lieux' => $lieux,
-            'pages' => $pages,
-            'page' => $page
+            'paginator' => $paginator
         ]);
     }
 

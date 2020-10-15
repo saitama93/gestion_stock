@@ -4,24 +4,27 @@ namespace App\Controller;
 
 use App\Entity\Statut;
 use App\Form\StatutType;
+use App\Service\PaginationService;
 use App\Repository\StatutRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminStatutController extends AbstractController
 {
     /**
-     * @Route("/admin/statut/list", name="AdminStatut.index")
+     * @Route("/admin/statut/list/{page<\d+>?1}", name="AdminStatut.index")
      */
-    public function index(StatutRepository $statutRepo)
+    public function index($page, PaginationService $paginator)
     {
 
-        $statuts =$statutRepo->findAll();
+        $paginator->setEntityClass(Statut::class)
+        ->setCurrentPage($page)
+        ->setLimit(10);
 
         return $this->render('admin/statut/index.html.twig', [
-            'statuts' => $statuts
+            'paginator' => $paginator
         ]);
     }
 

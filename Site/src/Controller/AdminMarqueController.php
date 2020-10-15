@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Marque;
 use App\Form\MarqueType;
+use App\Service\PaginationService;
 use App\Repository\MarqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,15 +16,16 @@ class AdminMarqueController extends AbstractController
     /**
      * Permet d'afficher la liste des marques
      * 
-     * @Route("/admin/marque/list", name="AdminMarque.index")
+     * @Route("/admin/marque/list/{page<\d+>?1}", name="AdminMarque.index")
      */
-    public function index(MarqueRepository $marqueRepo)
+    public function index(MarqueRepository $marqueRepo, $page, PaginationService $paginator)
     {
-
-        $marques = $marqueRepo->findAll();
+        $paginator->setEntityClass(Marque::class)
+        ->setCurrentPage($page)
+        ->setLimit(10);
 
         return $this->render('admin/marque/index.html.twig', [
-            'marques' => $marques
+            'paginator' => $paginator
         ]);
     }
 

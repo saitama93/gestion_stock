@@ -9,6 +9,7 @@
 
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page"><a href="{{ path('AdminDasboard.index') }}">Gestion</a></li>
 				<li class="breadcrumb-item active" aria-current="page">Specificités</li>
 			</ol>
 		</nav>
@@ -27,7 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for specificite in specificites %}
+				{% for specificite in paginator.data %}
 
 					<tr>
 						<td>{{ specificite.idSpecificite }}</td>
@@ -45,6 +46,26 @@
 			</tbody>
 
 		</table>
+
+		<div class="d-flex justify-content-center">
+			{% set page = paginator.currentPage %}
+			{% set pages = paginator.pages %}
+
+			<ul class="pagination">
+				<li class="page-item {% if page == 1 %} disabled {% endif %}">
+					<a class="page-link" href="{{ path('AdminSpecificite.index', {'page' : page - 1}) }}">&laquo;</a>
+				</li>
+				{% for i in 1..pages %}
+
+					<li class="page-item {% if page == i %} active {% endif %}">
+						<a class="page-link" href="{{ path('AdminSpecificite.index', {'page' : i}) }}">{{ i }}</a>
+					</li>
+				{% endfor %}
+				<li class="page-item {% if page == pages %} disabled {% endif %}">
+					<a class="page-link" href="{{ path('AdminSpecificite.index', {'page' : page + 1}) }}">&raquo;</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 {% endblock %}

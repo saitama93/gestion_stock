@@ -5,23 +5,27 @@ namespace App\Controller;
 use App\Entity\Type;
 use App\Form\TypeType;
 use App\Repository\TypeRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminTypeController extends AbstractController
 {
     /**
-     * @Route("/admin/type", name="AdminType.index")
+     * Permet d'afficher la liste des statuts
+     * @Route("/admin/type/list/{page<\d+>?1}", name="AdminType.index")
      */
-    public function index(TypeRepository $typeRepo)
+    public function index($page, PaginationService $paginator)
     {
 
-        $types = $typeRepo->findAll();
+        $paginator->setEntityClass(Type::class)
+            ->setCurrentPage($page)
+            ->setLimit(10);
 
         return $this->render('admin/type/index.html.twig', [
-            'types' => $types
+            'paginator' => $paginator
         ]);
     }
 

@@ -4,24 +4,29 @@ namespace App\Controller;
 
 use App\Entity\Specificite;
 use App\Form\SpecificiteType;
-use App\Repository\SpecificiteRepository;
+use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\SpecificiteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminSpecificiteController extends AbstractController
 {
     /**
-     * @Route("/admin/specificite/list", name="AdminSpecificite.index")
+     * @Route("/admin/specificite/list/{page<\d+>?1}", name="AdminSpecificite.index")
      */
-    public function index(SpecificiteRepository $specificiteRepo)
+    public function index($page, PaginationService $paginator)
     {
 
-        $specificites = $specificiteRepo->findAll();
+        $paginator->setEntityClass(Specificite::class)
+        ->setCurrentPage($page)
+        ->setLimit(10);
+
+
 
         return $this->render('admin/specificite/index.html.twig', [
-            'specificites' => $specificites
+            'paginator' => $paginator
         ]);
     }
 

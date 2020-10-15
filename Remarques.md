@@ -83,6 +83,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 ## Jeudi 15 Octobre 2020
 
 * ✔️ Doublon de Statut/Lieu/Marque/Spécificité/Type possible pour le moment 
+* ✔️ Mise en place du system de pagination et du PaginationService.php 
 * ❌ Pagination
 * ❌ Ajout/edition/suppression d'un materiel
 
