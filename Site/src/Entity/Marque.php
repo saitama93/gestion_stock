@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Marque
  *
  * @ORM\Table(name="marque")
  * @ORM\Entity
+ * 
+ * @UniqueEntity(
+ * fields={"libellemarque"},
+ * message="Ce libellé existe déjà. "
+ * )
  */
 class Marque
 {

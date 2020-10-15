@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Statut
  *
  * @ORM\Table(name="statut")
  * @ORM\Entity
+ * 
+ * @UniqueEntity(
+ * fields={"libellestatut"},
+ * message="Ce libellé existe déjà. "
+ * )
  */
 class Statut
 {

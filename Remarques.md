@@ -2,13 +2,13 @@
 
 * ❌ Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
 * ❌ Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
-* ❌ Doublon de Statut/Lieu possible pour le moment 
 * ❌ Message/fenêtre de confirmation lors de la suppression 
 * ❌ Mise en place d'une pagination pour l'administration
 * ❌ Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
 * ❌ Petit menu en haut de chaque liste bug 
 * ❌ Rajouter favicon
 * ✔️ Changer statut des messages flsah lors des suppression
+* ❌ Faire une redirection après connection en fonction du rôle de l'utilisateur
 
 ## Edition profil d'un utilisateur
 
@@ -82,6 +82,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 ## Jeudi 15 Octobre 2020
 
+* ✔️ Doublon de Statut/Lieu/Marque/Spécificité/Type possible pour le moment 
 * ❌ Pagination
 * ❌ Ajout/edition/suppression d'un materiel
 

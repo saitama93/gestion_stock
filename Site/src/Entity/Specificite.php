@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Specificite
  *
  * @ORM\Table(name="specificite")
  * @ORM\Entity
+ * 
+ * @UniqueEntity(
+ * fields={"libellespe"},
+ * message="Ce libellé existe déjà. "
+ * )
  */
 class Specificite
 {
