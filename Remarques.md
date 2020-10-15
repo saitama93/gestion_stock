@@ -84,7 +84,8 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 * ✔️ Doublon de Statut/Lieu/Marque/Spécificité/Type possible pour le moment 
 * ✔️ Mise en place du system de pagination et du PaginationService.php 
-* ❌ Pagination
+* ✔️ Mise en place des messages pour les Exceptions du PaginationService.php  
+* ✔️ Factoriser le code twig pour la pagination
 * ❌ Ajout/edition/suppression d'un materiel
 
 ## Crédits
