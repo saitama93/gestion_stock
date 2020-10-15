@@ -61,7 +61,7 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 ## Mardi 13 Octobre 2020
 
 * ✔️ Centralisation de la NavBar de l'application
-* ❌ Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de       pagination
+* ✔️ Séparation de la gestion des entité => Chaque entité aura sa propre page avec un système de       pagination
 * ✔️ Administration des utilisateurs
 * ✔️ Controller AdminUserController.php créé
 * ✔️ Mise en place administration des lieu
