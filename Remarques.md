@@ -1,6 +1,6 @@
 # Propositions / Améliorations
 
-* Mise en place d'une page dédié au statistique
+* Mise en place d'une page dédié aux statistiques
 
 
 
