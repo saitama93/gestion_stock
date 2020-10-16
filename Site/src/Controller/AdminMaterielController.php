@@ -53,15 +53,8 @@ class AdminMaterielController extends AbstractController
                 ->setIdUser(null)
                 ->setIdlieu(null);
 
-            // if ($materiel->getIdmateriel() === null) {
-            //     dd('nul');
-            // }
-                
-
             $em->persist($materiel);
             $em->flush();
-
-            // dd($materiel);
 
             $this->addFlash(
                 'success',
@@ -74,5 +67,27 @@ class AdminMaterielController extends AbstractController
         return $this->render('admin/materiel/add.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Permet de supprimer un matériel
+     * 
+     * @Route("/admin/materiel/delete/{id}", name="AdminMateriel.delete")
+     */
+    public function delete(Materiel $materiel, EntityManagerInterface $em){
+
+        $materiel->setSupprimer(true);
+
+        $em->persist($materiel);
+        $em->flush();
+
+
+        $this->addFlash(
+            'danger',
+            "Matériel supprimé, retrouvé le dans l'onglet 'Archive' !"
+        );
+
+        return 
+        $this->redirectToRoute('AdminMateriel.index');
     }
 }

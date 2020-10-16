@@ -25,6 +25,7 @@
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Supp</th>
 					<th>Num série</th>
 					<th>Nom</th>
 					<th>Dernière modification</th>
@@ -40,40 +41,45 @@
 			<tbody>
 				{% for materiel in paginator.data %}
 
-					<tr>
-						<td>{{ materiel.idMateriel }}</td>
-						<td>{{ materiel.numeroSerie }}</td>
-						<td>{{ materiel.nomMateriel }}</td>
-						<td>{{ materiel.date | date('d/m/Y H:i') }}</td>
-						<td>{{ materiel.idMarque.libelleMarque }}</td>
-						<td>
-							{% if materiel.idLieu == null  %}
-								Indéfinie
-							{% else %}
-								{{ materiel.idLieu.libelleLieu }}
-							{% endif %}
+					{% if materiel.supprimer == false %}
 
-						</td>
-						<td>{{ materiel.idType.libelleType }}</td>
-						<td>{{ materiel.idSpecificite.libelleSpe }}</td>
-						<td>
-							{% if materiel.idUser == null  %}
-								Indéfinie
-							{% else %}
-								{{ materiel.idUser.fullName }}
-							{% endif %}
+						<tr>
+							<td>{{ materiel.idMateriel }}</td>
+							<td>{{ materiel.supprimer }}</td>
+							<td>{{ materiel.numeroSerie }}</td>
+							<td>{{ materiel.nomMateriel }}</td>
+							<td>{{ materiel.date | date('d/m/Y H:i') }}</td>
+							<td>{{ materiel.idMarque.libelleMarque }}</td>
+							<td>
+								{% if materiel.idLieu == null  %}
+									Indéfinie
+								{% else %}
+									{{ materiel.idLieu.libelleLieu }}
+								{% endif %}
 
-						</td>
-						<td>{{ materiel.idStatut.libelleStatut }}</td>
-						<td class="text-center">
-							<a href="#" class="btn btn-primary mr-2">
-								<i class="fas fa-edit"></i>
-							</a>
-							<a href="#" class="btn btn-danger ml-2">
-								<i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>
+							</td>
+							<td>{{ materiel.idType.libelleType }}</td>
+							<td>{{ materiel.idSpecificite.libelleSpe }}</td>
+							<td>
+								{% if materiel.idUser == null  %}
+									Indéfinie
+								{% else %}
+									{{ materiel.idUser.fullName }}
+								{% endif %}
+
+							</td>
+							<td>{{ materiel.idStatut.libelleStatut }}</td>
+							<td class="text-center">
+								<a href="#" class="btn btn-primary mr-2">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a href="{{ path('AdminMateriel.delete', {'id' : materiel.idMateriel}) }}" class="btn btn-danger ml-2">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+
 				{% endfor %}
 			</tbody>
 		</table>

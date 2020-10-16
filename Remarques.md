@@ -1,15 +1,24 @@
 # Propositions / Améliorations
 
-* ❌ Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
-* ❌ Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
-* ❌ Message/fenêtre de confirmation lors de la suppression 
-* ❌ Mise en place d'une pagination pour l'administration
-* ❌ Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
-* ❌ Petit menu en haut de chaque liste bug 
-* ❌ Rajouter favicon
-* ✔️ Changer statut des messages flsah lors des suppression
-* ❌ Faire une redirection après connection en fonction du rôle de l'utilisateur
-* ❌ S'occuper du champ "present" de la table User
+* Mise en place d'une page dédié au statistique
+
+
+
+# Tâches à faire
+
+* Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
+* Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
+* Message/fenêtre de confirmation lors de la suppression 
+* Mise en place d'une pagination pour l'administration
+* Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
+* Petit menu en haut de chaque liste bug 
+* Rajouter favicon
+* Faire une redirection après connection en fonction du rôle de l'utilisateur
+* S'occuper du champ "present" de la table User
+
+
+# Questions
+
 
 ## Edition profil d'un utilisateur
 
@@ -93,6 +102,9 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 ## Vendredi 16 Octobre 2020
 
 * ❌ Création et mise en place du CRUD de l'entité Materiel
+    * ✔️ Ajout d'un matériel
+    * ✔️ Suppréssion d'un matériel
+    * ❌ Mise à jour d'un matériel
 * ❌ Ajout/edition/suppression d'un materiel
 * ✔️ Champ "supprimer" => présence du matériel
 * ❌ Champ "nom" de la table Materiel incompris
