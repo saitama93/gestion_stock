@@ -19,6 +19,10 @@ class MaterielRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Materiel::class);
     }
+    public function findAll()
+    {
+        return $this->findBy(array(), array('nomMateriel' => 'ASC'));
+    }
 
 
     // /**

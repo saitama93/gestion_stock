@@ -9,6 +9,7 @@
 * ❌ Rajouter favicon
 * ✔️ Changer statut des messages flsah lors des suppression
 * ❌ Faire une redirection après connection en fonction du rôle de l'utilisateur
+* ❌ S'occuper du champ "present" de la table User
 
 ## Edition profil d'un utilisateur
 
@@ -86,7 +87,16 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 * ✔️ Mise en place du system de pagination et du PaginationService.php 
 * ✔️ Mise en place des messages pour les Exceptions du PaginationService.php  
 * ✔️ Factoriser le code twig pour la pagination
+* ✔️ Type du champ date de la table Materiel changé en datetime
+
+
+## Vendredi 16 Octobre 2020
+
+* ❌ Création et mise en place du CRUD de l'entité Materiel
 * ❌ Ajout/edition/suppression d'un materiel
+* ✔️ Champ "supprimer" => présence du matériel
+* ❌ Champ "nom" de la table Materiel incompris
+
 
 ## Crédits
 

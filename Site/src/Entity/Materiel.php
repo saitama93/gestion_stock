@@ -43,16 +43,15 @@ class Materiel
     private $motscles;
 
     /**
-     * @var string|null
      *
-     * @ORM\Column(name="date", type="string", length=50, nullable=true)
+     * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="supprimer", type="string", length=50, nullable=true)
+     * @ORM\Column(name="supprimer",type="boolean", nullable=false)
      */
     private $supprimer;
 
@@ -157,12 +156,12 @@ class Materiel
         return $this;
     }
 
-    public function getDate(): ?string
+    public function getDate(): \DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(?string $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
 
