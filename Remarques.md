@@ -10,14 +10,12 @@
 * Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
 * Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
 * Message/fenêtre de confirmation lors de la suppression 
-* Mise en place d'une pagination pour l'administration
 * Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
-* Petit menu en haut de chaque liste bug 
 * Rajouter favicon
 * Faire une redirection après connection en fonction du rôle de l'utilisateur
-* S'occuper du champ "present" de la table User
 * S'occuper du réglage fuseau horraire des champs date
-* ❌ Redirection après création d'un compte utilisateur 
+* Redirection après création d'un compte utilisateur 
+* Réussir à désactiver un compte sans le supprimer 
 
 
 # Questions
@@ -106,10 +104,10 @@
 
 ## Vendredi 16 Octobre 2020
 
-* ❌ Création et mise en place du CRUD de l'entité Materiel
+* ✔️ Création et mise en place du CRUD de l'entité Materiel
     * ✔️ Ajout d'un matériel
     * ✔️ Suppréssion d'un matériel
-    * ❌ Mise à jour d'un matériel
+    * ✔️ Mise à jour d'un matériel
 
 * ✔️ Champ "supprimer" => présence du matériel
 
@@ -120,6 +118,7 @@
 * ✔️ Ajout/edition/suppression d'un materiel
 * ✔️ Filter les user pour avoir que les user présent
 * ✔️ Archivation des utilisateurs
+* ✔️ Désactivation des comptes
 * ❌ Fonctionnalité de mot clé
 
 

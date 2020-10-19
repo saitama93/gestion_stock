@@ -22,6 +22,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            user_checker: App\Security\UserChecker
             anonymous: true
             lazy: true
             provider: users_in_memory
@@ -32,6 +33,8 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 target: Home.index
+
+           
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
