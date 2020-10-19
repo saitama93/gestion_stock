@@ -118,7 +118,8 @@
 
 * ✔️ Création d'une view pour les archives
 * ✔️ Ajout/edition/suppression d'un materiel
-* ❌ Filter les user pour avoir que les user présent
+* ✔️ Filter les user pour avoir que les user présent
+* ✔️ Archivation des utilisateurs
 * ❌ Fonctionnalité de mot clé
 
 
