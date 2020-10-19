@@ -1,11 +1,7 @@
 # Propositions / Améliorations
 
-<<<<<<< HEAD
-* Mise en place d'une page dédié aux statistiques
-=======
 * Mise en place d'une page dédié au statistique
 * View "plus de détails" pour afficher plus de détail lier à un matériel
->>>>>>> test
 
 
 
