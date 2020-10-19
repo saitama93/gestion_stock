@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion utilisateurs
+{% block title %}Comptes utilisateurs
 {% endblock %}
 
 {% block body %}
@@ -17,7 +17,7 @@
 		</nav>
 
 		<h1 class="h1 my-3">Gestions des utilisateurs</h1>
-		<a href="{{ path('User.add') }}" class="btn btn-success my-5">
+		<a href="{{ path('AdminUser.add') }}" class="btn btn-success my-5">
 			<i class="fas fa-plus-circle"></i>
 		</a>
 
@@ -34,20 +34,23 @@
 			<tbody>
 				{% for user in paginator.data %}
 
-					<tr>
-						<td>{{ user.idUser }}</td>
-						<td>{{ user.mail }}</td>
-						<td>{{ user.fullName }}</td>
-						<td>{{ user.roles[0]}}</td>
-						<td class="text-center">
-							<a href="{{ path('User.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2">
-								<i class="fas fa-edit"></i>
-							</a>
-							<a href="{{ path('User.delete', {'id' : user.idUser}) }}" class="btn btn-danger ml-2">
-								<i class="fas fa-trash"></i>
-							</a>
-						</td>
-					</tr>
+					{% if user.present == presence %}
+
+						<tr>
+							<td>{{ user.idUser }}</td>
+							<td>{{ user.mail }}</td>
+							<td>{{ user.fullName }}</td>
+							<td>{{ user.roles[0]}}</td>
+							<td class="text-center">
+								<a href="{{ path('AdminUser.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a href="{{ path('User.delete', {'id' : user.idUser}) }}" class="btn btn-danger ml-2">
+									<i class="fas fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endif %}
 				{% endfor %}
 			</tbody>
 		</table>

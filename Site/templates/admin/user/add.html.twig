@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Nouveau utilisateur
+{% endblock %}
+{% block body %}
+	<div class="well">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="{{ path('AdminUser.index') }}">User</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Ajouter</li>
+			</ol>
+		</nav>
+		<a data-target="{{ path('Home.goBack',{lib : 'User', id : -1}) }}" data-tooltip="retour" id="retourArriere" class="tooltipped modal-trigger btn btn-danger" href="#modal1">Annuler</a>
+		
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		<div class="form-group row">
+			<ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" title="Vous ne pouvez pas rentrer de chiffre ou de charactères spéciaux"></ion-icon>
+			{{ form_label(form.nom,"Nom",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.nom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" title="Vous ne pouvez pas rentrer de chiffre ou de charactères spéciaux"></ion-icon>
+			{{ form_label(form.prenom,"Prenom",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.prenom,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			{{ form_label(form.username,"Nom d'utilisateur",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.username,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			{{ form_errors(form.password.first) }}
+			<ion-icon name="information-circle" data-toggle="tooltip" data-placement="top" title="Doit contenir au moins 8 charactères dont 1 lettre, 1 chiffre et 1 charactères spécial"></ion-icon>
+			{{ form_label(form.password,"Mot de passe",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.password.first,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			{{ form_label(form.password,"Confirmer mot de passe",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.password.second,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			{{ form_label(form.mail,"Mail",{'label_attr' : {'class': 'col-sm-2 control-label'}}) }}
+			<div class="col-sm-8">
+				{{ form_widget(form.mail,{'attr': {'class': 'form-control','autocomplete' : 'off'}}) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="roles" class="control-label col-sm-2">Roles</label>
+			<div class="col-sm-8">
+				<select id="roles" name="roles" class="form-control">
+					<option value="0">User</option>
+					<option value="1">Admin</option>
+					<option value="2">Public</option>
+				</select>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary">
+			<i class="fas fa-check hvr-icon"></i>
+			Ajouter
+		</button>
+		{{ form_rest(form) }}
+		{{ form_end(form) }}
+	</div>
+	<div id="modal1" class="modal">
+		<div class="modal-content"></div>
+		<div class="modal-footer"></div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script>
+		$('.modal-trigger').click(function () {
+$('.modal').modal();
+url = $(this).attr('data-target');
+$.get(url, function (data) {
+$('.modal-content').html(data);
+$('#modal1').modal('open');
+});
+});
+$(document).ready(function () {
+$('[data-toggle="tooltip"]').tooltip({placement: 'top'});
+});
+	</script>
+	{{parent() }}
+{% endblock %}

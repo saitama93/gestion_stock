@@ -17,6 +17,7 @@
 * Faire une redirection après connection en fonction du rôle de l'utilisateur
 * S'occuper du champ "present" de la table User
 * S'occuper du réglage fuseau horraire des champs date
+* ❌ Redirection après création d'un compte utilisateur 
 
 
 # Questions
