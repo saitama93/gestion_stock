@@ -1,6 +1,11 @@
 # Propositions / Améliorations
 
+<<<<<<< HEAD
 * Mise en place d'une page dédié aux statistiques
+=======
+* Mise en place d'une page dédié au statistique
+* View "plus de détails" pour afficher plus de détail lier à un matériel
+>>>>>>> test
 
 
 
@@ -15,10 +20,16 @@
 * Rajouter favicon
 * Faire une redirection après connection en fonction du rôle de l'utilisateur
 * S'occuper du champ "present" de la table User
+* S'occuper du réglage fuseau horraire des champs date
 
 
 # Questions
 
+* Suppréssion d'un matériel => 
+* Modification d'un matériel => 
+* Champ "nom" de la table Materiel incompris => Dernier user manip
+* Fonctionnalité de mot clé => champs mot clé avec recherche LIKE % % 
+* Onglet Archive => Onglet "archive" <=> "gestion
 
 ## Edition profil d'un utilisateur
 
@@ -105,9 +116,15 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
     * ✔️ Ajout d'un matériel
     * ✔️ Suppréssion d'un matériel
     * ❌ Mise à jour d'un matériel
-* ❌ Ajout/edition/suppression d'un materiel
+
 * ✔️ Champ "supprimer" => présence du matériel
-* ❌ Champ "nom" de la table Materiel incompris
+
+
+## Lundi 19 Octobre 2020
+
+* ❌ Création d'une view pour les archives
+* ✔️ Ajout/edition/suppression d'un materiel
+* ❌ Fonctionnalité de mot clé
 
 
 ## Crédits
