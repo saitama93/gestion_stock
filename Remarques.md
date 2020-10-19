@@ -51,8 +51,8 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 
 ## Vendredi 9 Octobre 2020
-
-* ✔️ Suppresion d'un User ne marche pas, revoir la fonction delete du UserController .php
+php
+ ✔️ Suppresion d'un User ne marche pas, revoir la fonction delete du UserController .php
 
 * ✔️ Problème avec le menu déroulant de la navBar
 * ✔️ NavBar pas centraliser, maintenabilité de celle-ci difficile car répétition de balise nav dans         différents fichier
@@ -118,8 +118,9 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 ## Lundi 19 Octobre 2020
 
-* ❌ Création d'une view pour les archives
+* ✔️ Création d'une view pour les archives
 * ✔️ Ajout/edition/suppression d'un materiel
+* ❌ Filter les user pour avoir que les user présent
 * ❌ Fonctionnalité de mot clé
 
 
