@@ -152,7 +152,8 @@ class AdminUserController extends AbstractController
                 $em->flush();
                 $this->addFlash(
                     'success',
-                    "Informations du compte de {$user->getFullName()} modifiées.");
+                    "Informations du compte de {$user->getFullName()} modifiées."
+                );
 
                 //Création et envoie de mail    
 
@@ -179,5 +180,35 @@ class AdminUserController extends AbstractController
             'check' => $check,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Permet de supprimer un utilisateur avec page de confirmation
+     * 
+     * @Route("admin/user/delete/{id}",name="AdminUser.delete",methods={"GET","POST"})
+     */
+    public function delete(Request $request, $id, UserRepository $userRepo, EntityManagerInterface $em)
+    {
+
+        $user = $userRepo->find($id);
+
+        if ($request->isMethod('POST')) {
+            $user->setPresent(0);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'danger',
+                "L'utilisateur {$user->getFullName()} a bien été supprimé."
+            );
+
+            return $this->redirectToRoute('AdminUser.index');
+        }
+        return $this->render(
+            'user/deleteUser.html.twig',
+            [
+                'user' => $user
+            ]
+        );
     }
 }

@@ -16,7 +16,8 @@
 			</p>
 			<p>Mail :
 				{{ user.mail }}</p>
-			<a href="{{ path('User.delete', { 'id' : user.idUser}) }}" class="btn btn-danger">Supprimer</a>
+			{# <a href="{{ path('AdminUser.delete', { 'id' : user.idUser}) }}" class="btn btn-danger">Supprimer</a> #}
+			<button type="submit" class="btn btn-danger">Supprimer</button>
 		</form>
 		<a href="{{ path('AdminUser.index') }}" class="btn btn-outline-primary">Annuler</a>
 	</div>
