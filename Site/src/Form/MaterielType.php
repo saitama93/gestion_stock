@@ -18,23 +18,16 @@ class MaterielType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('numeroserie')
+        
             ->add('nommateriel', TextType::class, $this->getConfiguration("Nom", "Nom du matériel"))
             ->add('motscles', TextType::class, $this->getConfiguration("Mot clé", "Entré un mot clé"))
-            // ->add('date')
-            // ->add('supprimer')
             ->add('idmarque', EntityType::class, $this->getConfiguration("Marque", "Choisir une marque", [
                 'class' => Marque::class,
                 'choice_label' => function ($marque) {
                     return $marque->getlibelleMarque();
                 }
             ]))
-            // ->add('idlieu', EntityType::class, $this->getConfiguration("Site", "Choisir un site", [
-            //     'class' => Lieu::class,
-            //     'choice_label' => function($lieu){
-            //         return  $lieu->getLibelleLieu();
-            //     }
-            // ]))
+
             ->add('idtype', EntityType::class, $this->getConfiguration("Type de matériel", "", [
                 'class' => Type::class,
                 'choice_label' => function ($type) {

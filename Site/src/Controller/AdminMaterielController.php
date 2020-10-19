@@ -70,6 +70,37 @@ class AdminMaterielController extends AbstractController
     }
 
     /**
+     * Permetde modifier un matériel
+     * 
+     * @Route("/admin/materiel/edit/{id}", name="AdminMateriel.edit")
+     */
+    public function edit(Materiel $materiel, Request $request, EntityManagerInterface $em){
+
+        $form = $this->createForm(MaterielType::class, $materiel);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $materiel->setDate(new DateTime());
+
+            $em->persist($materiel);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                "Le matériel num série {$materiel->getNumeroserie()} à bien été modifié !"
+            );
+
+            return $this->redirectToRoute('AdminMateriel.index');
+        }
+
+        return $this->render('admin/materiel/edit.html.twig', [
+            'form' => $form->createView(),
+            'materiel' => $materiel
+        ]);
+    }
+
+    /**
      * Permet de supprimer un matériel
      * 
      * @Route("/admin/materiel/delete/{id}", name="AdminMateriel.delete")
