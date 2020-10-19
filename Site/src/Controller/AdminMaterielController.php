@@ -21,12 +21,13 @@ class AdminMaterielController extends AbstractController
     public function index($page, PaginationService $paginator)
     {
 
-        $paginator->setEntityClass(Materiel::class)
-        ->setCurrentPage($page)
-        ->setLimit(10);
+            $paginator->setEntityClass(Materiel::class)
+            ->setCurrentPage($page)
+            ->setLimit(10);
 
         return $this->render('admin/materiel/index.html.twig', [
-            'paginator' => $paginator
+            'paginator' => $paginator,
+            "archive" => false
         ]);
     }
 

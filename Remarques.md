@@ -26,14 +26,12 @@
 * Champ "nom" de la table Materiel incompris => Dernier user manip
 * Fonctionnalité de mot clé => champs mot clé avec recherche LIKE % % 
 * Onglet Archive => Onglet "archive" <=> "gestion
+* Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un compte ? 
 
-## Edition profil d'un utilisateur
-
-Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un compte ? 
 
 # Remarques après lecture du code
 
-* Champs "present" dans la table User. Pourquoi ?
+* ✔️ Champs "present" dans la table User. Pourquoi ?
 * Pour les interventions, plusieurs cas possible:
 
     * Départ en intervention avec du matériel (intervention classique)
@@ -47,13 +45,12 @@ Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un comp
 
 ## Jeudi 8 Octobre 2020
 
-* Début de factorisation du UserController.php
+* ✔️ Factorisation du UserController.php
 
 
 ## Vendredi 9 Octobre 2020
-php
- ✔️ Suppresion d'un User ne marche pas, revoir la fonction delete du UserController .php
 
+* ✔️ Suppresion d'un User ne marche pas, revoir la fonction delete du UserController.php
 * ✔️ Problème avec le menu déroulant de la navBar
 * ✔️ NavBar pas centraliser, maintenabilité de celle-ci difficile car répétition de balise nav dans         différents fichier
 * ❌ Dans le UserController -> fonction edit: variable check déclarer vide mais pas utiliser

@@ -10,13 +10,20 @@
 		<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item active" aria-current="page">
-					<a href="{{ path('AdminDasboard.index') }}">Gestion</a>
+					<a href="{{ path('AdminArchive.index') }}">Archive</a>
 				</li>
 				<li class="breadcrumb-item active" aria-current="page">Matériels</li>
 			</ol>
 		</nav>
 
-		<h1 class="h1 my-3">Gestions des matériels</h1>
+		<h1 class="h1 my-3">
+			{% if archive == false %}
+				Gestion des matériels
+				{% elseif archive == true %}
+				Archive des matériels
+			{% endif %}
+
+		</h1>
 		<a href="{{ path('AdminMateriel.add') }}" class="btn btn-success my-5">
 			<i class="fas fa-plus-circle"></i>
 		</a>
@@ -40,7 +47,7 @@
 			<tbody>
 				{% for materiel in paginator.data %}
 
-					{% if materiel.supprimer == false %}
+					{% if materiel.supprimer == archive %}
 
 						<tr>
 							<td>{{ materiel.idMateriel }}</td>
