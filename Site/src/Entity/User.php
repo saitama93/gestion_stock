@@ -38,7 +38,7 @@ class User implements UserInterface
      *     pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/",
      *     message="Doit contenir un chiffre, une lettre, un charactères spéciaux et doit avoir faire une taille de 8"
      * )
-     * @ORM\Column(name="password", type="string", length=100, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
 

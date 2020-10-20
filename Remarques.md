@@ -8,23 +8,11 @@
 # Tâches à faire
 
 * Réussir à fusionner l'envoie de mail et la conversion en fichier PDF des informations de l'utilisateur
-* Sécuriser la page de création de compte @isGranted('ROLE_ADMIN')
 * Message/fenêtre de confirmation lors de la suppression 
 * Mettre en place un margin botton et top aux boutons ajouter et supprimer de chaque élément des listes comme avec les spécificités (voir view /admin/specificite/list)
 * Rajouter favicon
-* Faire une redirection après connection en fonction du rôle de l'utilisateur
 * S'occuper du réglage fuseau horraire des champs date
-* Redirection après création d'un compte utilisateur 
-* Réussir à désactiver un compte sans le supprimer 
 * Fonctionnalité de mot clé
-* Navbar
-    * Onglet "intervention":
-        * Faire disparaitre pour l'admin ou renvoyer vers la liste des interventions
-        * Pour le user renvoyer vers le départ/retour d'intervention
-    
-    * Onglet "historique":
-        * Pour l'admin renvoyer vers la liste de tout les interventions
-        * Pour le user renvoyer vers SES interventions
 
 
 # Questions
@@ -35,6 +23,7 @@
 * Fonctionnalité de mot clé => champs mot clé avec recherche LIKE % % 
 * Onglet Archive => Onglet "archive" <=> "gestion
 * Est-ce nécessaire d'envoyer un PDF lorsqu'on modifie les informations d'un compte ? 
+    * Juste lorsqu'un admin fait un changement de mot de passe
 
 
 # Remarques après lecture du code
@@ -138,8 +127,18 @@
 * ✔️ Activation des comptes
 * ✔️ Redirection après connexion en fonction du role
 * ✔️ Header dynamique en fonction du role de l'utilisateur connecté
+* ❌Navbar
+    * Onglet "intervention":
+        * Faire disparaitre pour l'admin ou renvoyer vers la liste des interventions
+        * Pour le user renvoyer vers le départ/retour d'intervention
+    
+    * Onglet "historique":
+        * Pour l'admin renvoyer vers la liste de tout les interventions
+        * Pour le user renvoyer vers SES interventions
+
 * ❌ Infos utilisateurs détaillés 
 * ❌ Infos matériels détaillés 
+* ✔️ Mise à jour du mot de passe
 
 
 ## Crédits
