@@ -18,6 +18,7 @@ class AdminArchiveController extends AbstractController
      * Permet l'accès aux archives
      * 
      * @Route("/admin/archives", name="AdminArchive.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index()
     {
@@ -62,6 +63,7 @@ class AdminArchiveController extends AbstractController
      * Permet de vraiment supprimer un utilisateur
      * 
      * @Route("/admin/archive/user/delete/{id}", name="AdminArchive.userDelete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function deleteUser(Request $request, $id, UserRepository $userRepo, EntityManagerInterface $em)
     {
@@ -89,6 +91,7 @@ class AdminArchiveController extends AbstractController
      * Permet d'activer un compte
      * 
      * @Route("/admin/archive/user/activate/{id}", name="AdminArchive.activateAccount")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function activateAccount($id, EntityManagerInterface $em, UserRepository $userRepo){
 

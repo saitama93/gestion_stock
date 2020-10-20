@@ -18,6 +18,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminUserController extends AbstractController
 {
     /**
+     * Permet d'afficher la liste des utilisateurs
+     * 
      * @Route("/admin/user/list/{page<\d+>?1}", name="AdminUser.index")
      * @IsGranted("ROLE_ADMIN")
      */
@@ -37,6 +39,7 @@ class AdminUserController extends AbstractController
      * Permet de créer un utilisateur
      * 
      * @Route("/admin/user/add",name="AdminUser.add",methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * 
      */
     public function add(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, EntityManagerInterface $em, GeneratePdfService $pdfService, MailerService $mailerService)
@@ -112,6 +115,7 @@ class AdminUserController extends AbstractController
      * Permet de modifier les utilisateurs
      * 
      * @Route("admin/user/edit/{id}",name="AdminUser.edit",methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * 
      */
     public function edit(Request $request, $id, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, UserRepository $userRepo, GeneratePdfService $pdfService, MailerService $mailerService)
@@ -186,6 +190,7 @@ class AdminUserController extends AbstractController
      * Permet de supprimer un utilisateur avec page de confirmation
      * 
      * @Route("admin/user/delete/{id}",name="AdminUser.delete",methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, $id, UserRepository $userRepo, EntityManagerInterface $em)
     {

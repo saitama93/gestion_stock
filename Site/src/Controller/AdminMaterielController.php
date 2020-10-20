@@ -9,6 +9,7 @@ use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminMaterielController extends AbstractController
@@ -17,6 +18,7 @@ class AdminMaterielController extends AbstractController
      * Permet d'afficher la liste des matériels
      * 
      * @Route("/admin/materiel/list/{page<\d+>?1}", name="AdminMateriel.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index($page, PaginationService $paginator)
     {
@@ -35,6 +37,7 @@ class AdminMaterielController extends AbstractController
      * Permet d'ajouter un materiel
      * 
      * @Route("/admin/materiel/add", name="AdminMateriel.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(EntityManagerInterface $em, Request $request)
     {
@@ -74,6 +77,7 @@ class AdminMaterielController extends AbstractController
      * Permetde modifier un matériel
      * 
      * @Route("/admin/materiel/edit/{id}", name="AdminMateriel.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Materiel $materiel, Request $request, EntityManagerInterface $em){
 
@@ -105,6 +109,7 @@ class AdminMaterielController extends AbstractController
      * Permet de supprimer un matériel
      * 
      * @Route("/admin/materiel/delete/{id}", name="AdminMateriel.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Materiel $materiel, EntityManagerInterface $em){
 

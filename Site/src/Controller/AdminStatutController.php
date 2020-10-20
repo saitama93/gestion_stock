@@ -9,12 +9,16 @@ use App\Repository\StatutRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminStatutController extends AbstractController
 {
     /**
+     * Permet d'afficher la liste des statuts
+     * 
      * @Route("/admin/statut/list/{page<\d+>?1}", name="AdminStatut.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index($page, PaginationService $paginator)
     {
@@ -32,6 +36,7 @@ class AdminStatutController extends AbstractController
      * Permet d'ajouter un statut
      * 
      * @Route("/admin/statut/add", name="AdminStatut.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em){
 
@@ -65,6 +70,7 @@ class AdminStatutController extends AbstractController
      * Permet de modifier un statut
      * 
      * @Route("/admin/statut/edit/{id}", name="AdminStatut.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Statut $statut, Request $request, EntityManagerInterface $em){
 
@@ -96,6 +102,7 @@ class AdminStatutController extends AbstractController
      * Permet de supprimer un statut
      * 
      * @Route("/admin/statut/delete/{id}", name="AdminStatut.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(EntityManagerInterface $em, Statut $statut){
 

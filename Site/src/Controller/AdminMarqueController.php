@@ -9,6 +9,7 @@ use App\Repository\MarqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminMarqueController extends AbstractController
@@ -17,6 +18,7 @@ class AdminMarqueController extends AbstractController
      * Permet d'afficher la liste des marques
      * 
      * @Route("/admin/marque/list/{page<\d+>?1}", name="AdminMarque.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(MarqueRepository $marqueRepo, $page, PaginationService $paginator)
     {
@@ -33,6 +35,7 @@ class AdminMarqueController extends AbstractController
      * Permet d'ajouter une marque
      * 
      * @Route("/admin/marque/add", name="AdminMarque.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -65,6 +68,7 @@ class AdminMarqueController extends AbstractController
      * Permet de modifier une marque 
      * 
      * @Route("/admin/marque/edit/{id}", name="AdminMarque.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Marque $marque, Request $request, EntityManagerInterface $em)
     {
@@ -97,6 +101,7 @@ class AdminMarqueController extends AbstractController
      * Permet de supprimer une marque 
      * 
      * @Route("/admin/marque/delete/{id}", name="AdminMarque.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(EntityManagerInterface $em, Marque $marque)
     {

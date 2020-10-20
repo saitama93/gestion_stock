@@ -8,6 +8,7 @@ use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminLieuController extends AbstractController
@@ -16,6 +17,7 @@ class AdminLieuController extends AbstractController
      * Permet d'afficher la liste des lieux
      * 
      * @Route("/admin/lieu/list/{page<\d+>?1}", name="AdminLieu.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index($page, PaginationService $paginator)
     {
@@ -33,6 +35,7 @@ class AdminLieuController extends AbstractController
      * Permet d'ajouter un nouveau lieu
      * 
      * @Route("/admin/lieu/add", name="AdminLieu.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -65,6 +68,7 @@ class AdminLieuController extends AbstractController
      * Permet de supprimer un lieu
      * 
      * @Route("/admin/lieu/delete/{id}", name="AdminLieu.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Lieu $lieu, EntityManagerInterface $em)
     {
@@ -83,6 +87,7 @@ class AdminLieuController extends AbstractController
      * Permet de modifier un lieu
      * 
      * @Route("/admin/lieu/edit/{id}", name="AdminLieu.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Lieu $lieu, Request $request, EntityManagerInterface $em)
     {

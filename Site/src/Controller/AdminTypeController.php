@@ -9,13 +9,16 @@ use App\Service\PaginationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminTypeController extends AbstractController
 {
     /**
      * Permet d'afficher la liste des statuts
+     * 
      * @Route("/admin/type/list/{page<\d+>?1}", name="AdminType.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index($page, PaginationService $paginator)
     {
@@ -33,6 +36,7 @@ class AdminTypeController extends AbstractController
      * Permet de créer un type
      * 
      * @Route("/admin/type/add", name="AdminType.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -65,6 +69,7 @@ class AdminTypeController extends AbstractController
      * Permet de modifier un type
      * 
      * @Route("/admin/type/edit/{id}", name="AdminType.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Type $type, Request $request, EntityManagerInterface $em)
     {
@@ -96,6 +101,7 @@ class AdminTypeController extends AbstractController
      * Permet de supprimer un type
      * 
      * @Route("/admin/type/delete/{id}", name="AdminType.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(EntityManagerInterface $em, Type $type)
     {

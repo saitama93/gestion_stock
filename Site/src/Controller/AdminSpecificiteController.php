@@ -9,12 +9,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\SpecificiteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminSpecificiteController extends AbstractController
 {
     /**
      * @Route("/admin/specificite/list/{page<\d+>?1}", name="AdminSpecificite.index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index($page, PaginationService $paginator)
     {
@@ -34,6 +36,7 @@ class AdminSpecificiteController extends AbstractController
      * Permet d'ajouter une spécificité
      * 
      * @Route("/admin/specificite/add", name="AdminSpecificite.add")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
@@ -67,6 +70,7 @@ class AdminSpecificiteController extends AbstractController
      * Permet de modifier une spécificité
      * 
      * @Route("/admin/specificite/edit/{id}", name="AdminSpecificite.edit")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Specificite $specificite, Request $request, EntityManagerInterface $em)
     {
@@ -98,6 +102,7 @@ class AdminSpecificiteController extends AbstractController
      * Permet de supprimer une spécificité
      * 
      * @Route("/admin/specificite/delete/{id}", name="AdminSpecificite.delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(EntityManagerInterface $em, Specificite $specificite)
     {
