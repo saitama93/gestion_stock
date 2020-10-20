@@ -10,12 +10,6 @@
 	<div class="collapse navbar-collapse" id="navbarColor01">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="{{ path('Intervention.index') }}">
-					<i class="fas fa-car-side"></i>
-					Intervention
-				</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="{{ path('AdminMateriel.index') }}">
 					<i class="fas fa-layer-group"></i>
 					Stock
@@ -40,7 +34,7 @@
 
 						<div class="dropdown-divider"></div>
 
-						<a href="#" class="dropdown-item">Mon compte</a>
+						<a href="{{ path('Account.myAccount', {'id' : app.user.idUser}) }}" class="dropdown-item">Mon compte</a>
 						<a href="#" class="dropdown-item">Modifier mes informations</a>
 
 						<div class="dropdown-divider"></div>

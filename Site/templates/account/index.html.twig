@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page de
+	{{ user.fullName }}
+{% endblock %}
+
+{% block body %}
+
+	<div id="account" class="container">
+		<div class="row align-items-center mb-5">
+
+			<div class="offset-md-3 col-md-6 infos">
+				<h1 class="text-center mt-3">{{ user.fullname }}</h1>
+
+				<span class="badge badge-primary text-center">5 interventions</span>
+
+				{% if user is same as(app.user) %}
+					<div class="mt-3 text-center">
+						<a href="#" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
+						<a href="#" class="btn btn-primary mb-2">Changer de mot de passe</a>
+					</div>
+				{% endif %}
+			</div>
+			<div class="col-md-3 text-center"></div>
+		</div>
+
+
+		<h2 class="text-center">Les interventions de
+			{{ user.fullName }}</h2>
+	</div>
+{% endblock %}

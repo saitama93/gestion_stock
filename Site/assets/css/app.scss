@@ -273,3 +273,18 @@ tr th {
 #tabParam {
     border-bottom: black 1px solid;
 }
+
+// PROFIL
+#account {
+    // la partie présentation du user 
+    .infos {
+        img,
+        span {
+            display: block;
+            margin: auto;
+        }
+        span {
+            width: 21%;
+        }
+    }
+}
