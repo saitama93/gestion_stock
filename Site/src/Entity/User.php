@@ -76,7 +76,7 @@ class User implements UserInterface
     /**
      * @var int
      *
-     * @ORM\Column(name="present", type="integer", nullable=false)
+     * @ORM\Column(name="present", type="boolean", nullable=false)
      */
     private $present;
 
