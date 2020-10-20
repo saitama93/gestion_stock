@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Materiel;
+use App\Repository\UserRepository;
 use App\Service\PaginationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminArchiveController extends AbstractController
 {
@@ -39,8 +42,8 @@ class AdminArchiveController extends AbstractController
         ]);
     }
 
-   /**
-     * @Route("/admin/archive/list/{page<\d+>?1}", name="AdminArchive.index")
+    /**
+     * @Route("/admin/archive/list/{page<\d+>?1}", name="AdminArchive.users")
      * @IsGranted("ROLE_ADMIN")
      */
     public function users($page, PaginationService $paginator)
@@ -53,5 +56,54 @@ class AdminArchiveController extends AbstractController
             'paginator' => $paginator,
             'presence' => false
         ]);
+    }
+
+    /**
+     * Permet de vraiment supprimer un utilisateur
+     * 
+     * @Route("/admin/archive/user/delete/{id}", name="AdminArchive.userDelete")
+     */
+    public function deleteUser(Request $request, $id, UserRepository $userRepo, EntityManagerInterface $em)
+    {
+        $user = $userRepo->find($id);
+
+        if ($request->isMethod('POST')) {
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash(
+                'danger',
+                "Le compte de {$user->getFullName()} est définitivement supprimé."
+            );
+
+            return $this->redirectToRoute('AdminArchive.users');
+        }
+
+        return $this->render('user/deleteUser.html.twig', [
+            'user' => $user,
+            'presence' => false
+        ]);
+    }
+
+    /**
+     * Permet d'activer un compte
+     * 
+     * @Route("/admin/archive/user/activate/{id}", name="AdminArchive.activateAccount")
+     */
+    public function activateAccount($id, EntityManagerInterface $em, UserRepository $userRepo){
+
+        $user = $userRepo->find($id);
+
+        $user->setPresent(1);
+
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash(
+            'success',
+            "Le compte de {$user->getFullName()} est activé."
+        );
+
+        return $this->redirectToRoute('AdminUser.index');
     }
 }

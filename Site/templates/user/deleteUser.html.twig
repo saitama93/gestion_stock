@@ -9,17 +9,35 @@
 				<li class="breadcrumb-item active" aria-current="page">Supprimer</li>
 			</ol>
 		</nav>
-		<h3>Voulez vous supprimer cet utilisateur</h3>
+
+		{% if presence == true %}
+
+			<h3>Voulez vous archiver cet utilisateur</h3>
+		{% else %}
+			<h3>Voulez vous supprimer définitivement cet utilisateur</h3>
+		{% endif %}
+
+
 		<form method="post">
 			<p>Nom complet :
 				{{user.fullname}}
 			</p>
 			<p>Mail :
 				{{ user.mail }}</p>
-			{# <a href="{{ path('AdminUser.delete', { 'id' : user.idUser}) }}" class="btn btn-danger">Supprimer</a> #}
-			<button type="submit" class="btn btn-danger">Supprimer</button>
+			<button type="submit" class="btn btn-danger">
+				{% if presence == true %}
+					Archiver
+				{% else %}
+					Supprimer
+				{% endif %}
+			</button>
 		</form>
-		<a href="{{ path('AdminUser.index') }}" class="btn btn-outline-primary">Annuler</a>
+		{% if presence == true %}
+			<a href="{{ path('AdminUser.index') }}" class="btn btn-outline-primary">Annuler</a>
+		{% else %}
+			<a href="{{ path('AdminArchive.users') }}" class="btn btn-outline-primary">Annuler</a>
+		{% endif %}
+
 	</div>
 
 {% endblock %}

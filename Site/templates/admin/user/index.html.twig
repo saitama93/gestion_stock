@@ -16,7 +16,14 @@
 			</ol>
 		</nav>
 
-		<h1 class="h1 my-3">Gestions des utilisateurs</h1>
+		<h1 class="h1 my-3">
+			{% if presence == true %}
+				Gestion des utilisateurs
+			{% else %}
+				Archive des utilisateurs
+			{% endif %}
+
+		</h1>
 		<a href="{{ path('AdminUser.add') }}" class="btn btn-success my-5">
 			<i class="fas fa-plus-circle"></i>
 		</a>
@@ -42,13 +49,27 @@
 							<td>{{ user.fullName }}</td>
 							<td>{{ user.roles[0]}}</td>
 							<td class="text-center">
-								<a href="{{ path('AdminUser.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2">
+								<a title="Modifier les informations" href="{{ path('AdminUser.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2">
 									<i class="fas fa-edit"></i>
 								</a>
-								<a href="{{ path('AdminUser.delete', {'id' : user.idUser}) }}" class="btn btn-danger ml-2">
-									<i class="fas fa-trash"></i>
-								</a>
+								{% if presence == true %}
+									<a href="{{ path('AdminUser.delete', {'id' : user.idUser}) }}" class="btn btn-danger ml-2" title="Bloquer le compte">
+										<i class="fas fa-user-lock"></i>
+									</a>
+								{% else %}
+
+									<a href="{{ path('AdminArchive.userDelete', {'id' : user.idUser}) }}" class="btn btn-danger ml-2" title="Supprimer le compte">
+										<i class="fas fa-trash"></i>
+									</a>
+								{% endif %}
+								{% if presence == false %}
+									<a href="{{ path('AdminArchive.activateAccount', {'id' : user.idUser}) }}" title="Activer le compte" class="btn btn-success ml-2">
+										<i class="fas fa-unlock"></i>
+									</a>
+								{% endif %}
 							</td>
+
+
 						</tr>
 					{% endif %}
 				{% endfor %}

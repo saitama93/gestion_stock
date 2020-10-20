@@ -16,6 +16,7 @@
 * S'occuper du réglage fuseau horraire des champs date
 * Redirection après création d'un compte utilisateur 
 * Réussir à désactiver un compte sans le supprimer 
+* Fonctionnalité de mot clé
 
 
 # Questions
@@ -119,7 +120,16 @@
 * ✔️ Filter les user pour avoir que les user présent
 * ✔️ Archivation des utilisateurs
 * ✔️ Désactivation des comptes
-* ❌ Fonctionnalité de mot clé
+
+
+## Mardi 20 Octobre 2020
+
+* ✔️ Archivation compte
+* ✔️ Réel suppression de compte
+* ✔️ Rendre dynamique les messages de confirmation de suppression
+* ✔️ Activation des comptes
+* ❌ Infos utilisateurs détaillés 
+* ❌ Infos matériels détaillés 
 
 
 ## Crédits

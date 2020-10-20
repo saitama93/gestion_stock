@@ -199,7 +199,7 @@ class AdminUserController extends AbstractController
 
             $this->addFlash(
                 'danger',
-                "L'utilisateur {$user->getFullName()} a bien été supprimé."
+                "Le compte de {$user->getFullName()} a bien été désactivé."
             );
 
             return $this->redirectToRoute('AdminUser.index');
@@ -207,7 +207,8 @@ class AdminUserController extends AbstractController
         return $this->render(
             'user/deleteUser.html.twig',
             [
-                'user' => $user
+                'user' => $user,
+                'presence' => true
             ]
         );
     }
