@@ -17,6 +17,14 @@
 * Redirection après création d'un compte utilisateur 
 * Réussir à désactiver un compte sans le supprimer 
 * Fonctionnalité de mot clé
+* Navbar
+    * Onglet "intervention":
+        * Faire disparaitre pour l'admin ou renvoyer vers la liste des interventions
+        * Pour le user renvoyer vers le départ/retour d'intervention
+    
+    * Onglet "historique":
+        * Pour l'admin renvoyer vers la liste de tout les interventions
+        * Pour le user renvoyer vers SES interventions
 
 
 # Questions
@@ -128,6 +136,8 @@
 * ✔️ Réel suppression de compte
 * ✔️ Rendre dynamique les messages de confirmation de suppression
 * ✔️ Activation des comptes
+* ✔️ Redirection après connexion en fonction du role
+* ✔️ Header dynamique en fonction du role de l'utilisateur connecté
 * ❌ Infos utilisateurs détaillés 
 * ❌ Infos matériels détaillés 
 
