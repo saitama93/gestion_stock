@@ -32,6 +32,7 @@
 			<thead>
 				<tr>
 					<th>Id</th>
+					<th>Pseudo</th>
 					<th>Email</th>
 					<th>Nom complet</th>
 					<th>Rôle</th>
@@ -45,9 +46,25 @@
 
 						<tr>
 							<td>{{ user.idUser }}</td>
+							<td>{{ user.username }}</td>
 							<td>{{ user.mail }}</td>
 							<td>{{ user.fullName }}</td>
-							<td>{{ user.roles[0]}}</td>
+							<td style="font-weight: bold;">
+								{% if 'ROLE_ADMIN' in user.roles %}
+
+									Administrateur
+								{% endif %}
+
+								{% if ('ROLE_USER' in user.roles) and not ('ROLE_ADMIN' in user.roles) %}
+									Utilisateur
+								{% endif %}
+								{% if 'ROLE_PUBLIC' in user.roles %}
+
+									Public
+								{% endif %}
+
+							</td>
+
 							<td class="text-center">
 								<a title="Modifier les informations" href="{{ path('AdminUser.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2">
 									<i class="fas fa-edit"></i>
