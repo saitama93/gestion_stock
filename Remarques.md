@@ -141,6 +141,12 @@
 * ✔️ Mise à jour du mot de passe
 
 
+## Mercredi 21 Octobre 2020
+
+* ✔️ Autorisation et sécurisation des route
+* ❌ Mise à jour des données de l'utilisateur (Erreur de validation du mot de passe lors de l'envoie du formulaire)
+
+
 ## Crédits
 
 Première version de l'application développé par Laine Lucas.

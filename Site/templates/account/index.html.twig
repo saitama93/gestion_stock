@@ -16,7 +16,10 @@
 
 				{% if user is same as(app.user) %}
 					<div class="mt-3 text-center">
-						<a href="#" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
+						{% if 'ROLE_ADMIN' in user.roles %}
+							<a href="{{ path('AdminUser.edit', {'id' : user.idUser}) }}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
+						{% endif %}
+
 						<a href="{{ path('Account.updatePassword') }}" class="btn btn-primary mb-2">Changer de mot de passe</a>
 					</div>
 				{% endif %}

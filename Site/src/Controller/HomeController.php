@@ -19,7 +19,6 @@ class HomeController extends AbstractController
      */
     public function index(AuthenticationUtils $authenticationUtils)
     {
-        $nombre = random_int(1, 5);
 
         if ($this->getUser()) {
             $roles = $this->getUser()->getRoles();
@@ -43,7 +42,6 @@ class HomeController extends AbstractController
         return $this->render('home/home.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'nombre' => $nombre,
         ]);
     }
 
