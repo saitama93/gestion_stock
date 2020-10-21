@@ -13,6 +13,7 @@
 * Rajouter favicon
 * S'occuper du réglage fuseau horraire des champs date
 * Fonctionnalité de mot clé
+* ❌ Les 2 premiers utilisateurs (ADMIN et PUBLIC) ne peuvent pas changer leur roles
 
 
 # Questions
@@ -26,7 +27,7 @@
     * Juste lorsqu'un admin fait un changement de mot de passe
 
 
-# Remarques après lecture du code
+# Remarques après lecture du code et échange avec Lucas
 
 * ✔️ Champs "present" dans la table User. Pourquoi ?
 * Pour les interventions, plusieurs cas possible:
@@ -37,8 +38,11 @@
     * Retour d'intervention sans le matériel prit lors du départ
     * Retour d'intervention avec matériel inconnu lors du départ
 
+* Le rôle PUBLIC peut créer des interventions mais pas à son nom (Un user avec ROLE_PUBLIC ne pars pas en intervention)
+* Pour la route AdminUser.edit la condition avec l'idUser c'est pour que les 2er user ne changent pas leur role
 
-# Avancement projet
+
+# Avancement projet #
 
 ## Jeudi 8 Octobre 2020
 
